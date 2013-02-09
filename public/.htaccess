@@ -1,6 +1,8 @@
 # Multiple Environment config, set this to development, staging or production
 # SetEnv FUEL_ENV production
 
+AddDefaultCharset utf-8
+
 <IfModule mod_rewrite.c>
 
     # Make sure directory listing is disabled

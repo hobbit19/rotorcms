@@ -17,4 +17,14 @@
 
 return array(
 
+	'language'           => 'ru', // Default language
+	'language_fallback'  => 'en', // Fallback language when file isn't available for default language
+	'locale'             => null, // PHP set_locale() setting, null to not set
+
+	'always_load'  => array(
+		'packages'  => array(
+			'orm',
+			'auth',
+		),
+	),
 );
