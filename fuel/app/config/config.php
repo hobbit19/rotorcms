@@ -21,15 +21,10 @@ return array(
 	'language_fallback'  => 'en', // Fallback language when file isn't available for default language
 	'locale'             => null, // PHP set_locale() setting, null to not set
 
-	'package_paths' => array(
-		PKGPATH
-	),
-
 	'always_load'  => array(
 		'packages'  => array(
 			'orm',
 			'auth',
-			'ninjauth',
 		),
 	),
 );

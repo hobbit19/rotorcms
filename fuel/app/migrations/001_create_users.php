@@ -6,21 +6,27 @@ class Create_users
 {
 	public function up()
 	{
-		\DBUtil::create_table('users', array(
-			'id' => array('constraint' => 11, 'type' => 'int', 'auto_increment' => true),
-			'username' => array('constraint' => 50, 'type' => 'varchar'),
-			'password' => array('constraint' => 255, 'type' => 'varchar'),
-			'group' => array('constraint' => 11, 'type' => 'int'),
-			'email' => array('constraint' => 255, 'type' => 'varchar'),
-			'last_login' => array('constraint' => 11, 'type' => 'int'),
-			'login_hash' => array('constraint' => 255, 'type' => 'varchar'),
-			'profile_fields' => array('type' => 'text'),
+		$table = \Config::get('simpleauth.table_name', 'users');
 
+		\DBUtil::create_table($table, array(
+			'id' => array('type' => 'int', 'constraint' => 11, 'auto_increment' => true),
+			'username' => array('type' => 'varchar', 'constraint' => 50),
+			'password' => array('type' => 'varchar', 'constraint' => 255),
+			'group' => array('type' => 'int', 'constraint' => 11, 'default' => 1),
+			'email' => array('type' => 'varchar', 'constraint' => 255),
+			'last_login' => array('type' => 'varchar', 'constraint' => 25),
+			'login_hash' => array('type' => 'varchar', 'constraint' => 255),
+			'profile_fields' => array('type' => 'text'),
+			'created_at' => array('type' => 'int', 'constraint' => 11, 'default' => 0),
 		), array('id'));
+
+		\DBUtil::create_index('users', array('username', 'email'), 'username', 'UNIQUE');
 	}
 
 	public function down()
 	{
-		\DBUtil::drop_table('users');
+		$table = \Config::get('simpleauth.table_name', 'users');
+
+		\DBUtil::drop_table($table);
 	}
 }

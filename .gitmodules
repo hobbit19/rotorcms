@@ -19,6 +19,3 @@
 [submodule "fuel/packages/log"]
 	path = fuel/packages/log
 	url = git://github.com/fuel/log.git
-[submodule "fuel/packages/ninjauth"]
-	path = fuel/packages/ninjauth
-	url = git://github.com/happyninjas/fuel-ninjauth.git
