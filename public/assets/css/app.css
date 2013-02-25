@@ -1,0 +1,32 @@
+body { margin: 0px 0px 40px 0px; }
+
+#header {
+  background-color: #333333;
+  height: 75px;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+#header .row {
+  width: 940px;
+  margin: 0 auto;
+}
+
+#header .row img {
+  margin-top: 15px;
+}
+
+footer {
+  margin-top: 30px;
+}
+
+#header .row p a {
+  color: #e78b24;
+  text-decoration: none;
+}
+
+#header .row p a:hover,
+#header .row p a:focus {
+  color: #da7e18;
+  text-decoration: underline;
+}

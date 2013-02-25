@@ -23,8 +23,26 @@ class Controller_Users extends Controller_Template
 
 	public function action_index()
 	{
-		$this->template->title = 'Users &raquo; Index';
-		$this->template->content = View::forge('users/index');
+
+		$config = array(
+			'total_items' => Model_User::find()->count(),
+			'per_page'    => 10,
+		);
+
+		// Create a pagination instance named 'mypagination'
+		$pagination = Pagination::forge('mypagination', $config);
+
+		$users = Model_User::find()
+		    ->rows_offset($pagination->offset)
+		    ->rows_limit($pagination->per_page)
+		    ->get();
+
+		$pagination = $pagination->render();
+		
+		$this->template->title = 'Member List';
+		$this->template->content = View::forge('users/index', array(
+			'users' => $users, 'pagination' => $pagination
+		));
 	}
 
 	public function action_view($id)
