@@ -7,30 +7,51 @@
 	<?php echo Asset::css(array('bootstrap.min.css', 'bootstrap-responsive.min.css', 'app.css')); ?>
 	<?php echo Asset::js(array('jquery-1.9.1.min.js', 'bootstrap.min.js')); ?>
 </head>
-<body>
+<body class="preview" id="top" data-spy="scroll" data-target=".subnav" data-offset="80">
 
-	<div id="header">
-		<div class="row">
-			<?=Html::anchor('/', Html::img('assets/img/logo.png', array('alt' => 'logo')))?>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                	<span class="icon-bar"></span>
+            	 	<span class="icon-bar"></span>
+            		<span class="icon-bar"></span>
+          		</button>
+                <a class="brand" href="/">RotorCMS</a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li class="active"><a href="#about">About</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#photos">Photos</a></li>
+                        <li><a href="#contact">Contacts</a></li>
+                    </ul>
 
-			<?if ($current_user):?>
-			<p class="navbar-text pull-right">
-				Loged in as <?=Html::anchor('users/view/'.$current_user->id, $current_user->username)?>
-				(<?=Html::anchor('users/logout', 'Log out')?>)
-			</p>
-			<?else:?>
-			<p class="navbar-text pull-right">
-				<?=Html::anchor('users/login', 'Log in')?> / 
-				<?=Html::anchor('users/register', 'Sign in')?>
-			</p>
-			<?endif?>
+					<?if ($current_user):?>
+					<ul class="nav pull-right">
 
-		</div>
-	</div>
+						<li class="dropdown">
+							<?=Html::anchor('users/view/'.$current_user->id, $current_user->username.' <b class="caret"></b>', array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown'))?>
+
+							<ul class="dropdown-menu">
+								<li><?=Html::anchor('users/logout', 'Log out')?></li>
+							</ul>
+						</li>
+
+					</ul>
+					<?else:?>
+					<ul class="nav pull-right">
+						<li><?=Html::anchor('users/login', 'Log in')?></li>
+						<li><?=Html::anchor('users/register', 'Sign in')?></li>
+					</ul>
+					<?endif?>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 	<div class="container">
-
-
 
 		<div class="row">
 			<div class="span12">

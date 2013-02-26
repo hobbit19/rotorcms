@@ -25,6 +25,7 @@ class Controller_Users extends Controller_Template
 	{
 
 		$config = array(
+			'pagination_url' => 'users/index/',
 			'total_items' => Model_User::find()->count(),
 			'per_page'    => 10,
 		);
