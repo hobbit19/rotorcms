@@ -4,8 +4,8 @@
 	<meta charset="utf-8">
 	<title><?=$title?></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="/assets/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 <?=Asset::css(array('bootstrap.min.css', 'bootstrap-responsive.min.css', 'app.css'))?>
-<?=Asset::js(array('jquery-1.9.1.min.js', 'bootstrap.min.js'))?>
 </head>
 <body class="preview" id="top" data-spy="scroll" data-target=".subnav" data-offset="80">
 
@@ -22,12 +22,14 @@
 
 <? if (Session::get_flash('success')): ?>
 				<div class="alert alert-success">
-					<span><?php echo implode('</span><span>', e((array) Session::get_flash('success'))); ?></span>
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<?php echo implode('<br />', e((array) Session::get_flash('success'))); ?>
 				</div>
 <? endif; ?>
 <? if (Session::get_flash('error')): ?>
 				<div class="alert alert-error">
-					<span><?php echo implode('</span><span>', e((array) Session::get_flash('error'))); ?></span>
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<?php echo implode('<br />', e((array) Session::get_flash('error'))); ?>
 				</div>
 <? endif; ?>
 			</div>
@@ -44,5 +46,6 @@
 			</p>
 		</footer>
 	</div>
+<?=Asset::js(array('jquery-1.9.1.min.js', 'bootstrap.min.js'))?>
 </body>
 </html>

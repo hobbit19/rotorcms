@@ -6,7 +6,7 @@ class Model_User extends \Orm\Model
 		'id',
 		'username' => array(
 			'data_type' => 'string',
-			'validation' => array('required', 'trim', 'min_length'=>array(3), 'max_length'=>array(30)),
+			'validation' => array('required', 'trim', 'min_length'=>array(3), 'max_length'=>array(20)),
 			'label' => array('label'=>'Username', 'class'=>'control-label', 'for'=>'form_username'),
 		),
 		'password' => array(
@@ -70,4 +70,42 @@ class Model_User extends \Orm\Model
 			'mysql_timestamp' => false,
 		),
 	);
+
+	/**
+	 * validate
+	 */
+	public static function validate($factory)
+	{
+		$val = Validation::forge($factory);
+		$val->add_callable('CustomRules');
+
+		$val->add('username', 'Username')
+			->add_rule('required')
+			->add_rule('trim')
+			->add_rule('strip_tags')
+			->add_rule('min_length', 3)
+			->add_rule('max_length', 20)
+			->add_rule('unique','users.username');
+
+		$val->add('password','Password')
+			->add_rule('required')
+			->add_rule('trim')
+			->add_rule('strip_tags')
+			->add_rule('min_length', 6)
+			->add_rule('max_length', 30);
+
+		$val->add('confirm_password','Сonfirm password')
+			->add_rule('match_field', 'password');
+
+		$val->add('email', 'Email')
+			->add_rule('required')
+			->add_rule('trim')
+			->add_rule('strip_tags')
+			->add_rule('min_length', 5)
+			->add_rule('max_length', 50)
+			->add_rule('valid_email')
+			->add_rule('unique','users.email');
+
+		return $val;
+	}
 }

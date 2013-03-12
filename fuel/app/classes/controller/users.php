@@ -1,26 +1,10 @@
 <?php
 
-class Controller_Users extends Controller_Template
+class Controller_Users extends Controller_Base
 {
-
-	public function before()
-	{
-		parent::before();
-
-		if (Auth::check())
-		{
-			list($driver, $user_id) = Auth::get_user_id();
-
-			$this->current_user = Model_user::find($user_id);
-		}
-		else
-		{
-			$this->current_user = null;
-		}
-
-		View::set_global('current_user', $this->current_user);
-	}
-
+	/**
+	 * action_index
+	 */
 	public function action_index()
 	{
 
@@ -46,6 +30,9 @@ class Controller_Users extends Controller_Template
 		));
 	}
 
+	/**
+	 * action_view
+	 */
 	public function action_view($id)
 	{
 		$user = Model_User::find($id);
@@ -56,6 +43,53 @@ class Controller_Users extends Controller_Template
 		));
 	}
 
+	/**
+	 * action_create
+	 */
+	public function action_create()
+	{
+		$auth = Auth::instance();
+		$view = View::forge('users/create');
+		$val = Model_User::validate('create');
+
+		if (Input::method() == 'POST')
+		{
+			if ($val->run())
+			{
+				try
+				{
+					$auth->create_user(
+						$val->validated('username'),
+						$val->validated('password'),
+						Str::lower($val->validated('email'))
+					);
+
+					$auth->login($val->validated('username'), $val->validated('password'));
+					Session::set_flash('success', 'Пользователь успешно создан!');
+					Response::redirect('/');
+
+				}
+				catch (Exception $e)
+				{
+					Session::set_flash('error', $e->getMessage());
+				}
+
+			}
+			else
+			{
+				Session::set_flash('error', $val->error());
+			}
+		}
+
+		$view->val = $val;
+		$this->template->title = 'Registration';
+		$this->template->content = $view;
+
+	}
+
+	/**
+	 * action_login
+	 */
 	public function action_login()
 	{
 		if (Input::method() == 'POST')
@@ -63,12 +97,11 @@ class Controller_Users extends Controller_Template
 			if (Auth::login(Input::post('username'), Input::post('password')))
 			{
 				Session::set_flash('success', 'Вы успешно авторизованы!');
-
 				Response::redirect('/');
 			}
 			else
 			{
-				exit('Invalid login');
+				Session::set_flash('error', 'Неверная пара логин-пароль!');
 			}
 		}
 
@@ -76,6 +109,9 @@ class Controller_Users extends Controller_Template
 		$this->template->content = View::forge('users/login');
 	}
 
+	/**
+	 * action_logout
+	 */
 	public function action_logout()
 	{
 		Auth::logout();
@@ -84,5 +120,4 @@ class Controller_Users extends Controller_Template
 
 		Response::redirect('/');
 	}
-
 }

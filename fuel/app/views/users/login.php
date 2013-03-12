@@ -1,10 +1,34 @@
-<?=Form::open(array('class' => 'form-signin'))?>
-	<h2 class="form-actions">Please sign in</h2>
-	<input type="text" name="username" class="span3" placeholder="Username">
-	<input type="password" name="password" class="span3" placeholder="Password">
-	<label class="checkbox">
-		<input type="checkbox" value="remember-me"> Remember me
-	</label>
-	<button class="btn btn-primary" type="submit">Sign in</button>
-<?=Form::close()?>
+<?=Form::open(array('class' => 'form-horizontal well'))?>
 
+	<fieldset>
+	 	<legend>Authorization</legend>
+		<div class="control-group">
+			<label class="control-label" for="form_username">Username or Email</label>
+			<div class="controls">
+				<?=Form::input('username', Input::post('username'), array('required' => 'required'))?>
+
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label" for="form_password">Password</label>
+			<div class="controls">
+				<?=Form::input('password', null, array('required' => 'required', 'type' => 'password'))?>
+
+			</div>
+		</div>
+		
+		<div class="control-group">
+			<div class="controls">
+				<label class="checkbox">
+					<?=Form::checkbox('remember', Input::post('remember', 1), true)?> Remember me
+				</label>
+			</div>
+		</div>		
+
+		<div class="form-actions">
+			<?=Form::button('submit', 'Sign in', array('class' => 'btn btn-primary'))?>
+
+		</div>
+	</fieldset>
+<?=Form::close()?>

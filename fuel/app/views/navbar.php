@@ -27,8 +27,8 @@
 				</ul>
 <?else:?>
 				<ul class="nav pull-right">
-					<li><?=Html::anchor('users/login', 'Log in')?></li>
-					<li><?=Html::anchor('users/register', 'Sign in')?></li>
+					<li><?=Html::anchor('users/login', 'Sign in')?></li>
+					<li><?=Html::anchor('users/create', 'Sign up')?></li>
 				</ul>
 <?endif?>
 
