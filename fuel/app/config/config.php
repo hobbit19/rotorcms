@@ -167,6 +167,7 @@ return array(
 			'Fuel\\Core\\Response',
 			'Fuel\\Core\\View',
 			'Fuel\\Core\\ViewModel',
+			'Fuel\\Core\\Validation',
 			'Closure',
 		),
 	),

@@ -27,7 +27,7 @@ class Controller_Users extends Controller_Base
 		$this->template->title = 'Member List';
 		$this->template->content = View::forge('users/index', array(
 			'users' => $users, 'pagination' => $pagination
-		));
+		), false);
 	}
 
 	/**
