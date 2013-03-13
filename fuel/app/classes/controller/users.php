@@ -12,6 +12,8 @@ class Controller_Users extends Controller_Base
 			'pagination_url' => 'users/index/',
 			'total_items' => Model_User::find()->count(),
 			'per_page'    => 10,
+			'show_first'  => true,
+			'show_last'   => true,
 		);
 
 		// Create a pagination instance named 'mypagination'
