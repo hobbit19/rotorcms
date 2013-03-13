@@ -2,7 +2,7 @@
 
 * [Website](http://visavi.net/)
 
-* Based: FuelPHP 1.5.3
+* Based: FuelPHP 1.6 dev
 
 * [Website](http://fuelphp.com/)
 
