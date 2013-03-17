@@ -20,3 +20,7 @@ Method of installation:
 Starting up database
 
     php oil refine migrate -all
+
+Install Composer
+
+    php composer.phar update
