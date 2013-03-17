@@ -48,7 +48,7 @@ return array(
 	 */
 	// 'index_file' => false,
 
-	// 'profiling'  => false,
+	'profiling'  => (Fuel::$env == Fuel::DEVELOPMENT),
 
 	/**
 	 * Default location for the file cache
@@ -108,9 +108,9 @@ return array(
 	 * Fuel::L_INFO
 	 * Fuel::L_ALL
 	 */
-	// 'log_threshold'    => Fuel::L_WARNING,
-	// 'log_path'         => APPPATH.'logs/',
-	// 'log_date_format'  => 'Y-m-d H:i:s',
+	'log_threshold'    => Fuel::$env == Fuel::DEVELOPMENT ? Fuel::L_ALL : Fuel::L_ERROR,
+	'log_path'         => APPPATH.'logs/',
+	'log_date_format'  => 'd-m-Y H:i:s',
 
 	/**
 	 * Security settings
@@ -227,9 +227,9 @@ return array(
 	 *
 	 * Paths MUST end with a directory separator (the DS constant)!
 	 */
-	// 'module_paths' => array(
-	// 	//APPPATH.'modules'.DS
-	// ),
+	'module_paths' => array(
+		APPPATH.'modules'.DS
+	),
 
 	/**
 	 * To enable you to split up your additions to the framework, packages are

@@ -5,6 +5,9 @@ class Controller_Base extends Controller_Template
 
 	public function before()
 	{
+
+		Lang::load('user');
+
 		parent::before();
 
 		if (Auth::check())

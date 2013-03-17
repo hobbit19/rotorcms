@@ -10,5 +10,6 @@ return array(
 			'username'   => 'fuel',
 			'password'   => 'fuel',
 		),
+		'profiling' => true,
 	),
 );

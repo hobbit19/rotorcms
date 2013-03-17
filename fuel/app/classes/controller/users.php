@@ -17,7 +17,7 @@ class Controller_Users extends Controller_Base
 		);
 
 		// Create a pagination instance named 'mypagination'
-		$pagination = Pagination::forge('mypagination', $config);
+		$pagination = Pagination::forge('users', $config);
 
 		$users = Model_User::find()
 		    ->rows_offset($pagination->offset)
@@ -25,7 +25,7 @@ class Controller_Users extends Controller_Base
 		    ->get();
 
 		$pagination = $pagination->render();
-		
+
 		$this->template->title = 'Member List';
 		$this->template->content = View::forge('users/index', array(
 			'users' => $users, 'pagination' => $pagination
@@ -107,7 +107,7 @@ class Controller_Users extends Controller_Base
 			}
 		}
 
-		$this->template->title = 'Login';
+		$this->template->title = Lang::get('login');
 		$this->template->content = View::forge('users/login');
 	}
 
