@@ -12,6 +12,10 @@ return array(
 		),
 		'module' => 
 		array(
+			'guestbook' => 
+			array(
+				0 => '001_create_guestbook',
+			),
 		),
 		'package' => 
 		array(

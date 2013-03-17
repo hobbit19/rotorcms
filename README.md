@@ -13,6 +13,10 @@ RotorCMS - functionally complete content management system, open source written 
 
 RotorCMS uses submodules for things like the **core** folder.  After you clone the repository you will need to init and update the submodules.
 
-Here is the basic usage:
+Method of installation:
 
     git clone --recursive git://github.com/visavi/rotorcms.git
+
+Starting up database
+
+    php oil refine migrate -all
