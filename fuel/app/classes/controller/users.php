@@ -1,6 +1,6 @@
 <?php
 
-class Controller_Users extends Controller_Base
+class Controller_Users extends \Controller_Base
 {
 	/**
 	 * action_index
@@ -66,7 +66,7 @@ class Controller_Users extends Controller_Base
 					);
 
 					$auth->login($val->validated('username'), $val->validated('password'));
-					\Session::set_flash('success', 'Пользователь успешно создан!');
+					\Session::set_flash('success', \Lang::get('create.success'));
 					\Response::redirect('/');
 
 				}
@@ -83,7 +83,7 @@ class Controller_Users extends Controller_Base
 		}
 
 		$view->val = $val;
-		$this->template->title = \Lang::get('register.register');
+		$this->template->title = \Lang::get('register.title');
 		$this->template->content = $view;
 
 	}
@@ -106,7 +106,7 @@ class Controller_Users extends Controller_Base
 			}
 		}
 
-		$this->template->title = \Lang::get('login.login');
+		$this->template->title = \Lang::get('login.title');
 		$this->template->content = \View::forge('users/login');
 	}
 
@@ -117,7 +117,7 @@ class Controller_Users extends Controller_Base
 	{
 		\Auth::logout();
 
-		\Session::set_flash('success', 'Вы успешно вышли!');
+		\Session::set_flash('success', \Lang::get('logout.exit'));
 
 		\Response::redirect('/');
 	}

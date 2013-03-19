@@ -2,7 +2,7 @@
 
 return array(
 	'login' => array(
-		'login'             => 'Login',
+		'title'             => 'Login',
 		'authorization'     => 'Authorization',
 		'username_or_email' => 'Username or email',
 		'password'          => 'Password',
@@ -13,12 +13,17 @@ return array(
 	),
 
 	'register' => array(
-		'register'         => 'Registration',
+		'title'            => 'Registration',
 		'registration'     => 'Register online',
 		'username'         => 'Username',
 		'password'         => 'Password',
 		'confirm_password' => 'Confirm password',
 		'email'            => 'Email',
 		'create_account'   => 'Create my account',
+		'success'          => 'User successfully created!',
+	),
+
+	'logout' => array(
+		'exit' => 'Вы успешно вышли!',
 	),
 );

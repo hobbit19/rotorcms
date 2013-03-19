@@ -2,7 +2,7 @@
 
 return array(
 	'login' => array(
-		'login'             => 'Вход',
+		'title'             => 'Вход',
 		'authorization'     => 'Авторизация на сайте',
 		'username_or_email' => 'Логин или email',
 		'password'          => 'Пароль',
@@ -13,12 +13,17 @@ return array(
 	),
 
 	'register' => array(
-		'register'         => 'Регистрация',
+		'title'            => 'Регистрация',
 		'registration'     => 'Регистрация на сайте',
 		'username'         => 'Логин',
 		'password'         => 'Пароль',
 		'confirm_password' => 'Повтор пароля',
 		'email'            => 'Email',
 		'create_account'   => 'Создать аккаунт',
+		'success'          => 'Пользователь успешно создан!',
+	),
+
+	'logout' => array(
+		'exit' => 'Вы успешно вышли!',
 	),
 );
