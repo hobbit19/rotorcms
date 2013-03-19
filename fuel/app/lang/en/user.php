@@ -21,6 +21,7 @@ return array(
 		'email'            => 'Email',
 		'create_account'   => 'Create my account',
 		'success'          => 'User successfully created!',
+		'captcha'          => 'Не совпало проверочное число на картинке!',
 	),
 
 	'logout' => array(

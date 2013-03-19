@@ -2,6 +2,14 @@
 
 class Controller_Users extends \Controller_Base
 {
+
+	public function before()
+	{
+		parent::before();
+
+		Lang::load('user');
+	}
+
 	/**
 	 * action_index
 	 */
@@ -51,35 +59,43 @@ class Controller_Users extends \Controller_Base
 	{
 		$auth = \Auth::instance();
 		$view = \View::forge('users/register');
+		$captcha = \Captcha::forge('simplecaptcha');
 		$val = Model_User::validate('register');
 
 		if (\Input::method() == 'POST')
 		{
+
 			if ($val->run())
 			{
-				try
-				{
-					$auth->create_user(
-						$val->validated('username'),
-						$val->validated('password'),
-						\Str::lower($val->validated('email'))
-					);
+				if($captcha->check()) {
+					try
+					{
+						$auth->create_user(
+							$val->validated('username'),
+							$val->validated('password'),
+							\Str::lower($val->validated('email'))
+						);
 
-					$auth->login($val->validated('username'), $val->validated('password'));
-					\Session::set_flash('success', \Lang::get('create.success'));
-					\Response::redirect('/');
+						$auth->login($val->validated('username'), $val->validated('password'));
+						\Session::set_flash('success', \Lang::get('register.success'));
+						\Response::redirect('/');
 
+					}
+					catch (Exception $e)
+					{
+						\Session::set_flash('error', $e->getMessage());
+					}
 				}
-				catch (Exception $e)
+				else
 				{
-					\Session::set_flash('error', $e->getMessage());
+					\Session::set_flash('error', \Lang::get('register.captcha'));
 				}
-
 			}
 			else
 			{
 				\Session::set_flash('error', $val->error());
 			}
+
 		}
 
 		$view->val = $val;

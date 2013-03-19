@@ -5,12 +5,9 @@ class Controller_Base extends Controller_Template
 
 	public function before()
 	{
-
-		Lang::load('user');
-
 		parent::before();
 
-		if (Auth::check())
+		if (\Auth::check())
 		{
 			list($driver, $user_id) = Auth::get_user_id();
 
@@ -21,7 +18,13 @@ class Controller_Base extends Controller_Template
 			$this->current_user = null;
 		}
 
-		View::set_global('current_user', $this->current_user);
+		\View::set_global('current_user', $this->current_user);
 	}
 
+	public function action_simplecaptcha()
+	{
+		$captcha = \Captcha::forge('simplecaptcha');
+
+		return $captcha->image();
+	}
 }

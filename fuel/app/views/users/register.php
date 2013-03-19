@@ -52,6 +52,8 @@
 			</div>
 		</div>
 
+		<?=\Captcha::forge('simplecaptcha')->html()?>
+
 		<div class="form-actions">
 			<?=Form::button('submit', \Lang::get('register.create_account'), array('class' => 'btn btn-primary'))?>
 
