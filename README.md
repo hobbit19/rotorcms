@@ -28,3 +28,8 @@ Starting up database
 Install Composer
 
     php composer.phar update
+
+Update or loading new submodules
+
+	git submodule init
+	git submodule foreach git pull
