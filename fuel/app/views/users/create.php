@@ -6,9 +6,11 @@
 			<?=Form::label('Username', 'username', array('class' => 'control-label'))?>
 
 			<div class="controls">
-				<?=Form::input('username', Input::post('username'), array('required' => 'required'))?>
+				<div class="input-append">
+					<?=Form::input('username', Input::post('username'), array('required' => 'required'))?>
+					<span class="add-on"><i class="icon-user"></i></span>
+				</div>
 				<?=$val->error('username')?>
-
 			</div>
 		</div>
 
@@ -16,9 +18,11 @@
 			<?=Form::label('Password', 'password', array('class' => 'control-label'))?>
 
 			<div class="controls">
-				<?=Form::input('password', Input::post('password'), array('required' => 'required', 'type' => 'password'))?>
+				<div class="input-append">
+					<?=Form::input('password', Input::post('password'), array('required' => 'required', 'type' => 'password'))?>
+					<span class="add-on"><i class="icon-wrench"></i></span>
+				</div>
 				<?=$val->error('password')?>
-
 			</div>
 		</div>
 
@@ -26,7 +30,10 @@
 			<?=Form::label('Confirm password', 'confirm_password', array('class' => 'control-label'))?>
 
 			<div class="controls">
-				<?=Form::input('confirm_password', Input::post('confirm_password'), array('required' => 'required', 'type' => 'password'))?>
+				<div class="input-append">
+					<?=Form::input('confirm_password', Input::post('confirm_password'), array('required' => 'required', 'type' => 'password'))?>
+					<span class="add-on"><i class="icon-wrench"></i></span>
+				</div>
 				<?=$val->error('confirm_password')?>
 
 			</div>
@@ -36,11 +43,14 @@
 			<?=Form::label('Email', 'email', array('class' => 'control-label'))?>
 
 			<div class="controls">
-				<?=Form::input('email', Input::post('email'), array('required' => 'required', 'type' => 'email'))?>
+				<div class="input-append">
+					<?=Form::input('email', Input::post('email'), array('required' => 'required', 'type' => 'email'))?>
+					<span class="add-on"><i class="icon-envelope"></i></span>
+				</div>
 				<?=$val->error('email')?>
 
 			</div>
-		</div>		
+		</div>
 
 		<div class="form-actions">
 			<?=Form::button('submit', 'Create my account', array('class' => 'btn btn-primary'))?>

@@ -16,7 +16,6 @@ class Controller_Users extends Controller_Base
 			'show_last'   => true,
 		);
 
-		// Create a pagination instance named 'mypagination'
 		$pagination = Pagination::forge('users', $config);
 
 		$users = Model_User::find()
@@ -98,16 +97,16 @@ class Controller_Users extends Controller_Base
 		{
 			if (Auth::login(Input::post('username'), Input::post('password')))
 			{
-				Session::set_flash('success', 'Вы успешно авторизованы!');
+				Session::set_flash('success', Lang::get('login.success'));
 				Response::redirect('/');
 			}
 			else
 			{
-				Session::set_flash('error', 'Неверная пара логин-пароль!');
+				Session::set_flash('error', Lang::get('login.error'));
 			}
 		}
 
-		$this->template->title = Lang::get('login');
+		$this->template->title = Lang::get('login.login');
 		$this->template->content = View::forge('users/login');
 	}
 

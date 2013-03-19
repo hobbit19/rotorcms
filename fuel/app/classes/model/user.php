@@ -71,6 +71,8 @@ class Model_User extends \Orm\Model
 		),
 	);
 
+	//protected static $_has_many = array('guestbook');
+
 	/**
 	 * validate
 	 */

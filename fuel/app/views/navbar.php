@@ -9,6 +9,7 @@
 			<a class="brand" href="/">RotorCMS</a>
 			<div class="nav-collapse collapse">
 				<ul class="nav">
+					<li><a href="guestbook">Guestbook</a></li>
 					<li class="active"><a href="#about">About</a></li>
 					<li><a href="#projects">Projects</a></li>
 					<li><a href="#photos">Photos</a></li>

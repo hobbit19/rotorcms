@@ -1,7 +1,11 @@
 <?php
 
+namespace Guestbook;
+
 class Model_Guestbook extends \Orm\Model
 {
+	protected static $_table_name = 'guestbook';
+
 	protected static $_properties = array(
 		'id',
 		'user_id',
@@ -19,5 +23,11 @@ class Model_Guestbook extends \Orm\Model
 			'events' => array('before_update'),
 			'mysql_timestamp' => false,
 		),
+	);
+
+	protected static $_belongs_to = array(
+		'user' => array(
+			'model_to' => 'Model_User',
+		)
 	);
 }
