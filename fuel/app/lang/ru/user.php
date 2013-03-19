@@ -13,6 +13,12 @@ return array(
 	),
 
 	'register' => array(
-
+		'register'         => 'Регистрация',
+		'registration'     => 'Регистрация на сайте',
+		'username'         => 'Логин',
+		'password'         => 'Пароль',
+		'confirm_password' => 'Повтор пароля',
+		'email'            => 'Email',
+		'create_account'   => 'Создать аккаунт',
 	),
 );

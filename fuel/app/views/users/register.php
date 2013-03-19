@@ -1,9 +1,9 @@
 <?=Form::open(array('class' => 'form-horizontal well'))?>
 
 	<fieldset>
-	 	<legend>Registration</legend>
+	 	<legend><?=\Lang::get('register.registration')?></legend>
 		<div class="control-group">
-			<?=Form::label('Username', 'username', array('class' => 'control-label'))?>
+			<?=Form::label(\Lang::get('register.username'), 'username', array('class' => 'control-label'))?>
 
 			<div class="controls">
 				<div class="input-append">
@@ -15,7 +15,7 @@
 		</div>
 
 		<div class="control-group">
-			<?=Form::label('Password', 'password', array('class' => 'control-label'))?>
+			<?=Form::label(\Lang::get('register.password'), 'password', array('class' => 'control-label'))?>
 
 			<div class="controls">
 				<div class="input-append">
@@ -27,7 +27,7 @@
 		</div>
 
 		<div class="control-group">
-			<?=Form::label('Confirm password', 'confirm_password', array('class' => 'control-label'))?>
+			<?=Form::label(\Lang::get('register.confirm_password'), 'confirm_password', array('class' => 'control-label'))?>
 
 			<div class="controls">
 				<div class="input-append">
@@ -40,7 +40,7 @@
 		</div>
 
 		<div class="control-group">
-			<?=Form::label('Email', 'email', array('class' => 'control-label'))?>
+			<?=Form::label(\Lang::get('register.email'), 'email', array('class' => 'control-label'))?>
 
 			<div class="controls">
 				<div class="input-append">
@@ -53,7 +53,7 @@
 		</div>
 
 		<div class="form-actions">
-			<?=Form::button('submit', 'Create my account', array('class' => 'btn btn-primary'))?>
+			<?=Form::button('submit', \Lang::get('register.create_account'), array('class' => 'btn btn-primary'))?>
 
 		</div>
 	</fieldset>

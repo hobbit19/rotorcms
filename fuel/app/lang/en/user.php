@@ -13,6 +13,12 @@ return array(
 	),
 
 	'register' => array(
-
+		'register'         => 'Registration',
+		'registration'     => 'Register online',
+		'username'         => 'Username',
+		'password'         => 'Password',
+		'confirm_password' => 'Confirm password',
+		'email'            => 'Email',
+		'create_account'   => 'Create my account',
 	),
 );

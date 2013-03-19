@@ -279,7 +279,7 @@ return array(
 		 * Classes to autoload & initialize even when not used
 		 */
 		// 'classes'  => array(),
-		'classes'  => array('Controller_Base'),
+
 		/**
 		 * Configs to autoload
 		 *

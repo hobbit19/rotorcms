@@ -29,7 +29,7 @@
 <?else:?>
 				<ul class="nav pull-right">
 					<li><?=Html::anchor('users/login', 'Sign in')?></li>
-					<li><?=Html::anchor('users/create', 'Sign up')?></li>
+					<li><?=Html::anchor('users/register', 'Sign up')?></li>
 				</ul>
 <?endif?>
 

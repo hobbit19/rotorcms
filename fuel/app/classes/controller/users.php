@@ -16,7 +16,7 @@ class Controller_Users extends Controller_Base
 			'show_last'   => true,
 		);
 
-		$pagination = Pagination::forge('users', $config);
+		$pagination = \Pagination::forge('users', $config);
 
 		$users = Model_User::find()
 		    ->rows_offset($pagination->offset)
@@ -26,7 +26,7 @@ class Controller_Users extends Controller_Base
 		$pagination = $pagination->render();
 
 		$this->template->title = 'Member List';
-		$this->template->content = View::forge('users/index', array(
+		$this->template->content = \View::forge('users/index', array(
 			'users' => $users, 'pagination' => $pagination
 		), false);
 	}
@@ -39,21 +39,21 @@ class Controller_Users extends Controller_Base
 		$user = Model_User::find($id);
 
 		$this->template->title = 'Profile: '.$user->username;
-		$this->template->content = View::forge('users/view', array(
+		$this->template->content = \View::forge('users/view', array(
 			'user' => $user,
 		));
 	}
 
 	/**
-	 * action_create
+	 * action_register
 	 */
-	public function action_create()
+	public function action_register()
 	{
-		$auth = Auth::instance();
-		$view = View::forge('users/create');
-		$val = Model_User::validate('create');
+		$auth = \Auth::instance();
+		$view = \View::forge('users/register');
+		$val = Model_User::validate('register');
 
-		if (Input::method() == 'POST')
+		if (\Input::method() == 'POST')
 		{
 			if ($val->run())
 			{
@@ -62,28 +62,28 @@ class Controller_Users extends Controller_Base
 					$auth->create_user(
 						$val->validated('username'),
 						$val->validated('password'),
-						Str::lower($val->validated('email'))
+						\Str::lower($val->validated('email'))
 					);
 
 					$auth->login($val->validated('username'), $val->validated('password'));
-					Session::set_flash('success', 'Пользователь успешно создан!');
-					Response::redirect('/');
+					\Session::set_flash('success', 'Пользователь успешно создан!');
+					\Response::redirect('/');
 
 				}
 				catch (Exception $e)
 				{
-					Session::set_flash('error', $e->getMessage());
+					\Session::set_flash('error', $e->getMessage());
 				}
 
 			}
 			else
 			{
-				Session::set_flash('error', $val->error());
+				\Session::set_flash('error', $val->error());
 			}
 		}
 
 		$view->val = $val;
-		$this->template->title = 'Registration';
+		$this->template->title = \Lang::get('register.register');
 		$this->template->content = $view;
 
 	}
@@ -93,21 +93,21 @@ class Controller_Users extends Controller_Base
 	 */
 	public function action_login()
 	{
-		if (Input::method() == 'POST')
+		if (\Input::method() == 'POST')
 		{
-			if (Auth::login(Input::post('username'), Input::post('password')))
+			if (\Auth::login(\Input::post('username'), \Input::post('password')))
 			{
-				Session::set_flash('success', Lang::get('login.success'));
-				Response::redirect('/');
+				\Session::set_flash('success', \Lang::get('login.success'));
+				\Response::redirect('/');
 			}
 			else
 			{
-				Session::set_flash('error', Lang::get('login.error'));
+				\Session::set_flash('error', \Lang::get('login.error'));
 			}
 		}
 
-		$this->template->title = Lang::get('login.login');
-		$this->template->content = View::forge('users/login');
+		$this->template->title = \Lang::get('login.login');
+		$this->template->content = \View::forge('users/login');
 	}
 
 	/**
@@ -115,10 +115,10 @@ class Controller_Users extends Controller_Base
 	 */
 	public function action_logout()
 	{
-		Auth::logout();
+		\Auth::logout();
 
-		Session::set_flash('success', 'Вы успешно вышли!');
+		\Session::set_flash('success', 'Вы успешно вышли!');
 
-		Response::redirect('/');
+		\Response::redirect('/');
 	}
 }

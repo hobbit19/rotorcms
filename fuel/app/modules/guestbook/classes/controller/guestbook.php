@@ -2,9 +2,6 @@
 
 namespace Guestbook;
 
-use \Fuel\Core\View;
-use \Fuel\Core\Pagination;
-
 class Controller_Guestbook extends \Controller_Base
 {
 	/**
@@ -20,7 +17,7 @@ class Controller_Guestbook extends \Controller_Base
 			'show_last'   => true,
 		);
 
-		$pagination = Pagination::forge('guestbook', $config);
+		$pagination = \Pagination::forge('guestbook', $config);
 
 		$messages = Model_Guestbook::find()
 		    ->rows_offset($pagination->offset)
@@ -30,7 +27,7 @@ class Controller_Guestbook extends \Controller_Base
 		$pagination = $pagination->render();
 
 		$this->template->title = 'Guestbook';
-		$this->template->content = View::forge('index', array(
+		$this->template->content = \View::forge('guestbook::index', array(
 			'messages' => $messages, 'pagination' => $pagination
 		), false);
 	}
