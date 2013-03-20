@@ -30,4 +30,12 @@ class Model_Guestbook extends \Orm\Model
 			'model_to' => 'Model_User',
 		)
 	);
+
+	public static function validate($factory)
+	{
+		$val = \Validation::forge($factory);
+		$val->add_field('text', 'Text', 'required|max_length[1000]');
+
+		return $val;
+	}
 }

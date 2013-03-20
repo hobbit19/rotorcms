@@ -10,7 +10,6 @@
 					<?=Form::input('username', Input::post('username'), array('required' => 'required'))?>
 					<span class="add-on"><i class="icon-user"></i></span>
 				</div>
-				<?=$val->error('username')?>
 			</div>
 		</div>
 
@@ -22,7 +21,6 @@
 					<?=Form::input('password', Input::post('password'), array('required' => 'required', 'type' => 'password'))?>
 					<span class="add-on"><i class="icon-wrench"></i></span>
 				</div>
-				<?=$val->error('password')?>
 			</div>
 		</div>
 
@@ -34,8 +32,6 @@
 					<?=Form::input('confirm_password', Input::post('confirm_password'), array('required' => 'required', 'type' => 'password'))?>
 					<span class="add-on"><i class="icon-wrench"></i></span>
 				</div>
-				<?=$val->error('confirm_password')?>
-
 			</div>
 		</div>
 
@@ -47,8 +43,6 @@
 					<?=Form::input('email', Input::post('email'), array('required' => 'required', 'type' => 'email'))?>
 					<span class="add-on"><i class="icon-envelope"></i></span>
 				</div>
-				<?=$val->error('email')?>
-
 			</div>
 		</div>
 

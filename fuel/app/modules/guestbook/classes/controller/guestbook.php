@@ -22,6 +22,7 @@ class Controller_Guestbook extends \Controller_Base
 		$messages = Model_Guestbook::find()
 		    ->rows_offset($pagination->offset)
 		    ->rows_limit($pagination->per_page)
+		    ->order_by('created_at', 'desc')
 		    ->get();
 
 		$pagination = $pagination->render();
@@ -31,4 +32,41 @@ class Controller_Guestbook extends \Controller_Base
 			'messages' => $messages, 'pagination' => $pagination
 		), false);
 	}
+
+	public function action_create()
+	{
+		if (\Input::method() == 'POST')
+		{
+			$val = Model_Guestbook::validate('create');
+
+			if ($val->run())
+			{
+				$post = Model_Guestbook::forge(array(
+					'user_id' => 1,
+					'text' => \Input::post('text'),
+				));
+
+				if ($post and $post->save())
+				{
+					\Session::set_flash('success', 'Сообщение успешно добавлено!');
+
+					\Response::redirect('guestbook/index');
+				}
+
+				else
+				{
+					\Session::set_flash('error', 'Could not save message.');
+				}
+			}
+			else
+			{
+				\Session::set_flash('error', $val->error());
+			}
+		}
+
+		$this->template->title = "New message";
+		$this->template->content = \View::forge('guestbook::create');
+
+	}
+
 }

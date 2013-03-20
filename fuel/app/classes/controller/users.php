@@ -58,7 +58,6 @@ class Controller_Users extends \Controller_Base
 	public function action_register()
 	{
 		$auth = \Auth::instance();
-		$view = \View::forge('users/register');
 		$captcha = \Captcha::forge('simplecaptcha');
 		$val = Model_User::validate('register');
 
@@ -98,9 +97,8 @@ class Controller_Users extends \Controller_Base
 
 		}
 
-		$view->val = $val;
 		$this->template->title = \Lang::get('register.title');
-		$this->template->content = $view;
+		$this->template->content = \View::forge('users/register');
 
 	}
 

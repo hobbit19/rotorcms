@@ -4,8 +4,8 @@
 
 ## Documentation
 * [Documentation in Russian](http://fuelphp-framework.ru/)
-* [Development branch Documentation](http://fuelphp.com/dev-docs/)
-* [Development branch API browser](http://www.fuelphp.com/dev-api/)
+* [Release Documentation](http://docs.fuelphp.com/)
+* [Release API browser](http://api.fuelphp.com/)
 * [FuelPHP Cheat Sheet](http://www.novius-os.org/fuelphp-cheatsheet/)
 
 ## Description

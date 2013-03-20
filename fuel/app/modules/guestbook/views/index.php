@@ -15,3 +15,5 @@
 <? endforeach ?>
 
 <?=$pagination?>
+
+<?=render('guestbook::_form')?>
