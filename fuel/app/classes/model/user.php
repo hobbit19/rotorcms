@@ -79,7 +79,7 @@ class Model_User extends \Orm\Model
 	public static function validate($factory)
 	{
 		$val = Validation::forge($factory);
-		$val->add_callable('CustomRules');
+		$val->add_callable('\CustomRules');
 
 		$val->add('username', 'Username')
 			->add_rule('required')

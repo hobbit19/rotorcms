@@ -8,6 +8,9 @@
 * [Release API browser](http://api.fuelphp.com/)
 * [FuelPHP Cheat Sheet](http://www.novius-os.org/fuelphp-cheatsheet/)
 
+## Coding Standards
+* [Coding Standards](http://fuelphp.com/docs/general/coding_standards.html)
+
 ## Description
 RotorCMS - functionally complete content management system, open source written in PHP. It uses a MySQL database to store the content of your website.RotorCMS is flexible, powerful and intuitive system with minimum requirements for hosting, high security and is an excellent choice to build a site of any complexityRotorCMS main feature is a low load on system resources and high speed, even with a very large audience site load on the server will be minimal, and you will not have any problems with the mapping information
 

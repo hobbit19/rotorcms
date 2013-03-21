@@ -1,9 +1,9 @@
 <?=Form::open(array('class' => 'form-horizontal well'))?>
 
 	<fieldset>
-	 	<legend><?=\Lang::get('register.registration')?></legend>
+	 	<legend><?=__('register.registration')?></legend>
 		<div class="control-group">
-			<?=Form::label(\Lang::get('register.username'), 'username', array('class' => 'control-label'))?>
+			<?=Form::label(__('register.username'), 'username', array('class' => 'control-label'))?>
 
 			<div class="controls">
 				<div class="input-append">
@@ -14,7 +14,7 @@
 		</div>
 
 		<div class="control-group">
-			<?=Form::label(\Lang::get('register.password'), 'password', array('class' => 'control-label'))?>
+			<?=Form::label(__('register.password'), 'password', array('class' => 'control-label'))?>
 
 			<div class="controls">
 				<div class="input-append">
@@ -25,7 +25,7 @@
 		</div>
 
 		<div class="control-group">
-			<?=Form::label(\Lang::get('register.confirm_password'), 'confirm_password', array('class' => 'control-label'))?>
+			<?=Form::label(__('register.confirm_password'), 'confirm_password', array('class' => 'control-label'))?>
 
 			<div class="controls">
 				<div class="input-append">
@@ -36,7 +36,7 @@
 		</div>
 
 		<div class="control-group">
-			<?=Form::label(\Lang::get('register.email'), 'email', array('class' => 'control-label'))?>
+			<?=Form::label(__('register.email'), 'email', array('class' => 'control-label'))?>
 
 			<div class="controls">
 				<div class="input-append">
@@ -49,8 +49,9 @@
 		<?=\Captcha::forge('simplecaptcha')->html()?>
 
 		<div class="form-actions">
-			<?=Form::button('submit', \Lang::get('register.create_account'), array('class' => 'btn btn-primary'))?>
+			<?=Form::button('submit', __('register.create_account'), array('class' => 'btn btn-primary'))?>
 
 		</div>
 	</fieldset>
 <?=Form::close()?>
+

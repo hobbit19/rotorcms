@@ -1,4 +1,3 @@
-
 <div class="controls">
 	<img src="<?php echo $captcha_route; ?>" alt="Simple Captcha" height="<?php echo $captcha_height; ?>" width="<?php echo $captcha_width; ?>" />
 </div>

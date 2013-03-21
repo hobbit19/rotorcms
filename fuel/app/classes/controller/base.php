@@ -27,4 +27,35 @@ class Controller_Base extends Controller_Template
 
 		return $captcha->image();
 	}
+
+	public function action_navlinks()
+	{
+
+		if (\Request::is_hmvc())
+		{
+			$navitems = array(
+				array ('link' => 'guestbook', 'name' => 'Guestbook'),
+				array ('link' => 'users', 'name'=> 'Users'),
+			);
+
+			$uri = trim(strtok(\Input::uri(), '/'), '/');
+
+			foreach ($navitems as $key=>$navitem)
+			{
+				if ($uri == $navitem['link'])
+				{
+					$navitems[$key]['active'] = true;
+				}
+			}
+
+			return \View::forge('base/navlinks', array(
+				'navitems' => $navitems,
+			));
+
+		}
+		else
+		{
+			return new \Response(\View::forge('404'), 404);
+		}
+	}
 }

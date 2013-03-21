@@ -42,9 +42,15 @@ class Controller_Users extends \Controller_Base
 	/**
 	 * action_view
 	 */
-	public function action_view($id)
+	public function action_view($id = null)
 	{
-		$user = Model_User::find($id);
+		is_null($id) and Response::redirect('users');
+
+		if ( ! $user = Model_User::find($id))
+		{
+			Session::set_flash('error', 'Could not find user '.$id);
+			Response::redirect('users');
+		}
 
 		$this->template->title = 'Profile: '.$user->username;
 		$this->template->content = \View::forge('users/view', array(
@@ -76,7 +82,7 @@ class Controller_Users extends \Controller_Base
 						);
 
 						$auth->login($val->validated('username'), $val->validated('password'));
-						\Session::set_flash('success', \Lang::get('register.success'));
+						\Session::set_flash('success', __('register.success'));
 						\Response::redirect('/');
 
 					}
@@ -87,7 +93,7 @@ class Controller_Users extends \Controller_Base
 				}
 				else
 				{
-					\Session::set_flash('error', \Lang::get('register.captcha'));
+					\Session::set_flash('error', __('register.captcha'));
 				}
 			}
 			else
@@ -97,7 +103,7 @@ class Controller_Users extends \Controller_Base
 
 		}
 
-		$this->template->title = \Lang::get('register.title');
+		$this->template->title = __('register.title');
 		$this->template->content = \View::forge('users/register');
 
 	}
@@ -111,16 +117,16 @@ class Controller_Users extends \Controller_Base
 		{
 			if (\Auth::login(\Input::post('username'), \Input::post('password')))
 			{
-				\Session::set_flash('success', \Lang::get('login.success'));
+				\Session::set_flash('success', __('login.success'));
 				\Response::redirect('/');
 			}
 			else
 			{
-				\Session::set_flash('error', \Lang::get('login.error'));
+				\Session::set_flash('error', __('login.error'));
 			}
 		}
 
-		$this->template->title = \Lang::get('login.title');
+		$this->template->title = __('login.title');
 		$this->template->content = \View::forge('users/login');
 	}
 
@@ -131,7 +137,7 @@ class Controller_Users extends \Controller_Base
 	{
 		\Auth::logout();
 
-		\Session::set_flash('success', \Lang::get('logout.exit'));
+		\Session::set_flash('success', __('logout.exit'));
 
 		\Response::redirect('/');
 	}
