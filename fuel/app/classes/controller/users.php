@@ -142,4 +142,56 @@ class Controller_Users extends \Controller_Base
 		\Session::set_flash('success', __('logout.exit'));
 		\Response::redirect('/');
 	}
+		/**
+	 * action_reset
+	 */
+	public function action_reset() 
+	{
+		if(\Input::method() == 'POST')
+		{
+		$user = 	Model_User::find()->where('email', '=', \Input::post('email'))->get_one();
+		if(!empty($user))
+		{
+	 	$key = Str::random('alnum', 12);
+	 	$email = \Email::forge();
+	 	$email->from('rotorcms@visavi.ru', 'rotor');
+		$email->to($user->email, $user->username);
+		$email->subject('Восстановление пароля');
+	 	$email->body('Здравствуйте '.$user->username.'.
+для восстановления пароля пожалуйста пройдите по следующей ссылке:
+'.Uri::base(false).'users/resetok/'.$key);
+	  	$email->send();
+	  	$user->keypass = $key;
+	  	$user->save();
+		\Session::set_flash('success', 'На ваш адрес эл.почты отправлена инструкция по восстановлению пароля');
+		\Response::redirect('users/login');
+		}
+		else
+		{
+		\Session::set_flash('error', 'Неверный адрес эл.почты');
+		\Response::redirect('users/reset');
+		}
+		}
+		$this->template->title = 'Забыли пароль?';
+		$this->template->content = \View::forge('users/reset');
+	}
+	/**
+	 * action_resetok
+	 */
+	public function action_resetok($key = null) 
+	{
+		$user = Model_User::find()->where('keypass', '!=', '0')->where('keypass', '=', $key)->get_one();
+		if(!empty($user))
+		{
+		$user->keypass = 0;
+		$user->save();
+		\Session::set_flash('success','Вы успешно прошли процедуру восстановления пароля,ваш новый пароль:'.\Auth::reset_password($user->username));
+		\Response::redirect('users/login');
+		}
+		else
+		{
+		\Session::set_flash('error','Неверный проверочный код');
+		\Response::redirect('users/login');
+		}
+	}
 }
