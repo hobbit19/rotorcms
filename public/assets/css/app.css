@@ -1,13 +1,22 @@
+.container-fluid {
+	margin: auto;
+	width: auto;
+	max-width: 1170px;
+}
+
 footer {
   padding-top: 30px;
 }
 
 .navbar .brand {
-  font-weight: 700;
-  font-size: 25px;
-  color: #DA7E18;
+	font-weight: 700;
+	font-size: 25px;
+	color: #DA7E18;
 }
 
+.breadcrumb {
+	border: 1px solid #88E4EC;
+}
 
 @media (min-width: 980px) {
 
@@ -26,4 +35,4 @@ footer {
  padding-top: 5px;
  text-align: right;
  }*/
- 
+

@@ -1,4 +1,11 @@
-<? foreach ($users as $user): ?>
+<ul class="breadcrumb">
+  <li><?=Html::anchor('/', 'Home')?> <span class="divider">/</span></li>
+  <li class="active">User list</li>
+</ul>
+
+
+<?if ($users):?>
+<?foreach ($users as $user):?>
 
 	<div class="media">
 
@@ -11,6 +18,10 @@
 
 	</div>
 
-<? endforeach ?>
+<?endforeach?>
 
 <?=$pagination?>
+
+<?else:?>
+	<p>No Users</p>
+<?endif?>

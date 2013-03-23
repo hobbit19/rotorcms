@@ -21,6 +21,9 @@ class Controller_Base extends Controller_Template
 		\View::set_global('current_user', $this->current_user);
 	}
 
+	/**
+	 * action_simplecaptcha
+	 */
 	public function action_simplecaptcha()
 	{
 		$captcha = \Captcha::forge('simplecaptcha');
@@ -28,15 +31,15 @@ class Controller_Base extends Controller_Template
 		return $captcha->image();
 	}
 
+	/**
+	 * action_navlinks
+	 */
 	public function action_navlinks()
 	{
 
 		if (\Request::is_hmvc())
 		{
-			$navitems = array(
-				array ('link' => 'guestbook', 'name' => 'Guestbook'),
-				array ('link' => 'users', 'name'=> 'Users'),
-			);
+			$navitems = Config::load('navbar');
 
 			$uri = trim(strtok(\Input::uri(), '/'), '/');
 

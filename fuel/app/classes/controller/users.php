@@ -6,7 +6,6 @@ class Controller_Users extends \Controller_Base
 	public function before()
 	{
 		parent::before();
-
 		Lang::load('user');
 	}
 
@@ -63,6 +62,8 @@ class Controller_Users extends \Controller_Base
 	 */
 	public function action_register()
 	{
+		Auth::check() and Response::redirect('/');
+
 		$auth = \Auth::instance();
 		$captcha = \Captcha::forge('simplecaptcha');
 		$val = Model_User::validate('register');
@@ -113,6 +114,8 @@ class Controller_Users extends \Controller_Base
 	 */
 	public function action_login()
 	{
+		Auth::check() and Response::redirect('/');
+
 		if (\Input::method() == 'POST')
 		{
 			if (\Auth::login(\Input::post('username'), \Input::post('password')))
@@ -136,9 +139,7 @@ class Controller_Users extends \Controller_Base
 	public function action_logout()
 	{
 		\Auth::logout();
-
 		\Session::set_flash('success', __('logout.exit'));
-
 		\Response::redirect('/');
 	}
 }

@@ -11,32 +11,33 @@
 
 	<?=View::forge('navbar')?>
 
-	<div class="container">
+	<div class="container-fluid">
+		<div class="row-fluid">
 
-		<div class="row">
 			<div class="span12">
-
 				<div class="page-header">
-					<h1><?=$title?></h1>
+					<h1><?=$title?><?=isset($subtitle) ? ' <small>'.$subtitle.'</small>' : ''?></h1>
 				</div>
-
-<? if (Session::get_flash('success')): ?>
-				<div class="alert alert-success">
-					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					<?php echo implode('<br />', e((array) Session::get_flash('success'))); ?>
-				</div>
-<? endif; ?>
-<? if (Session::get_flash('error')): ?>
-				<div class="alert alert-error">
-					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					<?php echo implode('<br />', e((array) Session::get_flash('error'))); ?>
-				</div>
-<? endif; ?>
+				<?=View::forge('notice')?>
 			</div>
 
-			<div class="span12">
-<?=$content?>
+		</div>
+		<div class="row-fluid">
+
+			<div class="span3 well">
+				<div class="sidebar-nav">
+					<ul class="nav nav-list">
+					  <li class="nav-header">List header</li>
+					  <li class="active"><a href="#">Home</a></li>
+					  <li><a href="#">Library</a></li>
+					</ul>
+				</div>
 			</div>
+
+			<div class="span9 well">
+				<?=$content?>
+			</div>
+
 		</div>
 		<footer>
 			<p class="pull-right">Page rendered in {exec_time}s using {mem_usage}mb of memory.</p>

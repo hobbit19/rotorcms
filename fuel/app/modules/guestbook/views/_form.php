@@ -1,4 +1,4 @@
-<?=\Form::open(array('class' => 'form-horizontal well'))?>
+<?=\Form::open(array('class' => 'form-horizontal'))?>
 
 	<fieldset>
 		<legend>New message</legend>

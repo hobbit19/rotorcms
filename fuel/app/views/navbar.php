@@ -11,22 +11,27 @@
 
 				<?=\Request::forge('base/navlinks')->execute()?>
 
-<?if ($current_user):?>
+				<?if ($current_user):?>
 				<ul class="nav pull-right">
 					<li class="dropdown">
 						<?=Html::anchor('users/'.$current_user->id, $current_user->username.' <b class="caret"></b>', array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown'))?>
 
 						<ul class="dropdown-menu">
-							<li><?=Html::anchor('logout', 'Log out')?></li>
+							<?if (\Auth::member(100)):?>
+							<li><?=Html::anchor('admin', 'Admin Panel')?></li>
+							<?endif?>
+							<li><?=Html::anchor('profile', 'Profile')?></li>
+							<li class="divider"></li>
+							<li><?=Html::anchor('logout', 'Log out', array('onclick' => "return confirm('Are you sure?')"))?></li>
 						</ul>
 					</li>
 				</ul>
-<?else:?>
+				<?else:?>
 				<ul class="nav pull-right">
 					<li><?=Html::anchor('login', 'Sign in')?></li>
 					<li><?=Html::anchor('register', 'Sign up')?></li>
 				</ul>
-<?endif?>
+				<?endif?>
 
 			</div>
 		</div>
