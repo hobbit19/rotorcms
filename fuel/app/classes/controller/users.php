@@ -146,7 +146,7 @@ class Controller_Users extends \Controller_Base
 		/**
 	 * action_reset
 	 */
-	public function action_reset($key = null)
+	public function action_reset()
 	{
 		\Auth::check() and \Response::redirect('/');
 
