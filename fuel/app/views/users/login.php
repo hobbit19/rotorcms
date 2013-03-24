@@ -32,7 +32,6 @@
 
 		<div class="form-actions">
 			<?=\Form::button('submit', __('login.sign_in'), array('class' => 'btn btn-primary'))?>
-
 		</div>
 	</fieldset>
 <?=\Form::close()?>

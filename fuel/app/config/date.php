@@ -26,7 +26,7 @@ return array(
 	 * A couple of named patterns that are often used
 	 */
 	'patterns' => array(
-		'local'		 => '%c',
+		'local'		 => '%d %b %Y / %H:%M',
 
 		'mysql'		 => '%Y-%m-%d %H:%M:%S',
 		'mysql_date' => '%Y-%m-%d',

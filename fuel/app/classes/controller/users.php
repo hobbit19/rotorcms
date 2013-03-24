@@ -6,7 +6,7 @@ class Controller_Users extends \Controller_Base
 	public function before()
 	{
 		parent::before();
-		Lang::load('user');
+		\Lang::load('user');
 	}
 
 	/**
@@ -43,12 +43,12 @@ class Controller_Users extends \Controller_Base
 	 */
 	public function action_view($id = null)
 	{
-		is_null($id) and Response::redirect('users');
+		is_null($id) and \Response::redirect('users');
 
 		if ( ! $user = Model_User::find($id))
 		{
-			Session::set_flash('error', 'Could not find user '.$id);
-			Response::redirect('users');
+			\Session::set_flash('error', 'Could not find user '.$id);
+			\Response::redirect('users');
 		}
 
 		$this->template->title = 'Profile: '.$user->username;
@@ -62,7 +62,7 @@ class Controller_Users extends \Controller_Base
 	 */
 	public function action_register()
 	{
-		Auth::check() and Response::redirect('/');
+		\Auth::check() and \Response::redirect('/');
 
 		$auth = \Auth::instance();
 		$captcha = \Captcha::forge('simplecaptcha');
@@ -73,7 +73,7 @@ class Controller_Users extends \Controller_Base
 
 			if ($val->run())
 			{
-				if($captcha->check()) {
+				if ($captcha->check()) {
 					try
 					{
 						$auth->create_user(
@@ -114,7 +114,7 @@ class Controller_Users extends \Controller_Base
 	 */
 	public function action_login()
 	{
-		Auth::check() and Response::redirect('/');
+		\Auth::check() and Response::redirect('/');
 
 		if (\Input::method() == 'POST')
 		{
@@ -142,56 +142,65 @@ class Controller_Users extends \Controller_Base
 		\Session::set_flash('success', __('logout.exit'));
 		\Response::redirect('/');
 	}
+
 		/**
 	 * action_reset
 	 */
-	public function action_reset() 
+	public function action_reset($key = null)
 	{
-		if(\Input::method() == 'POST')
+		\Auth::check() and \Response::redirect('/');
+
+		if (\Input::method() == 'POST')
 		{
-		$user = 	Model_User::find()->where('email', '=', \Input::post('email'))->get_one();
-		if(!empty($user))
-		{
-	 	$key = Str::random('alnum', 12);
-	 	$email = \Email::forge();
-	 	$email->from('rotorcms@visavi.ru', 'rotor');
-		$email->to($user->email, $user->username);
-		$email->subject('Восстановление пароля');
-	 	$email->body('Здравствуйте '.$user->username.'.
-для восстановления пароля пожалуйста пройдите по следующей ссылке:
-'.Uri::base(false).'users/resetok/'.$key);
-	  	$email->send();
-	  	$user->keypass = $key;
-	  	$user->save();
-		\Session::set_flash('success', 'На ваш адрес эл.почты отправлена инструкция по восстановлению пароля');
-		\Response::redirect('users/login');
+			$user = Model_User::find()
+				->where('email', '=', \Input::post('email'))
+				->get_one();
+
+			if ( ! empty($user))
+			{
+				$email = \Email::forge();
+				$email->from('rotorcms@visavi.ru', 'rotor');
+				$email->to($user->email, $user->username);
+				$email->subject('Восстановление пароля');
+				$email->body('Здравствуйте '.$user->username.'!'.PHP_EOL.
+					'Для восстановления пароля пожалуйста пройдите по следующей ссылке:'.PHP_EOL.
+					\Uri::base(false).'users/recovery/'.$user->login_hash);
+				$email->send();
+
+				\Session::set_flash('success', 'На ваш эл. адрес отправлена инструкция по восстановлению пароля');
+				\Response::redirect('login');
+			}
+			else
+			{
+				\Session::set_flash('error', 'Неверный адрес эл.почты');
+			}
 		}
-		else
-		{
-		\Session::set_flash('error', 'Неверный адрес эл.почты');
-		\Response::redirect('users/reset');
-		}
-		}
+
 		$this->template->title = 'Забыли пароль?';
 		$this->template->content = \View::forge('users/reset');
 	}
+
 	/**
-	 * action_resetok
+	 * action_recovery
 	 */
-	public function action_resetok($key = null) 
+	public function action_recovery($key = null)
 	{
-		$user = Model_User::find()->where('keypass', '!=', '0')->where('keypass', '=', $key)->get_one();
-		if(!empty($user))
+		(\Auth::check() or is_null($key)) and \Response::redirect('/');
+
+		$user = Model_User::find()
+			->where('login_hash', '=', $key)
+			->get_one();
+
+		if ( ! empty($user))
 		{
-		$user->keypass = 0;
-		$user->save();
-		\Session::set_flash('success','Вы успешно прошли процедуру восстановления пароля,ваш новый пароль:'.\Auth::reset_password($user->username));
-		\Response::redirect('users/login');
+			$password = \Auth::reset_password($user->username);
+			\Session::set_flash('success','Вы успешно прошли процедуру восстановления пароля, ваш новый пароль: '.$password);
+			\Response::redirect('login');
 		}
 		else
 		{
-		\Session::set_flash('error','Неверный проверочный код');
-		\Response::redirect('users/login');
+			\Session::set_flash('error','Неверный проверочный код');
+			\Response::redirect('reset');
 		}
 	}
 }

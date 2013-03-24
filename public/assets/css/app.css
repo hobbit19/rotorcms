@@ -16,6 +16,7 @@ footer {
 
 .breadcrumb {
 	border: 1px solid #88E4EC;
+	background-color: #ffffff;
 }
 
 @media (min-width: 980px) {

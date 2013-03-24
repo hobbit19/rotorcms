@@ -83,7 +83,7 @@ return array(
 	 */
 	'language'           => 'ru', // Default language
 	'language_fallback'  => 'en', // Fallback language when file isn't available for default language
-	'locale'             => null, // PHP set_locale() setting, null to not set
+	'locale'             => array('rus','rus_RUS.UTF-8','ru_RU'), // PHP set_locale() setting, null to not set
 
 	/**
 	 * Internal string encoding charset
