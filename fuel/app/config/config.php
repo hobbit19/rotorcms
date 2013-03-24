@@ -265,6 +265,7 @@ return array(
 			'orm',
 			'auth',
 			'captcha',
+			'email',
 		),
 
 		/**
