@@ -4,12 +4,10 @@ namespace News;
 
 class Model_News extends \Orm\Model
 {
-	protected static $_table_name = 'news';
-
 	protected static $_properties = array(
 		'id',
-		'title',
 		'user_id',
+		'title',
 		'text',
 		'created_at',
 		'updated_at',
@@ -35,8 +33,8 @@ class Model_News extends \Orm\Model
 	public static function validate($factory)
 	{
 		$val = \Validation::forge($factory);
+		$val->add_field('title','Title','required|trim|max_length[50]');
 		$val->add_field('text', 'Text', 'required|trim|max_length[5000]');
-		$val->add_field('title','title','required|trim|max_length[50]');
 
 		return $val;
 	}

@@ -16,6 +16,10 @@ return array(
 			array(
 				0 => '001_create_guestbook',
 			),
+			'news' => 
+			array(
+				0 => '001_create_news',
+			),
 		),
 		'package' => 
 		array(

@@ -1,3 +1,2 @@
-<?php echo render('guestbook::_form'); ?>
-
-<p><?php echo Html::anchor('guestbook', 'Back'); ?></p>
+<?=\Request::forge('guestbook/menu')->execute()?>
+<?=render('guestbook::_form')?>

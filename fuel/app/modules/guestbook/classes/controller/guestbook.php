@@ -4,6 +4,13 @@ namespace Guestbook;
 
 class Controller_Guestbook extends \Controller_Base
 {
+
+	public function before()
+	{
+		parent::before();
+		//\Lang::load('guestbook');
+	}
+
 	/**
 	 * action_index
 	 */
@@ -69,4 +76,36 @@ class Controller_Guestbook extends \Controller_Base
 
 	}
 
+	/**
+	 * action_menu
+	 */
+	public function action_menu()
+	{
+		if(\Request::is_hmvc())
+		{
+			$navitems = array(
+				array ('link' => '/', 'name' => 'Home'),
+				array ('link' => 'guestbook', 'name' => 'Guestbook'),
+				array ('link' => 'guestbook/create', 'name' => 'Create'),
+			);
+
+			$uri = trim(\Input::uri(), '/');
+
+			foreach ($navitems as $key=>$navitem)
+			{
+				if ($uri == $navitem['link'])
+				{
+					$navitems[$key]['active'] = true;
+				}
+			}
+
+			return \View::forge('guestbook::menu', array(
+					'navitems' => $navitems,
+				));
+		}
+		else
+		{
+			return new \Response(\View::forge('404'), 404);
+		}
+	}
 }

@@ -3,7 +3,7 @@
 	<fieldset>
 	 	<legend><?=__('login.authorization')?></legend>
 		<div class="control-group">
-			<label class="control-label" for="form_username"><?=__('login.username_or_email')?></label>
+			<?=\Form::label(__('login.username_or_email'), 'username', array('class' => 'control-label'))?>
 			<div class="controls">
 				<div class="input-append">
 					<?=\Form::input('username', \Input::post('username'), array('required' => 'required'))?>

@@ -1,3 +1,6 @@
-<?php echo render('news::_form'); ?>
-
-<p><?php echo Html::anchor('news', 'Back'); ?></p>
+<ul class="breadcrumb">
+	<li><?=\Html::anchor('/', 'Home')?> <span class="divider">/</span></li>
+	<li><?=\Html::anchor('news', 'News')?> <span class="divider">/</span></li>
+	<li class="active">Create</li>
+</ul>
+<?=render('news::_form')?>

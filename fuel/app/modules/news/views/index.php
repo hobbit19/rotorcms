@@ -1,10 +1,12 @@
 <ul class="breadcrumb">
-  <li><?=Html::anchor('/', 'Home')?> <span class="divider">/</span></li>
- <? if(Auth::member(100)): ?>
- <li><?=Html::anchor('news/create', 'Create')?> <span class="divider">/</span></li>
- <? endif;?>
- <li class="active">News</li>
+	<li><?=\Html::anchor('/', 'Home')?> <span class="divider">/</span></li>
+	<li class="active">News</li>
+
+	<?if(\Auth::member(100)):?>
+	<li class="pull-right"><?=\Html::anchor('news/create', 'Create')?></li>
+	<?endif;?>
 </ul>
+
 <? foreach ($text as $news): ?>
 	<div class="media">
 		<span class="pull-right muted"><small><?=Date::forge($news->created_at)?></small><br />
