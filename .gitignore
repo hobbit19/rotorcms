@@ -10,8 +10,8 @@ desktop.ini
 build
 .idea
 nbproject/
-/fuel/logs/*/*/*
-/fuel/cache/*/*
+/fuel/logs/*
+/fuel/cache/*
 /fuel/vendor/*
 /fuel/app/config/crypt.php
 /fuel/app/config/*/migrations.php
