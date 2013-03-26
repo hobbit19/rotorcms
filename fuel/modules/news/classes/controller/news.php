@@ -20,10 +20,10 @@ class Controller_News extends \Controller_Base
 		$pagination = \Pagination::forge('news', $config);
 
 		$text = Model_News::find()
-		    ->rows_offset($pagination->offset)
-		    ->rows_limit($pagination->per_page)
-		    ->order_by('created_at', 'desc')
-		    ->get();
+			->rows_offset($pagination->offset)
+			->rows_limit($pagination->per_page)
+			->order_by('created_at', 'desc')
+			->get();
 
 		$pagination = $pagination->render();
 
@@ -35,11 +35,12 @@ class Controller_News extends \Controller_Base
 
 	public function action_create()
 	{
-		if(!\Auth::member(100))
+		if ( ! \Auth::member(100))
 		{
-		\Session::set_flash('error', e('You don\'t have access'));
-		\Response::redirect('/');
+			\Session::set_flash('error', e('You don\'t have access'));
+			\Response::redirect('/');
 		}
+
 		if (\Input::method() == 'POST')
 		{
 			$val = Model_News::validate('create');
@@ -55,7 +56,6 @@ class Controller_News extends \Controller_Base
 				if ($post and $post->save())
 				{
 					\Session::set_flash('success', 'Новость успешно добавлена!');
-
 					\Response::redirect('news/index');
 				}
 

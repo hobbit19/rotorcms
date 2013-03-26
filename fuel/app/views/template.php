@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="/assets/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 <?=Asset::css(array('bootstrap.min.css', 'bootstrap-responsive.min.css', 'app.css'))?>
+
 </head>
 <body class="preview" id="top" data-spy="scroll" data-target=".subnav" data-offset="80">
 
@@ -47,6 +48,6 @@
 			</p>
 		</footer>
 	</div>
-<?=Asset::js(array('jquery-1.9.1.min.js', 'bootstrap.min.js'))?>
+<?=Asset::js(array('jquery-1.9.1.min.js', 'bootstrap.min.js', 'app.js'))?>
 </body>
 </html>
