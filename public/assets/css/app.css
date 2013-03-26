@@ -1,7 +1,7 @@
 .container-fluid {
-	margin: auto;
-	width: auto;
-	max-width: 1170px;
+  margin: auto;
+  width: auto;
+  max-width: 1170px;
 }
 
 footer {
@@ -9,25 +9,29 @@ footer {
 }
 
 .navbar .brand {
-	font-weight: 700;
-	font-size: 25px;
-	color: #DA7E18;
+  font-weight: 700;
+  font-size: 25px;
+  color: #DA7E18;
 }
 
 .breadcrumb {
-	border: 1px solid #88E4EC;
-	background-color: #ffffff;
+  border: 1px solid #88E4EC;
+  background-color: #ffffff;
 }
 
 @media (min-width: 980px) {
 
-	.index {
-		padding-top: 40px;
-	}
+  .index {
+    padding-top: 40px;
+  }
 
-	.preview {
-		padding-top: 60px;
-	}
+  .preview {
+    padding-top: 60px;
+  }
+}
+
+.page-header {
+  margin: 5px 0;
 }
 
 /*.form-horizontal label {

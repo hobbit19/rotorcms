@@ -89,19 +89,7 @@ class Controller_Guestbook extends \Controller_Base
 				array ('link' => 'guestbook/create', 'name' => 'Create'),
 			);
 
-			$uri = trim(\Input::uri(), '/');
-
-			foreach ($navitems as $key=>$navitem)
-			{
-				if ($uri == $navitem['link'])
-				{
-					$navitems[$key]['active'] = true;
-				}
-			}
-
-			return \View::forge('guestbook::menu', array(
-					'navitems' => $navitems,
-				));
+			return \Request::forge('base/prepare_menu')->execute(array($navitems));
 		}
 		else
 		{

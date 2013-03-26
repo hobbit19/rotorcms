@@ -1,11 +1,4 @@
-<ul class="breadcrumb">
-	<li><?=\Html::anchor('/', 'Home')?> <span class="divider">/</span></li>
-	<li class="active">News</li>
-
-	<?if(\Auth::member(100)):?>
-	<li class="pull-right"><?=\Html::anchor('news/create', 'Create')?></li>
-	<?endif;?>
-</ul>
+<?=\Request::forge('news/menu')->execute()?>
 
 <? foreach ($text as $news): ?>
 

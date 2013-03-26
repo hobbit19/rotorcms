@@ -2,6 +2,6 @@
 
 <p>ID: <?=$user->get_id()?></p>
 <p>Email: <?=$user->email?></p>
-<p>Date created: <?=mb_convert_encoding(\Date::forge($user->created_at), 'utf-8', 'windows-1251')?></p>
+<p>Date created: <?=\Date::forge($user->created_at)?></p>
 <p>Last login: <?=\Date::forge($user->last_login)?></p>
 <p>Group: <?=\Auth::group()->get_name($user->group)?></p>
