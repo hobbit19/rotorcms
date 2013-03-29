@@ -1,9 +1,3 @@
-<ul class="breadcrumb">
-  <li><?=Html::anchor('/', 'Home')?> <span class="divider">/</span></li>
-  <li class="active">User list</li>
-</ul>
-
-
 <?if ($users):?>
 <?foreach ($users as $user):?>
 

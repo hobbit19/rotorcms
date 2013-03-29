@@ -14,7 +14,6 @@ class Controller_Users extends \Controller_Base
 	 */
 	public function action_index()
 	{
-
 		$config = array(
 			'pagination_url' => 'users/index/',
 			'total_items' => Model_User::find()->count(),
@@ -50,7 +49,7 @@ class Controller_Users extends \Controller_Base
 			\Session::set_flash('error', 'Could not find user '.$id);
 			\Response::redirect('users');
 		}
-
+		\Breadcrumb::set($user->username);
 		$this->template->title = 'Profile: '.$user->username;
 		$this->template->content = \View::forge('users/view', array(
 			'user' => $user,

@@ -1,6 +1,12 @@
 <?php
 
 return array(
+	'breadcrumb' => array(
+		'users'    => 'Пользователи',
+		'login'    => 'Авторизация',
+		'register' => 'Регистрация',
+	),
+
 	'login' => array(
 		'title'             => 'Вход',
 		'authorization'     => 'Авторизация на сайте',

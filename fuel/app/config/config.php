@@ -266,6 +266,7 @@ return array(
 			'auth',
 			'captcha',
 			'email',
+			'breadcrumb',
 		),
 
 		/**

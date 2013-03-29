@@ -36,6 +36,7 @@
 			</div>
 
 			<div class="span9 well">
+				<?=\Breadcrumb::create_links()?>
 				<?=$content?>
 			</div>
 

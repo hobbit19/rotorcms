@@ -1,5 +1,3 @@
-<?=\Request::forge('news/menu')->execute()?>
-
 <? foreach ($text as $news): ?>
 
 	<div class="media">

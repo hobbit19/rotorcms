@@ -32,33 +32,6 @@ class Controller_Base extends Controller_Hybrid
 	}
 
 	/**
-	 * action_preparemenu
-	 */
-	public function action_prepare_menu($navitems = array())
-	{
-		if(\Request::is_hmvc())
-		{
-			$uri = trim(\Input::uri(), '/');
-
-			foreach ($navitems as $key=>$navitem)
-			{
-				if ($uri == $navitem['link'])
-				{
-					$navitems[$key]['active'] = true;
-				}
-			}
-
-			return \View::forge('base/menu', array(
-				'navitems' => $navitems,
-			));
-		}
-		else
-		{
-			return new \Response(\View::forge('404'), 404);
-		}
-	}
-
-	/**
 	 * action_navlinks
 	 */
 	public function action_navlinks()

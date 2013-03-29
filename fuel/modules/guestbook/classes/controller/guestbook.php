@@ -75,25 +75,4 @@ class Controller_Guestbook extends \Controller_Base
 		$this->template->content = \View::forge('guestbook::create');
 
 	}
-
-	/**
-	 * action_menu
-	 */
-	public function action_menu()
-	{
-		if(\Request::is_hmvc())
-		{
-			$navitems = array(
-				array ('link' => '/', 'name' => 'Home'),
-				array ('link' => 'guestbook', 'name' => 'Guestbook'),
-				array ('link' => 'guestbook/create', 'name' => 'Create'),
-			);
-
-			return \Request::forge('base/prepare_menu')->execute(array($navitems));
-		}
-		else
-		{
-			return new \Response(\View::forge('404'), 404);
-		}
-	}
 }
