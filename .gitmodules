@@ -19,3 +19,6 @@
 [submodule "fuel/packages/captcha"]
 	path = fuel/packages/captcha
 	url = git://github.com/carlcraig/fuel-captcha.git
+[submodule "fuel/packages/breadcrumb"]
+	path = fuel/packages/breadcrumb
+	url = git@github.com:visavi/Fuel-Breadcrumb.git
