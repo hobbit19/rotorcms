@@ -4,6 +4,12 @@ namespace News;
 
 class Controller_News extends \Controller_Base
 {
+	public function before()
+	{
+		parent::before();
+		\Lang::load('news');
+	}
+
 	/**
 	 * action_index
 	 */
@@ -31,6 +37,25 @@ class Controller_News extends \Controller_Base
 		$this->template->content = \View::forge('news::index', array(
 			'text' => $text, 'pagination' => $pagination
 		), false);
+	}
+
+	/**
+	 * action_view
+	 */
+	public function action_view($id = null)
+	{
+		is_null($id) and \Response::redirect('news');
+
+		if ( ! $news = Model_News::find($id))
+		{
+			\Session::set_flash('error', 'Could not find news '.$id);
+			\Response::redirect('news');
+		}
+		\Breadcrumb::set($news->title, null, 2);
+		$this->template->title = $news->title;
+		$this->template->content = \View::forge('news::view', array(
+			'news' => $news,
+		));
 	}
 
 	/**

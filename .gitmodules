@@ -21,4 +21,4 @@
 	url = git://github.com/carlcraig/fuel-captcha.git
 [submodule "fuel/packages/breadcrumb"]
 	path = fuel/packages/breadcrumb
-	url = git://github.com/visavi/Fuel-Breadcrumb.git
+	url = git://github.com/visavi/fuel-breadcrumb.git
