@@ -16,7 +16,5 @@
 		<div class="form-actions">
 			<?=\Form::button('submit', 'Отправить', array('class' => 'btn btn-primary'))?>
 		</div>
-
-		<?=\HTML::anchor('users/reset','Забыли Пароль?')?>
 	</fieldset>
 <?=\Form::close()?>

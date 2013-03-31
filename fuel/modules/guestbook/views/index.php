@@ -14,3 +14,5 @@
 <? endforeach ?>
 
 <?=$pagination?>
+
+<?=Html::anchor('guestbook/create', '<i class="icon-edit"></i> New message')?>

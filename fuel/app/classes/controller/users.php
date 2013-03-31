@@ -46,7 +46,7 @@ class Controller_Users extends \Controller_Base
 
 		if ( ! $user = Model_User::find($id))
 		{
-			\Session::set_flash('error', 'Could not find user '.$id);
+			\Session::set_flash('error', 'Could not find user: '.$id);
 			\Response::redirect('users');
 		}
 		\Breadcrumb::set($user->username);

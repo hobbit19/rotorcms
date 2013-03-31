@@ -32,6 +32,8 @@
 
 		<div class="form-actions">
 			<?=\Form::button('submit', __('login.sign_in'), array('class' => 'btn btn-primary'))?>
+			<?=Html::anchor('reset', 'Забыли пароль?', array("class"=>"muted"))?>
 		</div>
+
 	</fieldset>
 <?=\Form::close()?>
