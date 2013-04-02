@@ -1,0 +1,12 @@
+- if ($users)
+  - foreach ($users as $user)
+    .media
+      = Html::anchor('users/'.$user->id, Html::img('http://www.gravatar.com/avatar/'.md5($user->email).'?size=48&amp;d=mm', array('alt' => 'avatar')), array('class' => 'pull-left'))
+      .media-body
+        %h4.media-heading= Html::anchor('users/'.$user->id, $user->username)
+        = $user->email
+
+  = $pagination
+
+- else
+  %p No Users
