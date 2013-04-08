@@ -7,18 +7,19 @@ class Controller_Base extends Controller_Hybrid
 	{
 		parent::before();
 
-		if (\Auth::check())
+		if (\Sentry::check())
 		{
-			list($driver, $user_id) = Auth::get_user_id();
+			//list($driver, $user_id) = Auth::get_user_id();
 
-			$this->current_user = Model_user::find($user_id);
+			//$this->current_user = Model_user::find($user_id);
+			$this->current_user = \Sentry::getUser();
 		}
 		else
 		{
 			$this->current_user = null;
 		}
 
-		\View::set_global('current_user', $this->current_user);
+		\View::set_global('current_user', $this->current_user, false);
 	}
 
 	/**

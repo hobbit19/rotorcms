@@ -7,6 +7,7 @@ class_alias('Fuel\\Core\\Autoloader', 'Autoloader');
 // Bootstrap the framework DO NOT edit this
 require COREPATH.'bootstrap.php';
 
+class_alias('Cartalyst\Sentry\Facades\FuelPHP\Sentry', 'Sentry');
 
 Autoloader::add_classes(array(
 	// Add classes you want to override here

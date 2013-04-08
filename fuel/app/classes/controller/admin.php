@@ -6,6 +6,8 @@ class Controller_Admin extends Controller_Base
 	{
 		parent::before();
 
+		\Lang::load('admin');
+
 		if (Auth::check())
 		{
 			if ( ! Auth::member(100))
@@ -30,6 +32,14 @@ class Controller_Admin extends Controller_Base
 			->order_by('created_at', 'desc')
 			->rows_limit(5)
 			->get();
+
+		Module::load('news');
+		$data['count_news'] = \News\Model_News::find()->count();
+		$data['news'] = \News\Model_News::query()
+			->order_by('created_at', 'desc')
+			->rows_limit(5)
+			->get();
+
 
 		$this->template->title = 'Dashboard';
 		$this->template->content = \View::forge('admin/dashboard', $data);
