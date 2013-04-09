@@ -6,9 +6,7 @@ class Create_users
 {
 	public function up()
 	{
-		$table = \Config::get('simpleauth.table_name', 'users');
-
-		\DBUtil::create_table($table, array(
+		\DBUtil::create_table('users', array(
 			'id' => array('type' => 'int', 'constraint' => 11, 'auto_increment' => true),
 			'username' => array('type' => 'varchar', 'constraint' => 50),
 			'password' => array('type' => 'varchar', 'constraint' => 255),
@@ -25,8 +23,6 @@ class Create_users
 
 	public function down()
 	{
-		$table = \Config::get('simpleauth.table_name', 'users');
-
-		\DBUtil::drop_table($table);
+		\DBUtil::drop_table('users');
 	}
 }

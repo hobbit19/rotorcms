@@ -1,0 +1,24 @@
+<?php
+
+namespace Fuel\Migrations;
+
+class Create_groups
+{
+	public function up()
+	{
+		\DBUtil::create_table('groups', array(
+			'id' => array('constraint' => 11, 'type' => 'int', 'auto_increment' => true, 'unsigned' => true),
+			'name' => array('constraint' => 255, 'type' => 'varchar'),
+			'permissions' => array('type' => 'text'),
+			'created_at' => array('type' => 'int', 'constraint' => 11, 'default' => 0),
+			'updated_at' => array('type' => 'int', 'constraint' => 11, 'default' => 0),
+		), array('id'));
+
+		\DBUtil::create_index('groups', 'name', 'name', 'UNIQUE');
+	}
+
+	public function down()
+	{
+		\DBUtil::drop_table('groups');
+	}
+}

@@ -61,7 +61,7 @@ class Controller_Users extends \Controller_Base
 	 */
 	public function action_register()
 	{
-		\Auth::check() and \Response::redirect('/');
+		\Sentry::check() and \Response::redirect('/');
 
 		$auth = \Auth::instance();
 		$captcha = \Captcha::forge('simplecaptcha');
@@ -69,11 +69,12 @@ class Controller_Users extends \Controller_Base
 
 		if (\Input::method() == 'POST')
 		{
-
 			if ($val->run())
 			{
-				if ($captcha->check()) {
-					try
+				if ($captcha->check())
+				{
+
+/*					try
 					{
 						$auth->create_user(
 							$val->validated('username'),
@@ -82,7 +83,7 @@ class Controller_Users extends \Controller_Base
 						);
 
 						$auth->login($val->validated('username'), $val->validated('password'));
-						\Session::set_flash('success', __('register.success'));
+						\Session::set_flash('success', sentence('register.success'));
 						\Response::redirect('/');
 
 					}
@@ -90,10 +91,56 @@ class Controller_Users extends \Controller_Base
 					{
 						\Session::set_flash('error', $e->getMessage());
 					}
+*/
+					try
+					{
+						// Let's register a user.
+						$user = Sentry::register(array(
+							'username' => $val->validated('username'),
+							'password' => $val->validated('password'),
+							'email'    => \Str::lower($val->validated('email')),
+						));
+
+						// Let's get the activation code
+						$activationCode = $user->getActivationCode();
+
+						// Send activation code to the user so he can activate the account
+						$email = \Email::forge();
+						$email->from('rotorcms@visavi.net', 'rotor');
+						$email->to($val->validated('email'), $val->validated('username'));
+						$email->subject('Подтверждение регистрации');
+						$email->body('Здравствуйте '.$val->validated('username').'!'.PHP_EOL.
+							'Для подтверждения регистрации пожалуйста пройдите по следующей ссылке:'.PHP_EOL.
+							\Uri::base(false).'users/activation/'.$activationCode);
+						$email->send();
+
+						//$credentials = array(
+						//	'email' => $val->validated('email'),
+						//	'password' => $val->validated('password'),
+						//);
+
+						// Try to authenticate the user
+						//$user = Sentry::authenticateAndRemember($credentials);
+						//\Session::set_flash('success', Lang::get('login.success'));
+						//\Response::redirect('/');
+					}
+
+					catch (Cartalyst\Sentry\Users\UserNotActivatedException $e)
+					{
+						\Session::set_flash('success', Lang::get('login.success'));
+						\Response::redirect('users/activation');
+					}
+
+					catch (Exception $e)
+					{
+						\Session::set_flash('error', $e->getMessage());
+					}
+
+
 				}
 				else
 				{
-					\Session::set_flash('error', __('register.captcha'));
+					\Session::set_flash('error', Lang::get('register.captcha'));
 				}
 			}
 			else
@@ -103,7 +150,7 @@ class Controller_Users extends \Controller_Base
 
 		}
 
-		$this->template->title = __('register.title');
+		$this->template->title = Lang::get('register.title');
 		$this->template->content = \View::forge('users/register');
 
 	}
@@ -113,22 +160,64 @@ class Controller_Users extends \Controller_Base
 	 */
 	public function action_login()
 	{
-		\Auth::check() and Response::redirect('/');
+		\Sentry::check() and \Response::redirect('/');
 
 		if (\Input::method() == 'POST')
 		{
-			if (\Auth::login(\Input::post('username'), \Input::post('password')))
+
+		try
+		{
+			// Set login credentials
+			$credentials = array(
+				'email' => \Input::post('username'),
+				'password' => \Input::post('password'),
+			);
+
+			// Try to authenticate the user
+			$user = Sentry::authenticate($credentials, \Input::post('remember'));
+
+			\Session::set_flash('success', Lang::get('login.success'));
+			\Response::redirect('/');
+		}
+		catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
+		{
+			\Session::set_flash('error', 'Login field is required.');
+		}
+		catch (Cartalyst\Sentry\Users\PasswordRequiredException $e)
+		{
+			\Session::set_flash('error', 'Password field is required.');
+		}
+		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+		{
+			\Session::set_flash('error', 'User was not found.');
+		}
+		catch (Cartalyst\Sentry\Users\UserNotActivatedException $e)
+		{
+			\Session::set_flash('error', 'User is not activated.');
+		}
+
+		// The following is only required if throttle is enabled
+		catch (Cartalyst\Sentry\Throttling\UserSuspendedException $e)
+		{
+			\Session::set_flash('error', 'User is suspended.');
+		}
+		catch (Cartalyst\Sentry\Throttling\UserBannedException $e)
+		{
+			\Session::set_flash('error', 'User is banned.');
+		}
+
+/*			if (\Auth::login(\Input::post('username'), \Input::post('password')))
 			{
-				\Session::set_flash('success', __('login.success'));
+				\Session::set_flash('success', Lang::get('login.success'));
 				\Response::redirect('/');
 			}
 			else
 			{
-				\Session::set_flash('error', __('login.error'));
-			}
+				\Session::set_flash('error', Lang::get('login.error'));
+			}*/
 		}
 
-		$this->template->title = __('login.title');
+		$this->template->title = Lang::get('login.title');
 		$this->template->content = \View::forge('users/login');
 	}
 
@@ -137,8 +226,8 @@ class Controller_Users extends \Controller_Base
 	 */
 	public function action_logout()
 	{
-		\Auth::logout();
-		\Session::set_flash('success', __('logout.exit'));
+		\Sentry::logout();
+		\Session::set_flash('success', Lang::get('logout.exit'));
 		\Response::redirect('/');
 	}
 
@@ -147,7 +236,7 @@ class Controller_Users extends \Controller_Base
 	 */
 	public function action_reset()
 	{
-		\Auth::check() and \Response::redirect('/');
+		\Sentry::check() and \Response::redirect('/');
 
 		if (\Input::method() == 'POST')
 		{
@@ -158,7 +247,7 @@ class Controller_Users extends \Controller_Base
 			if ( ! empty($user))
 			{
 				$email = \Email::forge();
-				$email->from('rotorcms@visavi.ru', 'rotor');
+				$email->from('rotorcms@visavi.net', 'rotor');
 				$email->to($user->email, $user->username);
 				$email->subject('Восстановление пароля');
 				$email->body('Здравствуйте '.$user->username.'!'.PHP_EOL.
@@ -201,5 +290,58 @@ class Controller_Users extends \Controller_Base
 			\Session::set_flash('error','Неверный проверочный код');
 			\Response::redirect('reset');
 		}
+	}
+
+	/**
+	 * action_activation
+	 */
+	public function action_activation($key = null)
+	{
+		\Sentry::check() and \Response::redirect('/');
+
+/*		try
+		{
+		    $user = Sentry::getUserProvider()->findByActivationCode($key);
+
+		    if ( ! $user->isActivated())
+		    {
+
+		    }
+
+
+		}
+		catch (Exception $e)
+		{
+			\Session::set_flash('error', $e->getMessage());
+		}*/
+
+try
+{
+    // Find the user using the user ActivationCode
+    $user = Sentry::getUserProvider()->findByActivationCode($key);
+
+    // Attempt to activate the user
+    if ($user->attemptActivation($key))
+    {
+        die('User activation passed');
+    }
+    else
+    {
+        die('User activation failed');
+    }
+}
+catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+{
+    die('User was not found.');
+}
+catch (Cartalyst\SEntry\Users\UserAlreadyActivatedException $e)
+{
+    die('User is already activated.');
+}
+		catch (Exception $e)
+		{
+			\Session::set_flash('error', $e->getMessage());
+		}
+
 	}
 }
