@@ -40,8 +40,17 @@ class Controller_Guestbook extends \Controller_Base
 		), false);
 	}
 
+	/**
+	 * action_create
+	 */
 	public function action_create()
 	{
+		if ( ! \Sentry::check())
+		{
+			\Session::set_flash('error', e('You don\'t have access'));
+			\Response::redirect('guestbook/index');
+		}
+
 		if (\Input::method() == 'POST')
 		{
 			$val = Model_Guestbook::validate('create');
@@ -49,8 +58,8 @@ class Controller_Guestbook extends \Controller_Base
 			if ($val->run())
 			{
 				$post = Model_Guestbook::forge(array(
-					'user_id' => 1,
-					'text' => \Input::post('text'),
+					'user_id' => \Sentry::getUser()->id,
+					'text'    => \Input::post('text'),
 				));
 
 				if ($post and $post->save())

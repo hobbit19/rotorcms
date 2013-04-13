@@ -1,6 +1,6 @@
 <?php
 return array(
-	'_root_'   => 'users/index',
+	'_root_'   => 'guestbook/index',
 	'_404_'    => 'error/404',
 	'login'    => 'users/login',
 	'register' => 'users/register',
