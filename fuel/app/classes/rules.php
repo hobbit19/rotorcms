@@ -1,6 +1,6 @@
 <?php
 
-class CustomRules
+class Rules
 {
 	/**
 	 * _validation_unique

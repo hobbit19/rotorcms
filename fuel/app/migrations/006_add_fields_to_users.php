@@ -12,19 +12,17 @@ class Add_fields_to_users
 			'activation_code' => array('constraint' => 255, 'type' => 'varchar', 'null' => true),
 			'persist_code' => array('constraint' => 255, 'type' => 'varchar', 'null' => true),
 			'reset_password_code' => array('constraint' => 255, 'type' => 'varchar', 'null' => true),
-
 		));
 	}
 
 	public function down()
 	{
 		\DBUtil::drop_fields('users', array(
-			'permissions'
-,			'activated'
-,			'activation_code'
-,			'persist_code'
-,			'reset_password_code'
-
+			'permissions',
+			'activated',
+			'activation_code',
+			'persist_code',
+			'reset_password_code'
 		));
 	}
 }

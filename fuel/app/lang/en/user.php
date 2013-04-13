@@ -1,6 +1,17 @@
 <?php
 
 return array(
+	'breadcrumb' => array(
+		'users'    => 'Users',
+		'login'    => 'Sing in',
+		'register' => 'Sign up',
+		'reset'    => 'Reset password',
+	),
+
+	'view' => array(
+		'not_find' => 'Could not find user ID: :id',
+	),
+
 	'login' => array(
 		'title'             => 'Login',
 		'authorization'     => 'Authorization',
@@ -9,7 +20,6 @@ return array(
 		'remember_me'       => 'Remember me',
 		'sign_in'           => 'Sign in',
 		'success'           => 'Вы успешно авторизованы!',
-		'error'             => 'Неверная пара логин-пароль!',
 	),
 
 	'register' => array(

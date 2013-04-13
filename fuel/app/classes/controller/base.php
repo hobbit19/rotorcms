@@ -9,9 +9,6 @@ class Controller_Base extends Controller_Hybrid
 
 		if (\Sentry::check())
 		{
-			//list($driver, $user_id) = Auth::get_user_id();
-
-			//$this->current_user = Model_user::find($user_id);
 			$this->current_user = \Sentry::getUser();
 		}
 		else

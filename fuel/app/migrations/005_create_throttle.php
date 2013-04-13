@@ -13,8 +13,8 @@ class Create_throttle
 			'attempts' => array('constraint' => 11, 'type' => 'int', 'default' => 0),
 			'suspended' => array('constraint' => 4, 'type' => 'tinyint', 'default' => 0),
 			'banned' => array('constraint' => 4, 'type' => 'tinyint', 'default' => 0),
-			'last_attempt_at' => array('constraint' => 11, 'type' => 'int', 'null' => true),
-			'suspended_at' => array('constraint' => 11, 'type' => 'int', 'null' => true),
+			'last_attempt_at' => array('type' => 'timestamp', 'null' => true),
+			'suspended_at' => array('type' => 'timestamp', 'null' => true),
 
 		), array('id'));
 	}

@@ -8,6 +8,10 @@ return array(
 		'reset'    => 'Восстановление пароля',
 	),
 
+	'view' => array(
+		'not_find' => 'Не удалось найти пользователя с ID: :id',
+	),
+
 	'login' => array(
 		'title'             => 'Вход',
 		'authorization'     => 'Авторизация на сайте',
@@ -16,7 +20,6 @@ return array(
 		'remember_me'       => 'Запомнить меня',
 		'sign_in'           => 'Авторизация',
 		'success'           => 'Вы успешно авторизованы!',
-		'error'             => 'Неверная пара логин-пароль!',
 	),
 
 	'register' => array(
