@@ -17,7 +17,7 @@
 						<?=Html::anchor('users/'.$current_user->id, $current_user->username.' <b class="caret"></b>', array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown'))?>
 
 						<ul class="dropdown-menu">
-							<?if (\Auth::member(100)):?>
+							<?if ($current_user->hasAccess('admin')):?>
 							<li><?=Html::anchor('admin', 'Admin Panel')?></li>
 							<?endif?>
 							<li><?=Html::anchor('profile', 'Profile')?></li>

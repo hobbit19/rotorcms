@@ -34,10 +34,12 @@ class Controller_Guestbook extends \Controller_Base
 
 		$pagination = $pagination->render();
 
+		$view  = \View::forge('guestbook::index');
+		$view->set('messages', $messages);
+		$view->set_safe('pagination', $pagination);
+
 		$this->template->title = 'Guestbook';
-		$this->template->content = \View::forge('guestbook::index', array(
-			'messages' => $messages, 'pagination' => $pagination
-		), false);
+		$this->template->content = $view;
 	}
 
 	/**

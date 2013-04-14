@@ -34,7 +34,7 @@ class Model_Guestbook extends \Orm\Model
 	public static function validate($factory)
 	{
 		$val = \Validation::forge($factory);
-		$val->add_field('text', 'Text', 'required|max_length[1000]');
+		$val->add_field('text', 'Text', 'required|min_length[5]|max_length[1000]');
 
 		return $val;
 	}

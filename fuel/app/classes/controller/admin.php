@@ -8,17 +8,17 @@ class Controller_Admin extends Controller_Base
 
 		\Lang::load('admin');
 
-		if (Auth::check())
+		if (\Sentry::check())
 		{
-			if ( ! Auth::member(100))
+			if ( ! \Sentry::getUser()->hasAccess('admin'))
 			{
-				Session::set_flash('error', e('You don\'t have access to the admin panel'));
-				Response::redirect('/');
+				\Session::set_flash('error', e('You don\'t have access to the admin panel'));
+				\Response::redirect('/');
 			}
 		}
 		else
 		{
-			Response::redirect('/login');
+			\Response::redirect('/login');
 		}
 	}
 
@@ -27,8 +27,8 @@ class Controller_Admin extends Controller_Base
 	 */
 	public function action_index()
 	{
-		$data['count_users'] = Model_User::find()->count();
-		$data['users'] = Model_User::query()
+		$data['count_users'] = \Model_User::find()->count();
+		$data['users'] = \Model_User::query()
 			->order_by('created_at', 'desc')
 			->rows_limit(5)
 			->get();
