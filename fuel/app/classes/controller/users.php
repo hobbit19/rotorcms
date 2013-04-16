@@ -47,6 +47,7 @@ class Controller_Users extends \Controller_Base
 		try
 		{
 			$user = \Sentry::getUserProvider()->findById($id);
+			$groups = $user->getGroups();
 		}
 		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
 		{
@@ -54,11 +55,11 @@ class Controller_Users extends \Controller_Base
 			\Response::redirect('users');
 		}
 
-
 		\Breadcrumb::set($user->username);
 		$this->template->title = 'Profile: '.$user->username;
 		$this->template->content = \View::forge('users/view', array(
 			'user' => $user,
+			'groups' => $groups,
 		), false);
 	}
 
