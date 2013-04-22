@@ -20,7 +20,7 @@
 							<?if ($current_user->hasAccess('admin')):?>
 							<li><?=Html::anchor('admin', 'Admin Panel')?></li>
 							<?endif?>
-							<li><?=Html::anchor('profile', 'Profile')?></li>
+							<li><?=Html::anchor('account', 'Settings')?></li>
 							<li class="divider"></li>
 							<li><?=Html::anchor('logout', 'Log out', array('onclick' => "return confirm('Are you sure?')"))?></li>
 						</ul>

@@ -6,6 +6,7 @@ return array(
 	'register' => 'users/register',
 	'logout'   => 'users/logout',
 	'reset'    => 'users/reset',
+	'account'   => 'users/account',
 
 	'users/(:num)' => array(array('GET', new Route('users/view/$1'))),
 );

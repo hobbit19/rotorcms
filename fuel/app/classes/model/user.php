@@ -44,6 +44,7 @@ class Model_User extends \Orm\Model
 			->add_rule('strip_tags')
 			->add_rule('min_length', 3)
 			->add_rule('max_length', 20)
+			->add_rule('valid_string', array('alpha', 'numeric'))
 			->add_rule('unique','users.username');
 
 		$val->add('password','Password')

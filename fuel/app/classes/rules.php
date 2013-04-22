@@ -17,4 +17,12 @@ class Rules
 
 		return ! ($result->count() > 0);
 	}
+
+	/**
+	* Allow alphanumeric characters and underscores in screen names
+	*/
+/*	public static function _validation_username($val)
+	{
+		return $val === '' || preg_match('/^[A-Za-z][A-Za-z0-9]*(?:_[A-Za-z0-9]+)*$/', $val);
+	}*/
 }

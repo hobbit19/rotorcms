@@ -6,6 +6,7 @@ return array(
 		'login'    => 'Sing in',
 		'register' => 'Sign up',
 		'reset'    => 'Reset password',
+		'profile'  => 'Profile',
 	),
 
 	'view' => array(

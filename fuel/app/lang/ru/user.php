@@ -6,6 +6,7 @@ return array(
 		'login'    => 'Авторизация',
 		'register' => 'Регистрация',
 		'reset'    => 'Восстановление пароля',
+		'profile'  => 'Профиль',
 	),
 
 	'view' => array(

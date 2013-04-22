@@ -325,4 +325,74 @@ class Controller_Users extends \Controller_Base
 		$this->template->title = 'Активация аккаунта';
 		$this->template->content = \View::forge('users/activation');
 	}
+
+	/**
+	 * action_account
+	 */
+	public function action_account()
+	{
+		\Sentry::check() or \Response::redirect('/');
+
+		try
+		{
+			$user = \Sentry::getUser();
+			$val = Model_User::validate('edit');
+
+			if ($user->username == \Input::post('username'))
+			{
+				$val->field('username')->delete_rule('unique');
+			}
+
+			if ($user->email == \Input::post('email'))
+			{
+				$val->field('email')->delete_rule('unique');
+			}
+
+
+			if (\Input::method() == 'POST')
+			{
+				if($user->checkPassword(\Input::post('password')))
+				{
+					if ($val->run(null, true))
+					{
+
+						// Update the user details
+						$user->username = $val->validated('username');
+						$user->email    = $val->validated('email');
+
+						// Update the user
+						if ($user->save())
+						{
+							\Session::set_flash('success', 'User information was updated');
+						}
+						else
+						{
+							\Session::set_flash('success', 'User information was not updated');
+						}
+
+						\Response::redirect('account');
+					}
+					else
+					{
+						\Session::set_flash('error', $val->error());
+					}
+				}
+				else
+				{
+					\Session::set_flash('error', 'Password does not match!');
+				}
+			}
+
+			$this->template->title = 'Настройки';
+			$this->template->content = \View::forge('users/account', array(
+				'user' => $user,
+			), false);
+
+		}
+		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+		{
+			\Session::set_flash('success', 'Access denied');
+			\Response::redirect('/');
+		}
+	}
 }
