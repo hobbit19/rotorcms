@@ -142,18 +142,15 @@ class Controller_Users extends \Controller_Base
 		{
 			try
 			{
-				if (!preg_match('#^([a-z0-9_\-\.])+\@([a-z0-9_\-\.])+(\.([a-z0-9])+)+$#', \Input::post('username')))
-				{
-					$user = Model_User::find()
-						->where('username', '=', \Input::post('username'))
-						->get_one();
-				}
+				$user = Model_User::find()
+					->where('email', '=', \Input::post('username'))
+					->get_one();
 
-				$login = (isset($user)) ? $user->email : \Input::post('username');
+				$login = (isset($user)) ? $user->username : \Input::post('username');
 
 				// Set login credentials
 				$credentials = array(
-					'email' => $login,
+					'username' => $login,
 					'password' => \Input::post('password'),
 				);
 

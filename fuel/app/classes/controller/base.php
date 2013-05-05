@@ -7,6 +7,8 @@ class Controller_Base extends Controller_Hybrid
 	{
 		parent::before();
 
+		\Cartalyst\Sentry\Users\Eloquent\User::setLoginAttribute('username');
+
 		if (\Sentry::check())
 		{
 			$this->current_user = \Sentry::getUser();

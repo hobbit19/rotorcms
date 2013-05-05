@@ -2,7 +2,7 @@
 
 namespace Fuel\Migrations;
 
-class Add_banned_to_throttle
+class Add_banned_at_to_throttle
 {
 	public function up()
 	{
