@@ -1,6 +1,6 @@
 #RotorCMS New 1.0
 * Website: [Visavi.net](http://visavi.net/)
-* Based: [FuelPHP](http://fuelphp.com/) 1.6-dev
+* Based: [FuelPHP](http://fuelphp.com/) 1.7-dev
 
 ## Documentation
 * [Documentation in Russian](http://fuelphp-framework.ru/)
@@ -26,7 +26,7 @@ Method of installation:
 
 Starting up database
 
-    php oil refine migrate:current -all
+    php oil refine migrate
 
 Install Composer
 

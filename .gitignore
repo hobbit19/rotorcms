@@ -1,3 +1,4 @@
+/composer.lock
 *~
 *.bak
 Thumbs.db
@@ -15,4 +16,3 @@ nbproject/
 /fuel/vendor/*
 /fuel/app/config/crypt.php
 /fuel/app/config/*/migrations.php
-/composer.lock
