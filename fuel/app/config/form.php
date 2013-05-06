@@ -38,6 +38,7 @@ return array(
 	'required_mark'              => '',
 	'inline_errors'              => true,
 	'error_class'                => ' error',
+	'label_class'                => null,
 
 	// tabular form definitions
 	'tabular_form_template'      => "<table>{fields}</table>\n",
