@@ -4,7 +4,7 @@
 
 
 <div class="control-group">
-	<?=Form::label('Captcha', 'simplecaptcha', array('class' => 'control-label'))?>
+	<?=Form::label(__('register.captcha_key'), 'simplecaptcha', array('class' => 'control-label'))?>
 
 	<div class="controls">
 		<div class="input-append">
