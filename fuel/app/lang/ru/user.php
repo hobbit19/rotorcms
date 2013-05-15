@@ -9,6 +9,10 @@ return array(
         'profile'  => 'Профиль',
     ),
 
+    'index'      => array(
+        'member_list' => 'Список пользователей',
+    ),
+
     'view'       => array(
         'title' => 'Профиль: :user',
         'not_find' => 'Не удалось найти пользователя с ID: :id',
