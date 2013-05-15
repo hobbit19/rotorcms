@@ -36,3 +36,6 @@ Update or loading new submodules
 
 	git submodule init
 	git submodule foreach git pull
+
+Create users groups
+	php oil refine create_groups
