@@ -16,5 +16,5 @@
 <?=$pagination?>
 
 <?if (\Sentry::check()):?>
-	<?=Html::anchor('guestbook/create', '<i class="icon-edit"></i> New message')?>
+	<?=Html::anchor('guestbook/create', '<i class="icon-edit"></i> ' . __('index.new_message'))?>
 <?endif?>

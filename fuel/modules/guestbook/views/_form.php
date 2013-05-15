@@ -1,16 +1,16 @@
 <?=\Form::open(array('class' => 'form-horizontal'))?>
 	<fieldset>
-		<legend>New message</legend>
+		<legend><?= __('create.new_message') ?></legend>
 
 		<div class="control-group">
-			<?=\Form::label('Message', 'text', array('class' => 'control-label'))?>
+			<?=\Form::label(__('create.message'), 'text', array('class' => 'control-label'))?>
 			<div class="controls">
 				<?=\Form::textarea('text', \Input::post('text'), array('class' => 'span8', 'rows' => 5))?>
 			</div>
 		</div>
 
 		<div class="form-actions">
-			<?=\Form::submit('submit', 'Send message', array('class' => 'btn btn-primary'))?>
+			<?=\Form::submit('submit', __('create.submit'), array('class' => 'btn btn-primary'))?>
 		</div>
 
 	</fieldset>
