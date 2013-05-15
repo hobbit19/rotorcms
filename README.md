@@ -24,13 +24,13 @@ Method of installation:
 
     git clone --recursive git://github.com/visavi/rotorcms.git
 
-Starting up database
-
-    php oil refine migrate
-
 Install Composer
 
     php composer.phar update
+
+Starting up database
+
+    php oil refine migrate -all
 
 Update or loading new submodules
 
