@@ -104,11 +104,11 @@ class Controller_Users extends \Controller_Base
 					}
 					catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
 					{
-                        \Session::set_flash('error', \Lang::get('register.required_login'));
+						\Session::set_flash('error', \Lang::get('register.required_login'));
 					}
 					catch (Cartalyst\Sentry\Users\UserExistsException $e)
 					{
-                        \Session::set_flash('error', \Lang::get('register.exists'));
+						\Session::set_flash('error', \Lang::get('register.exists'));
 					}
 
 				}
