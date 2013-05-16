@@ -1,10 +1,10 @@
 <?=\Form::open(array('class' => 'form-horizontal'))?>
 
 	<fieldset>
-		<legend>Введите код сброса пароля</legend>
+		<legend><?= __('recovery.enter') ?></legend>
 
 		<div class="control-group">
-			<?=\Form::label('Код сброса', 'key', array('class' => 'control-label'))?>
+			<?=\Form::label(__('recovery.key'), 'key', array('class' => 'control-label'))?>
 			<div class="controls">
 				<div class="input-append">
 					<?=\Form::input('key', \Input::post('key'), array('required' => 'required', 'type' => 'text'))?>
@@ -14,7 +14,7 @@
 		</div>
 
 		<div class="form-actions">
-			<?=\Form::button('submit', 'Сбросить пароль', array('class' => 'btn btn-primary'))?>
+			<?=\Form::button('submit', __('recovery.submit'), array('class' => 'btn btn-primary'))?>
 		</div>
 	</fieldset>
 <?=\Form::close()?>

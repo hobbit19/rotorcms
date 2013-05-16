@@ -8,7 +8,7 @@ class Controller_Guestbook extends \Controller_Base
 	public function before()
 	{
 		parent::before();
-		//\Lang::load('guestbook');
+		\Lang::load('guestbook');
 	}
 
 	/**
@@ -38,7 +38,7 @@ class Controller_Guestbook extends \Controller_Base
 		$view->set('messages', $messages);
 		$view->set_safe('pagination', $pagination);
 
-		$this->template->title = 'Guestbook';
+		$this->template->title = \Lang::get('index.title');
 		$this->template->content = $view;
 	}
 
@@ -49,7 +49,7 @@ class Controller_Guestbook extends \Controller_Base
 	{
 		if ( ! \Sentry::check())
 		{
-			\Session::set_flash('error', e('You don\'t have access'));
+			\Session::set_flash('error', \Lang::get('create.access'));
 			\Response::redirect('guestbook/index');
 		}
 
@@ -66,14 +66,14 @@ class Controller_Guestbook extends \Controller_Base
 
 				if ($post and $post->save())
 				{
-					\Session::set_flash('success', 'Сообщение успешно добавлено!');
+					\Session::set_flash('success', \Lang::get('create.success'));
 
 					\Response::redirect('guestbook/index');
 				}
 
 				else
 				{
-					\Session::set_flash('error', 'Could not save message.');
+					\Session::set_flash('error', \Lnag::get('create.error'));
 				}
 			}
 			else
@@ -82,7 +82,7 @@ class Controller_Guestbook extends \Controller_Base
 			}
 		}
 
-		$this->template->title = "New message";
+		$this->template->title = \Lang::get('create.title');
 		$this->template->content = \View::forge('guestbook::create');
 
 	}

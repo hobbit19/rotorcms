@@ -33,7 +33,7 @@ class Controller_News extends \Controller_Base
 
 		$pagination = $pagination->render();
 
-		$this->template->title = 'News';
+		$this->template->title = \Lang::get('index.title');
 		$this->template->content = \View::forge('news::index', array(
 			'text' => $text, 'pagination' => $pagination
 		), false);

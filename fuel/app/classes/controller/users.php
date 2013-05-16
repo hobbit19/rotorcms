@@ -31,7 +31,7 @@ class Controller_Users extends \Controller_Base
 
 		$pagination = $pagination->render();
 
-		$this->template->title = 'Member List';
+		$this->template->title = \Lang::get('index.member_list');
 		$this->template->content = \View::forge('users/index', array(
 			'users' => $users, 'pagination' => $pagination
 		), false);
@@ -56,7 +56,7 @@ class Controller_Users extends \Controller_Base
 		}
 
 		\Breadcrumb::set($user->username);
-		$this->template->title = 'Profile: '.$user->username;
+		$this->template->title = \Lang::get('view.title', array('user' => $user->username));
 		$this->template->content = \View::forge('users/view', array(
 			'user' => $user,
 			'groups' => $groups,
@@ -95,10 +95,8 @@ class Controller_Users extends \Controller_Base
 						$email = \Email::forge();
 						$email->from('rotorcms@visavi.net', 'rotor');
 						$email->to($val->validated('email'), $val->validated('username'));
-						$email->subject('Подтверждение регистрации');
-						$email->body('Здравствуйте '.$val->validated('username').'!'.PHP_EOL.
-							'Для подтверждения регистрации пожалуйста пройдите по следующей ссылке:'.PHP_EOL.
-							\Uri::base(false).'users/activation/'.$activationCode);
+						$email->subject(\Lang::get('register.subject'));
+						$email->body(\Lang::get('register.body', array('name' => $val->validated('username'), 'url' => \Uri::base(false).'users/activation/'.$activationCode)));
 						$email->send();
 
 						\Session::set_flash('success', \Lang::get('register.success'));
@@ -106,11 +104,11 @@ class Controller_Users extends \Controller_Base
 					}
 					catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
 					{
-						echo 'Login field is required.';
+                        \Session::set_flash('error', \Lang::get('register.required_login'));
 					}
 					catch (Cartalyst\Sentry\Users\UserExistsException $e)
 					{
-						echo 'User with this login already exists.';
+                        \Session::set_flash('error', \Lang::get('register.exists'));
 					}
 
 				}
@@ -163,29 +161,29 @@ class Controller_Users extends \Controller_Base
 
 			catch (\Cartalyst\Sentry\Users\LoginRequiredException $e)
 			{
-				\Session::set_flash('error', 'Login field is required.');
+				\Session::set_flash('error', \Lang::get('login.required_login'));
 			}
 			catch (\Cartalyst\Sentry\Users\PasswordRequiredException $e)
 			{
-				\Session::set_flash('error', 'Password field is required.');
+				\Session::set_flash('error', \Lang::get('login.required_password'));
 			}
 			catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
 			{
-				\Session::set_flash('error', 'User was not found.');
+				\Session::set_flash('error', \Lang::get('login.not_found'));
 			}
 			catch (\Cartalyst\Sentry\Users\UserNotActivatedException $e)
 			{
-				\Session::set_flash('error', 'User is not activated.');
+				\Session::set_flash('error', \Lang::get('login.activated'));
 			}
 
 			// The following is only required if throttle is enabled
 			catch (\Cartalyst\Sentry\Throttling\UserSuspendedException $e)
 			{
-				\Session::set_flash('error', 'User is suspended.');
+				\Session::set_flash('error', \Lang::get('login.suspended'));
 			}
 			catch (Cartalyst\Sentry\Throttling\UserBannedException $e)
 			{
-				\Session::set_flash('error', 'User is banned.');
+				\Session::set_flash('error', \Lang::get('login.banned'));
 			}
 
 		}
@@ -222,23 +220,21 @@ class Controller_Users extends \Controller_Base
 				$email = \Email::forge();
 				$email->from('rotorcms@visavi.net', 'rotor');
 				$email->to($user->email, $user->username);
-				$email->subject('Восстановление пароля');
-				$email->body('Здравствуйте '.$user->username.'!'.PHP_EOL.
-					'Для восстановления пароля пожалуйста пройдите по следующей ссылке:'.PHP_EOL.
-					\Uri::base(false).'users/recovery/'.$resetCode);
+				$email->subject(\Lang::get('reset.subject'));
+				$email->body(\Lang::get('reset.body'), array('name' => $user->username, 'url' => \Uri::base(false).'users/recovery/'.$resetCode));
 				$email->send();
 
-				\Session::set_flash('success', 'На ваш эл. адрес отправлена инструкция по восстановлению пароля');
+				\Session::set_flash('success', \Lang::get('reset.success'));
 				\Response::redirect('/users/recovery');
 
 			}
 			catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
 			{
-				\Session::set_flash('error', 'Адрес электронной почты не найден в базе');
+				\Session::set_flash('error', \Lang::get('reset.error'));
 			}
 		}
 
-		$this->template->title = 'Забыли пароль?';
+		$this->template->title = \Lang::get('reset.title');
 		$this->template->content = \View::forge('users/reset');
 	}
 
@@ -261,22 +257,22 @@ class Controller_Users extends \Controller_Base
 				// Attempt to reset the user password
 				if ($user->attemptResetPassword($key, $new_password))
 				{
-					\Session::set_flash('success', 'Вы успешно прошли процедуру восстановления пароля, ваш новый пароль: '.$new_password);
+					\Session::set_flash('success', \Lang::get('recovery.success', array('password' => $new_password)));
 					\Response::redirect('login');
 				}
 				else
 				{
-					\Session::set_flash('error', 'Password reset failed');
+					\Session::set_flash('error', \Lang::get('recovery.failed'));
 				}
 			}
 			catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
 			{
-				\Session::set_flash('error', 'Неверный код сброса пароля');
+				\Session::set_flash('error', \Lang::get('recovery.invalid'));
 			}
 		}
 
 		\Breadcrumb::remove(3);
-		$this->template->title = 'Сброс пароля';
+		$this->template->title = \Lang::get('recovery.title');
 		$this->template->content = \View::forge('users/recovery');
 	}
 
@@ -299,27 +295,27 @@ class Controller_Users extends \Controller_Base
 				// Attempt to activate the user
 				if ($user->attemptActivation($key))
 				{
-					\Session::set_flash('success', 'User activation passed');
+					\Session::set_flash('success', \Lang::get('activation.passed'));
 					\Response::redirect('/');
 				}
 				else
 				{
-					\Session::set_flash('error', 'User activation failed');
+					\Session::set_flash('error', \Lang::get('activation.failed'));
 				}
 			}
 			catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
 			{
-				\Session::set_flash('error', 'User was not found.');
+				\Session::set_flash('error', \Lang::get('activation.not_found'));
 			}
 			catch (\Cartalyst\SEntry\Users\UserAlreadyActivatedException $e)
 			{
-				\Session::set_flash('error', 'User is already activated.');
+				\Session::set_flash('error', \Lang::get('activation.activated'));
 			}
 
 		}
 
 		\Breadcrumb::remove(3);
-		$this->template->title = 'Активация аккаунта';
+		$this->template->title = \Lang::get('activation.title');
 		$this->template->content = \View::forge('users/activation');
 	}
 
@@ -360,11 +356,11 @@ class Controller_Users extends \Controller_Base
 						// Update the user
 						if ($user->save())
 						{
-							\Session::set_flash('success', 'User information was updated');
+							\Session::set_flash('success', \Lang::get('account.updated'));
 						}
 						else
 						{
-							\Session::set_flash('success', 'User information was not updated');
+							\Session::set_flash('success', \Lang::get('account.not_updated'));
 						}
 
 						\Response::redirect('account');
@@ -376,11 +372,11 @@ class Controller_Users extends \Controller_Base
 				}
 				else
 				{
-					\Session::set_flash('error', 'Password does not match!');
+					\Session::set_flash('error', \Lang::get('account.password_error'));
 				}
 			}
 
-			$this->template->title = 'Настройки';
+			$this->template->title = \Lang::get('account.settings');
 			$this->template->content = \View::forge('users/account', array(
 				'user' => $user,
 			), false);
@@ -388,7 +384,7 @@ class Controller_Users extends \Controller_Base
 		}
 		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
 		{
-			\Session::set_flash('success', 'Access denied');
+			\Session::set_flash('success', \Lang::get('account.denied'));
 			\Response::redirect('/');
 		}
 	}

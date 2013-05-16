@@ -1,7 +1,7 @@
 <?php
 
 return array(
-	array ('link' => 'guestbook', 'name' => 'Guestbook'),
-	array ('link' => 'users', 'name'=> 'Users'),
-	array ('link' => 'news', 'name'=> 'News'),
+	array ('link' => 'guestbook', 'name' => \Lang::get('other.guestbook')),
+	array ('link' => 'users', 'name'=> \Lang::get('other.users')),
+	array ('link' => 'news', 'name'=> \Lang::get('other.news')),
 );

@@ -1,10 +1,10 @@
 <?=\Form::open(array('class' => 'form-horizontal'))?>
 
 	<fieldset>
-		<legend>Введите email</legend>
+		<legend><?php __('reset.enter') ?></legend>
 
 		<div class="control-group">
-			<?=\Form::label(__('register.email'), 'email', array('class' => 'control-label'))?>
+			<?=\Form::label(__('reset.email'), 'email', array('class' => 'control-label'))?>
 			<div class="controls">
 				<div class="input-append">
 					<?=\Form::input('email', \Input::post('email'), array('required' => 'required', 'type' => 'email'))?>
@@ -14,7 +14,7 @@
 		</div>
 
 		<div class="form-actions">
-			<?=\Form::button('submit', 'Отправить', array('class' => 'btn btn-primary'))?>
+			<?=\Form::button('submit', __('reset.submit'), array('class' => 'btn btn-primary'))?>
 		</div>
 	</fieldset>
 <?=\Form::close()?>

@@ -1,10 +1,10 @@
 <?=\Form::open(array('class' => 'form-horizontal'))?>
 
 	<fieldset>
-		<legend>Введите код активации</legend>
+		<legend><?= __('activation.enter') ?></legend>
 
 		<div class="control-group">
-			<?=\Form::label('Код активации', 'key', array('class' => 'control-label'))?>
+			<?=\Form::label(__('key'), 'key', array('class' => 'control-label'))?>
 			<div class="controls">
 				<div class="input-append">
 					<?=\Form::input('key', \Input::post('key'), array('required' => 'required', 'type' => 'text'))?>
@@ -14,7 +14,7 @@
 		</div>
 
 		<div class="form-actions">
-			<?=\Form::button('submit', 'Активировать', array('class' => 'btn btn-primary'))?>
+			<?=\Form::button('submit', __('activation.submit'), array('class' => 'btn btn-primary'))?>
 		</div>
 	</fieldset>
 <?=\Form::close()?>
