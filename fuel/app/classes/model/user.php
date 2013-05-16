@@ -47,14 +47,14 @@ class Model_User extends \Orm\Model
 			->add_rule('valid_string', array('alpha', 'numeric'))
 			->add_rule('unique','users.username');
 
-		$val->add('password','Password')
+		$val->add('password', 'Password')
 			->add_rule('required')
 			->add_rule('trim')
 			->add_rule('strip_tags')
 			->add_rule('min_length', 6)
 			->add_rule('max_length', 30);
 
-		$val->add('confirm_password','Сonfirm password')
+		$val->add('confirm_password', 'Confirm password')
 			->add_rule('match_field', 'password');
 
 		$val->add('email', 'Email')
