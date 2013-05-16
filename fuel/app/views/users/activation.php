@@ -4,7 +4,7 @@
 		<legend><?= __('activation.enter') ?></legend>
 
 		<div class="control-group">
-			<?=\Form::label(__('key'), 'key', array('class' => 'control-label'))?>
+			<?=\Form::label(__('activation.key'), 'key', array('class' => 'control-label'))?>
 			<div class="controls">
 				<div class="input-append">
 					<?=\Form::input('key', \Input::post('key'), array('required' => 'required', 'type' => 'text'))?>

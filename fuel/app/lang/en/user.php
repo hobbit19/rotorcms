@@ -51,8 +51,7 @@ return array(
 		'exists'           => 'User with this login already exists.',
 		'required_login'   => 'Login field is required.',
 		'subject'          => 'Confirmation of registration',
-		'body'             =>
-		'Hello :user!'.PHP_EOL.'To confirm your registration please click on the following link:'.PHP_EOL.':url',
+		'body'             => 'Hello :name!'.PHP_EOL.'To confirm your registration please click on the following link:'.PHP_EOL.':url',
 		'captcha_key'      => 'Protected kode',
 	),
 
@@ -98,7 +97,7 @@ return array(
 		'error'   => 'E-mail is not found in the database',
 		'success' => 'In your e-mail address sent instructions to reset your password',
 		'subject' => 'Password recovery',
-		'body'    => 'Hello :user!'.PHP_EOL.'To recover your password, please click on the following link:'.PHP_EOL.':url',
+		'body'    => 'Hello :name!'.PHP_EOL.'To recover your password, please click on the following link:'.PHP_EOL.':url',
 		'enter'   => 'Enter your e-mail address',
 		'email'   => 'E-Mail',
 		'submit'  => 'Send',
