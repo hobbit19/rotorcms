@@ -16,8 +16,8 @@ return array(
     'view'       => array(
         'title' => 'Профиль: :user',
         'not_find' => 'Не удалось найти пользователя с ID: :id',
-        'created_at' => 'Дата регистрации:',
-        'last_login' => 'Последняя авторизация:',
+        'created_at' => 'Дата регистрации',
+        'last_login' => 'Последняя авторизация',
         'groups' => 'Список груп',
         'email' => 'E-Mail',
     ),
@@ -105,5 +105,13 @@ return array(
         'enter'   => 'Введите ваш E-mail адресс',
         'email'   => 'E-Mail',
         'submit'  => 'Отправить',
+    ),
+
+    'other' => array(
+        'admin' => 'Админка',
+        'login' => 'Вход',
+        'register' => 'Регистрация',
+        'settings' => 'Настройки',
+        'exit' => 'Выход',
     ),
 );

@@ -16,8 +16,8 @@ return array(
     'view'       => array(
         'title' => 'Profile: :user',
         'not_find' => 'Could not find user ID: :id',
-        'created_at' => 'Date created:',
-        'last_login' => 'Last login:',
+        'created_at' => 'Date created',
+        'last_login' => 'Last login',
         'groups' => 'Groups',
     ),
 
@@ -105,4 +105,5 @@ return array(
         'email'   => 'E-Mail',
         'submit'  => 'Send',
     ),
+
 );
