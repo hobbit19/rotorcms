@@ -202,7 +202,7 @@ class Controller_Users extends \Controller_Base
 		\Response::redirect('/');
 	}
 
-		/**
+	/**
 	 * action_reset
 	 */
 	public function action_reset()

@@ -8,7 +8,7 @@ return array(
 		'exit'     => 'Log out',
 
 		'guestbook' => 'Guestbook',
-		'users' => 'Users',
-		'news' => 'News',
+		'users'     => 'Users',
+		'news'      => 'News',
 	),
 );

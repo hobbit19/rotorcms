@@ -7,6 +7,7 @@ return array(
 		'register' => 'Регистрация',
 		'reset'    => 'Восстановление пароля',
 		'profile'  => 'Профиль',
+		'account'  => 'Настройки',
 	),
 
 	'index' => array(
@@ -14,12 +15,12 @@ return array(
 	),
 
 	'view' => array(
-		'title' => 'Профиль: :user',
-		'not_find' => 'Не удалось найти пользователя с ID: :id',
+		'title'      => 'Профиль: :user',
+		'not_find'   => 'Не удалось найти пользователя с ID: :id',
 		'created_at' => 'Дата регистрации',
 		'last_login' => 'Последняя авторизация',
-		'groups' => 'Список груп',
-		'email' => 'E-Mail',
+		'groups'     => 'Список груп',
+		'email'      => 'E-Mail',
 	),
 
 	'login' => array(
@@ -105,10 +106,10 @@ return array(
 	),
 
 	'other' => array(
-		'admin' => 'Админка',
-		'login' => 'Вход',
+		'admin'    => 'Админка',
+		'login'    => 'Вход',
 		'register' => 'Регистрация',
 		'settings' => 'Настройки',
-		'exit' => 'Выход',
+		'exit'     => 'Выход',
 	),
 );

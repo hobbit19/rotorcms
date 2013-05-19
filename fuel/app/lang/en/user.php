@@ -7,6 +7,7 @@ return array(
 		'register' => 'Sign up',
 		'reset'    => 'Reset password',
 		'profile'  => 'Profile',
+		'account'  => 'Account',
 	),
 
 	'index' => array(
@@ -52,7 +53,7 @@ return array(
 		'required_login'   => 'Login field is required.',
 		'subject'          => 'Confirmation of registration',
 		'body'             => 'Hello :name!'.PHP_EOL.'To confirm your registration please click on the following link:'.PHP_EOL.':url',
-		'captcha_key'      => 'Protected kode',
+		'captcha_key'      => 'Protected сode',
 	),
 
 	'logout' => array(
