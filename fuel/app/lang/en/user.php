@@ -8,6 +8,7 @@ return array(
 		'reset'    => 'Reset password',
 		'profile'  => 'Profile',
 		'account'  => 'Account',
+		'recovery' => 'Recovery password',
 	),
 
 	'index' => array(
@@ -95,12 +96,12 @@ return array(
 
 	'reset' => array(
 		'title'   => 'Forgot your password?',
-		'error'   => 'E-mail is not found in the database',
-		'success' => 'In your e-mail address sent instructions to reset your password',
+		'error'   => 'Email is not found in the database',
+		'success' => 'In your email address sent instructions to reset your password',
 		'subject' => 'Password recovery',
-		'body'    => 'Hello :name!'.PHP_EOL.'To recover your password, please click on the following link:'.PHP_EOL.':url',
-		'enter'   => 'Enter your e-mail address',
-		'email'   => 'E-Mail',
+		'body'    => 'Hello,: name!'. PHP_EOL.'Your operation was performed to recover password on the site: :site'.PHP_EOL.'In order to recover your password, you must enter the activation code on the page: :url'. PHP_EOL.PHP_EOL.'Code activation: :code'.PHP_EOL.PHP_EOL.'or use the direct link: :url_with_code '.PHP_EOL.PHP_EOL.'If this letter was delivered to you in error or you are not going to recover your password, you can just ignore it',
+		'enter'   => 'Enter your email address',
+		'email'   => 'Email',
 		'submit'  => 'Send',
 	),
 

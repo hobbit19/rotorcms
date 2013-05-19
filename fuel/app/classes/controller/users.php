@@ -222,7 +222,11 @@ class Controller_Users extends \Controller_Base
 				$email->from('rotorcms@visavi.net', 'rotor');
 				$email->to($user->email, $user->username);
 				$email->subject(\Lang::get('reset.subject'));
+
 				$email->body(\Lang::get('reset.body'), array('name' => $user->username, 'url' => \Uri::base(false).'users/recovery/'.$resetCode));
+
+				$email->body(\Lang::get('reset.body', array('name' => $user->username, 'site' => \Uri::base(false), 'url' => \Uri::base(false).'users/recovery', 'code' => $resetCode, 'url_with_code' => \Uri::base(false).'users/recovery/'.$resetCode)));
+
 				$email->send();
 
 				\Session::set_flash('success', \Lang::get('reset.success'));
