@@ -24,11 +24,14 @@ class Model_News extends \Orm\Model
 		),
 	);
 
+	protected static $_has_many = array('news_comments');
+
 	protected static $_belongs_to = array(
 		'user' => array(
 			'model_to' => 'Model_User',
 		)
 	);
+
 
 	public static function validate($factory)
 	{

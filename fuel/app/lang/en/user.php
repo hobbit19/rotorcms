@@ -16,11 +16,13 @@ return array(
 	),
 
 	'view' => array(
-		'title'      => 'Profile: :user',
-		'not_find'   => 'Could not find user ID: :id',
-		'created_at' => 'Date created',
-		'last_login' => 'Last login',
-		'groups'     => 'Groups',
+		'title'         => 'Profile: :user',
+		'not_find'      => 'Could not find user ID: :id',
+		'not_activated' => 'Account not activated!',
+		'created_at'    => 'Date created',
+		'last_login'    => 'Last login',
+		'groups'        => 'Groups',
+		'email'         => 'Email',
 	),
 
 	'login' => array(
@@ -64,7 +66,10 @@ return array(
 	'activation' => array(
 		'title'     => 'Account activation',
 		'activated' => 'User is already activated.',
+		'required'  => 'Login field is required.',
 		'not_found' => 'User was not found',
+		'suspended' => 'User is suspended for :time minutes.',
+		'banned'    => 'User is banned.',
 		'failed'    => 'User activation failed',
 		'passed'    => 'User activation passed',
 		'enter'     => 'Enter the activation code',

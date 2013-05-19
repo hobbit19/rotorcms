@@ -297,9 +297,12 @@ class Controller_Users extends \Controller_Base
 				// Find the user using the user ActivationCode
 				$user = \Sentry::getUserProvider()->findByActivationCode($key);
 
-				// Attempt to activate the user
+			// Attempt to activate the user
 				if ($user->attemptActivation($key))
 				{
+					// Log the user in
+					\Sentry::loginAndRemember($user);
+
 					\Session::set_flash('success', \Lang::get('activation.passed'));
 					\Response::redirect('/');
 				}
@@ -307,6 +310,11 @@ class Controller_Users extends \Controller_Base
 				{
 					\Session::set_flash('error', \Lang::get('activation.failed'));
 				}
+			}
+
+			catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
+			{
+				\Session::set_flash('error', \Lang::get('activation.required'));
 			}
 			catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
 			{
@@ -317,6 +325,16 @@ class Controller_Users extends \Controller_Base
 				\Session::set_flash('error', \Lang::get('activation.activated'));
 			}
 
+			// Following is only needed if throttle is enabled
+			catch (Cartalyst\Sentry\Throttling\UserSuspendedException $e)
+			{
+				$time = $throttle->getSuspensionTime();
+				\Session::set_flash('success', \Lang::get('recovery.suspended', array('time' => $time)));
+			}
+			catch (Cartalyst\Sentry\Throttling\UserBannedException $e)
+			{
+				\Session::set_flash('error', \Lang::get('activation.banned'));
+			}
 		}
 
 		\Breadcrumb::remove(3);
