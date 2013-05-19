@@ -34,7 +34,7 @@ class Controller_Guestbook extends \Controller_Base
 
 		$pagination = $pagination->render();
 
-		$view  = \View::forge('guestbook::index');
+		$view = \View::forge('guestbook::index');
 		$view->set('messages', $messages);
 		$view->set_safe('pagination', $pagination);
 

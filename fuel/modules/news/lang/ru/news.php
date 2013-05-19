@@ -5,17 +5,18 @@ return array(
 		'news'   => 'Новости',
 		'create' => 'Добавить новость',
 	),
-	'index'      => array(
-		'title'    => 'Новости',
-		'author'   => 'Автор',
-		'comments' => 'Комментарии',
+	'index' => array(
+		'title'       => 'Новости',
+		'author'      => 'Автор',
+		'comments'    => 'Комментарии',
+		'create_news' => 'Добавить новость',
 	),
-	'view'       => array(
+	'view' => array(
 		'error'    => 'Невозможно найти новость :id',
 		'author'   => 'Автор',
 		'comments' => 'Комментарии',
 	),
-	'create'     => array(
+	'create' => array(
 		'title'       => 'Написать новость',
 		'error'       => 'Не удалось сохранить новость',
 		'access'      => 'У вас нет доступа!',

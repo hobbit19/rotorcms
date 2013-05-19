@@ -5,17 +5,18 @@ return array(
 		'news'   => 'News',
 		'create' => 'Create',
 	),
-	'index'      => array(
-		'title'    => 'News',
-		'author'   => 'Author',
-		'comments' => 'Comments',
+	'index' => array(
+		'title'       => 'News',
+		'author'      => 'Author',
+		'comments'    => 'Comments',
+		'create_news' => 'Create News',
 	),
-	'view'       => array(
+	'view' => array(
 		'error'    => 'Could not find news :id',
 		'author'   => 'Author',
 		'comments' => 'Comments',
 	),
-	'create'     => array(
+	'create' => array(
 		'title'       => 'Create News',
 		'error'       => 'Could not save news.',
 		'access'      => 'You don\'t have access!',
