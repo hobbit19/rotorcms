@@ -48,9 +48,10 @@ class Controller_News extends \Controller_Base
 
 		if ( ! $news = Model_News::find($id))
 		{
-			\Session::set_flash('error', 'Could not find news '.$id);
+			\Session::set_flash('error', \Lang::get('view.error', array('id' => $id)));
 			\Response::redirect('news');
 		}
+
 		\Breadcrumb::set($news->title, null, 2);
 		$this->template->title = $news->title;
 		$this->template->content = \View::forge('news::view', array(
@@ -63,10 +64,11 @@ class Controller_News extends \Controller_Base
 	 */
 	public function action_create()
 	{
-		if ( ! \Auth::member(100))
+
+		if ( ! \Sentry::check() || ! \Sentry::getUser()->hasAccess('admin'))
 		{
-			\Session::set_flash('error', e('You don\'t have access'));
-			\Response::redirect('/');
+			\Session::set_flash('error', \Lang::get('create.access'));
+			\Response::redirect('news/index');
 		}
 
 		if (\Input::method() == 'POST')
@@ -83,13 +85,13 @@ class Controller_News extends \Controller_Base
 
 				if ($post and $post->save())
 				{
-					\Session::set_flash('success', 'Новость успешно добавлена!');
+					\Session::set_flash('success', \Lang::get('create.success'));
 					\Response::redirect('news/index');
 				}
 
 				else
 				{
-					\Session::set_flash('error', 'Could not save news.');
+					\Session::set_flash('error', \Lang::get('create.error'));
 				}
 			}
 			else
@@ -98,7 +100,7 @@ class Controller_News extends \Controller_Base
 			}
 		}
 
-		$this->template->title = "Create News";
+		$this->template->title = \Lang::get('create.title');
 		$this->template->content = \View::forge('news::create');
 	}
 }

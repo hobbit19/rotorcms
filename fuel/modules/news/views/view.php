@@ -4,8 +4,8 @@
 	<p>
 		<?=$news->text?>
 	</p>
-	<?=\Html::anchor('users/'.$news->user->id, '<i class="icon-user"></i> '.$news->user->username, array("rel" => "tooltip", "title" => "Автор"))?> /
+	<?=\Html::anchor('users/'.$news->user->id, '<i class="icon-user"></i> '.$news->user->username, array("rel" => "tooltip", "title" => __('view.author')))?> /
 
-	<?=\Html::anchor('news/comment/'.$news->id, '<i class="icon-comment"></i> Комментарии', array("rel" => "tooltip", "title" => "Комментарии"))?>
+	<?=\Html::anchor('news/comment/'.$news->id, '<i class="icon-comment"></i> '.__('view.comments'), array("rel" => "tooltip", "title" => __('view.comments')))?>
 
 </div>
