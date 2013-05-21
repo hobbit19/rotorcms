@@ -24,7 +24,11 @@ class Model_News extends \Orm\Model
 		),
 	);
 
-	protected static $_has_many = array('news_comments');
+	protected static $_has_many = array(
+		'comments' => array(
+			'model_to' => '\News\Model_Comment',
+		)
+	);
 
 	protected static $_belongs_to = array(
 		'user' => array(

@@ -46,7 +46,9 @@ class Controller_News extends \Controller_Base
 	{
 		is_null($id) and \Response::redirect('news');
 
-		if ( ! $news = Model_News::find($id))
+		$news = Model_News::query()->where('id', '=', $id)->related('comments')->get_one();
+
+		if ( ! $news)
 		{
 			\Session::set_flash('error', \Lang::get('view.error', array('id' => $id)));
 			\Response::redirect('news');
@@ -55,7 +57,7 @@ class Controller_News extends \Controller_Base
 		\Breadcrumb::set($news->title, null, 2);
 		$this->template->title = $news->title;
 		$this->template->content = \View::forge('news::view', array(
-			'news' => $news,
+			'news' => $news
 		));
 	}
 

@@ -34,7 +34,6 @@ Starting up database
 
 Update or loading new submodules
 
-	git submodule init
 	git submodule foreach git pull
 
 Create users groups

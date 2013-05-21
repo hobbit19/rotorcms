@@ -8,7 +8,7 @@
 		</p>
 		<?=\Html::anchor('users/'.$news->user->id, '<i class="icon-user"></i> '.$news->user->username, array("rel" => "tooltip", "title" => __('index.author')))?> /
 
-		<?=\Html::anchor('news/comment/'.$news->id, '<i class="icon-comment"></i> '.__('index.comments'), array("rel" => "tooltip", "title" => __('index.comments')))?>
+		<?=\Html::anchor('news/view/'.$news->id.'#comments', '<i class="icon-comment"></i> '.__('index.comments'), array("rel" => "tooltip", "title" => __('index.comments')))?>
 
 	</div>
 	<hr />
