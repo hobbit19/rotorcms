@@ -46,7 +46,7 @@ class Controller_News extends \Controller_Base
 	{
 		is_null($id) and \Response::redirect('news');
 
-		$news = Model_News::query()->where('id', '=', $id)->related('comments')->get_one();
+		//$news = Model_News::query()->where('id', '=', $id)->related('comments')->get_one();
 
 		if ( ! $news = Model_News::find($id))
 		{
