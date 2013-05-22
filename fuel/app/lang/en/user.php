@@ -109,5 +109,4 @@ return array(
 		'email'   => 'Email',
 		'submit'  => 'Send',
 	),
-
 );

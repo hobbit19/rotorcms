@@ -109,12 +109,4 @@ return array(
 		'email'   => 'Email',
 		'submit'  => 'Отправить',
 	),
-
-	'other' => array(
-		'admin'    => 'Админка',
-		'login'    => 'Вход',
-		'register' => 'Регистрация',
-		'settings' => 'Настройки',
-		'exit'     => 'Выход',
-	),
 );

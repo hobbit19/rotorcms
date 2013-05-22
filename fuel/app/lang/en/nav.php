@@ -1,14 +1,15 @@
 <?php
 return array(
-	'other' => array(
-		'admin'    => 'Admin Panel',
-		'login'    => 'Sign In',
-		'register' => 'Sign Up',
-		'settings' => 'Settings',
-		'exit'     => 'Log out',
-
+	'nav' => array(
 		'guestbook' => 'Guestbook',
 		'users'     => 'Users',
 		'news'      => 'News',
+
+		'admin'     => 'Admin panel',
+		'login'     => 'Sign in',
+		'register'  => 'Sign up',
+		'settings'  => 'Settings',
+		'exit'      => 'Exit',
+		'confirm'   => 'Are you sure?',
 	),
 );
