@@ -1,4 +1,4 @@
-<div class="media">
+<div class="media" id="news">
 	<span class="muted"><small><?=\Date::forge($news->created_at)?></small></span>
 	<h4 class="media-heading"><?=\Html::anchor('news/view/'.$news->id, $news->title)?></h4>
 	<p>
@@ -8,7 +8,8 @@
 </div>
 
 
-<h3 class="muted"><i class="icon-comment"></i> <?=__('view.comments')?> <small>(<?=count($news->comments)?>)</small></h3>
+<h3 class="muted" id="comments"><i class="icon-comment"></i> <?=__('view.comments')?> <small>(<?=count($news->comments)?>)</small></h3>
+
 <? foreach ($news->comments as $comment): ?>
 
 	<div class="media">

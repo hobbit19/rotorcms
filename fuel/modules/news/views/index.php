@@ -2,7 +2,7 @@
 
 	<div class="media">
 		<span class="pull-right muted"><small><?=\Date::forge($news->created_at)?></small></span>
-		<h4 class="media-heading"><?=\Html::anchor('news/view/'.$news->id, $news->title)?></h4>
+		<h4 class="media-heading"><?=\Html::anchor('news/view/'.$news->id.'#news', $news->title)?></h4>
 		<p>
 			<?=$news->text?>
 		</p>
