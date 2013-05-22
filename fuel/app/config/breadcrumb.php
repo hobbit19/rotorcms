@@ -19,6 +19,8 @@ return array(
 	 * of breadcrumb and WILL NOT ucwords and replace underscores to spaces
 	 */
 	'use_lang' => true,
+	'lang_file' => null,
+	'lang_prefix' => 'breadcrumb',
 
 	/**
 	 * Home Link
