@@ -34,7 +34,8 @@ Starting up database
 
 Update or loading new submodules
 
-	git submodule foreach git pull
+    git submodule foreach git pull
 
 Create users groups
-	php oil refine create_groups
+
+    php oil refine create_groups
