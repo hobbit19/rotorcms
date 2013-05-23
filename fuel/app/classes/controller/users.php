@@ -14,9 +14,11 @@ class Controller_Users extends \Controller_Base
 	 */
 	public function action_index()
 	{
+		$total = Model_User::find()->count();
+
 		$config = array(
 			'pagination_url' => 'users/index/',
-			'total_items' => Model_User::find()->count(),
+			'total_items' => $total,
 			'per_page'    => 10,
 			'show_first'  => true,
 			'show_last'   => true,
@@ -33,7 +35,9 @@ class Controller_Users extends \Controller_Base
 
 		$this->template->title = \Lang::get('index.member_list');
 		$this->template->content = \View::forge('users/index', array(
-			'users' => $users, 'pagination' => $pagination
+			'users' => $users,
+			'pagination' => $pagination,
+			'total' => $total,
 		), false);
 	}
 

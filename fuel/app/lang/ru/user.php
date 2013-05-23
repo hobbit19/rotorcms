@@ -13,6 +13,8 @@ return array(
 
 	'index' => array(
 		'member_list' => 'Список пользователей',
+		'total_users' => 'Всего пользователей',
+		'no_users'    => 'Нет пользователей',
 	),
 
 	'view' => array(

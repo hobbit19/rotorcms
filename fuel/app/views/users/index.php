@@ -16,6 +16,7 @@
 
 <?=$pagination?>
 
+<p><?=__('index.total_users')?>: <?=$total?></p>
 <?else:?>
-	<p>No Users</p>
+	<p><?=__('index.no_users')?></p>
 <?endif?>

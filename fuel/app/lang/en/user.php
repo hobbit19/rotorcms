@@ -13,6 +13,8 @@ return array(
 
 	'index' => array(
 		'member_list' => 'Member List',
+		'total_users' => 'All users',
+		'no_users'    => 'No users',
 	),
 
 	'view' => array(
