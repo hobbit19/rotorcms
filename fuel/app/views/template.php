@@ -25,17 +25,11 @@
 		</div>
 		<div class="row-fluid">
 
-			<div class="span3 well">
-				<div class="sidebar-nav">
-					<ul class="nav nav-list">
-					  <li class="nav-header">List header</li>
-					  <li class="active"><a href="#">Home</a></li>
-					  <li><a href="#">Library</a></li>
-					</ul>
-				</div>
-			</div>
+		<?if(!isset($fullpage)):?>
+			<?=View::forge('sidebar')?>
+		<?endif;?>
 
-			<div class="span9 well">
+			<div class="<?=!isset($fullpage) ? 'span9' : 'span12'?>">
 				<?=\Breadcrumb::create_links()?>
 				<?=$content?>
 			</div>
