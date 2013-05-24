@@ -9,6 +9,7 @@
 		<?=\Html::anchor('users/'.$news->user->id, '<i class="icon-user"></i> '.$news->user->username, array("rel" => "tooltip", "title" => __('index.author')))?> /
 
 		<?=\Html::anchor('news/view/'.$news->id.'#comments', '<i class="icon-comment"></i> '.__('index.comments'), array("rel" => "tooltip", "title" => __('index.comments')))?>
+		<span class="badge"><?=count($news->comments)?></span>
 
 	</div>
 	<hr />
