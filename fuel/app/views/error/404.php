@@ -27,6 +27,6 @@
 			</p>
 		</footer>
 	</div>
-<?=Asset::js(array('jquery-1.9.1.min.js', 'bootstrap.min.js', 'app.js'))?>
+<?=Asset::js(array('jquery-2.0.0.min.js', 'bootstrap.min.js', 'app.js'))?>
 </body>
 </html>
