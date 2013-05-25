@@ -2,6 +2,11 @@
 * Website: [Visavi.net](http://visavi.net/)
 * Based: [FuelPHP](http://fuelphp.com/) 1.7-dev
 
+## Developers
+* visavi
+* Reistlin
+* synz
+
 ## Documentation
 * [Documentation in Russian](http://fuelphp-framework.ru/)
 * [Release Documentation](http://docs.fuelphp.com/)
