@@ -3,9 +3,9 @@
 * Based: [FuelPHP](http://fuelphp.com/) 1.7-dev
 
 ## Developers
-* visavi
-* Reistlin
-* synz
+* [visavi](https://github.com/visavi/)
+* [Reistlin](https://github.com/Reistlin/)
+* [synz](https://github.com/synz/)
 
 ## Documentation
 * [Documentation in Russian](http://fuelphp-framework.ru/)
