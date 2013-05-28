@@ -49,7 +49,7 @@ return array(
 	// 'index_file' => false,
 
 	//'profiling'  => (Fuel::$env == Fuel::DEVELOPMENT),
-	'profiling'  => false,
+	'profiling'  => (Fuel::$env == Fuel::DEVELOPMENT),
 
 	/**
 	 * Default location for the file cache

@@ -23,7 +23,7 @@
 			<td><?=Html::anchor('users/'.$user->id, $user->username)?></td>
 			<td><?=$user->email?></td>
 			<td><?=\Date::forge(strtotime($user->created_at))?></td>
-			<td><span class="label label-important">Banned</span></td>
+			<td><span class="label <?=$user->label?>"><?=$user->status?></span></td>
 			<td>
 				<a href="user.html"><i class="icon-pencil"></i></a>
 				<a href="#myModal" role="button" data-toggle="modal"><i class="icon-ban-circle"></i></a>

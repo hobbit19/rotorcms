@@ -31,6 +31,42 @@ class Model_User extends \Orm\Model
 	//protected static $_has_many = array('guestbook');
 
 	/**
+	 * status Выводит статусы пользователей
+	 */
+	public static function status(array $users){
+
+		if (count($users) > 0) {
+
+			foreach ($users as $key=>$user){
+
+				$users[$key]['label'] = '';
+				$users[$key]['status'] = 'Not activated';
+
+				if ($user->activated){
+					$users[$key]['label'] = 'label-success';
+					$users[$key]['status'] = 'Activated';
+				}
+
+				$throttle = Sentry::getThrottleProvider()->findByUserId($user->id);
+
+				if ($suspended = $throttle->isSuspended())
+				{
+					$users[$key]['label'] = 'label-warning';
+					$users[$key]['status'] = 'Suspended';
+				}
+
+				if ($banned = $throttle->isBanned())
+				{
+					$users[$key]['label'] = 'label-important';
+					$users[$key]['status'] = 'Banned';
+				}
+			}
+		}
+
+		return $users;
+	}
+
+	/**
 	 * validate
 	 */
 	public static function validate($factory)

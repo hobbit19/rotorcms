@@ -2,6 +2,37 @@
 class Controller_Admin_Users extends Controller_Admin
 {
 
+	public function status(array $users){
+
+		if ($total > 0) {
+			foreach ($users as $key=>$user){
+
+				$users[$key]['label'] = '';
+				$users[$key]['status'] = 'Not activated';
+
+				if ($user->activated){
+					$users[$key]['label'] = 'label-success';
+					$users[$key]['status'] = 'Activated';
+				}
+
+				$throttle = Sentry::getThrottleProvider()->findByUserId($user->id);
+
+				if ($suspended = $throttle->isSuspended())
+				{
+					$users[$key]['label'] = 'label-warning';
+					$users[$key]['status'] = 'Suspended';
+				}
+
+				if ($banned = $throttle->isBanned())
+				{
+					$users[$key]['label'] = 'label-important';
+					$users[$key]['status'] = 'Banned';
+				}
+			}
+		}
+
+	}
+
 	public function action_index()
 	{
 		$total = Model_User::find()->count();
@@ -21,6 +52,8 @@ class Controller_Admin_Users extends Controller_Admin
 			->rows_offset($pagination->offset)
 			->rows_limit($pagination->per_page)
 			->get();
+
+		$users = Model_User::status($users);
 
 		$pagination = $pagination->render();
 
