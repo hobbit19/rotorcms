@@ -2,6 +2,7 @@
 
 return array(
 	'breadcrumb' => array(
-		'admin'    => 'Админ-панель',
+		'admin' => 'Админ-панель',
+		'users' => 'Пользователи',
 	),
 );

@@ -1,4 +1,12 @@
 <div class="row-fluid">
+	<div class="span12">
+		<ul>
+			<li><?=Html::anchor('admin/users', 'Пользователи')?> (<?=$count_users?>)</li>
+		</ul>
+	</div>
+</div>
+
+<div class="row-fluid">
 	<div class="span4">
 		<h4>Последниe пользователи</h4>
 
