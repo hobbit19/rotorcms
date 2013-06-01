@@ -8,7 +8,7 @@
 			</button>
 			<a class="brand" href="/">RotorCMS</a>
 			<div class="nav-collapse collapse">
-                <? \Lang::load('nav'); ?>
+				<? \Lang::load('nav'); ?>
 				<?=\Request::forge('base/navlinks')->execute()?>
 				<?if ($current_user):?>
 				<ul class="nav pull-right">
@@ -38,15 +38,15 @@
 </div>
 
 <div class="modal small hide fade" id="exit">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3>Exit Confirmation</h3>
-    </div>
-    <div class="modal-body">
-       <p class="text-error"><?=__('nav.confirm')?></p>
-    </div>
-    <div class="modal-footer">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h3>Exit Confirmation</h3>
+	</div>
+	<div class="modal-body">
+		<p class="text-error"><?=__('nav.confirm')?></p>
+	</div>
+	<div class="modal-footer">
 		<?=Html::anchor('', 'Cancel', array('class' => "btn"))?>
 		<?=Html::anchor('logout', __('nav.exit'), array('class' => "btn btn-danger"))?>
-    </div>
+	</div>
 </div>

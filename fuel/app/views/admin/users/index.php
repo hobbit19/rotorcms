@@ -4,7 +4,7 @@
 
 <?if ($users):?>
 
-<table class="table">
+<table class="table table-hover">
 	<thead>
 		<tr>
 			<th>Avatar</th>
@@ -25,8 +25,8 @@
 			<td><?=\Date::forge(strtotime($user->created_at))?></td>
 			<td><span class="label <?=$user->label?>"><?=$user->status?></span></td>
 			<td>
-				<a href="/admin/users/edit"><i class="icon-pencil"></i></a>
-				<a href="/admin/users/banned" role="button" data-toggle="modal"><i class="icon-ban-circle"></i></a>
+				<a href="/admin/users/edit/<?=$user->id?>"><i class="icon-pencil"></i></a>
+				<a href="/admin/users/banned/<?=$user->id?>" role="button" data-toggle="modal"><i class="icon-ban-circle"></i></a>
 				<a href="#delete" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
 			</td>
 		</tr>
@@ -44,8 +44,8 @@
 		<p class="text-error">Are you sure you want to delete the user?</p>
 	</div>
 	<div class="modal-footer">
-		<?=Html::anchor('', 'Cancel', array('class' => "btn"))?>
-		<?=Html::anchor('/admin/users/delete', 'Delete', array('class' => "btn btn-danger"))?>
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+		<?=Html::anchor('/admin/users/delete/'.$user->id, 'Delete', array('class' => "btn btn-danger"))?>
 	</div>
 </div>
 

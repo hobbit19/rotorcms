@@ -33,22 +33,23 @@ class Controller_Admin_Users extends Controller_Admin
 			'total' => $total,
 		), false);
 	}
-/*
-	public function action_view($id = null)
-	{
-		$data['post'] = Model_Post::find($id);
-
-		$this->template->title = "Post";
-		$this->template->content = View::forge('admin\posts/view', $data);
-
-	}
 
 	public function action_edit($id = null)
 	{
-		$post = Model_Post::find($id);
-		$val = Model_Post::validate('edit');
 
-		if ($val->run())
+		is_null($id) and \Response::redirect('admin/users');
+
+		try
+		{
+			$user = \Sentry::getUserProvider()->findById($id);
+		}
+		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+		{
+			\Session::set_flash('success', e('Не найден пользователь #' . $id));
+			\Response::redirect('admin/users');
+		}
+
+/*		if ($val->run())
 		{
 			$post->title = Input::post('title');
 			$post->slug = Input::post('slug');
@@ -83,13 +84,14 @@ class Controller_Admin_Users extends Controller_Admin
 			}
 
 			$this->template->set_global('post', $post, false);
-		}
+		}*/
 
-		$this->template->title = "Posts";
-		$this->template->content = View::forge('admin\posts/edit');
+		$this->template->title = "Edit user ".$user->username;
+		$this->template->content = View::forge('admin/users/edit');
 
 	}
 
+/*
 	public function action_delete($id = null)
 	{
 		if ($post = Model_Post::find($id))

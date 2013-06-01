@@ -33,16 +33,17 @@ class Model_User extends \Orm\Model
 	/**
 	 * status Выводит статусы пользователей
 	 */
-	public static function status(array $users){
-
-		if (count($users) > 0) {
-
-			foreach ($users as $key=>$user){
-
+	public static function status(array $users)
+	{
+		if (count($users) > 0)
+		{
+			foreach ($users as $key=>$user)
+			{
 				$users[$key]['label'] = '';
 				$users[$key]['status'] = 'Not activated';
 
-				if ($user->activated){
+				if ($user->activated)
+				{
 					$users[$key]['label'] = 'label-success';
 					$users[$key]['status'] = 'Activated';
 				}
