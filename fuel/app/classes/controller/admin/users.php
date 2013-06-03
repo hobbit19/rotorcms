@@ -4,7 +4,7 @@ class Controller_Admin_Users extends Controller_Admin
 
 	public function action_index()
 	{
-		$total = Model_User::find()->count();
+		$total = Model_User::query()->count();
 
 		$config = array(
 			'pagination_url' => 'admin/users/index/',
@@ -17,7 +17,7 @@ class Controller_Admin_Users extends Controller_Admin
 
 		$pagination = \Pagination::forge('users', $config);
 
-		$users = Model_User::find()
+		$users = Model_User::query()
 			->rows_offset($pagination->offset)
 			->rows_limit($pagination->per_page)
 			->get();

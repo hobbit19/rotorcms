@@ -17,7 +17,7 @@ class Controller_News extends \Controller_Base
 	{
 		$config = array(
 			'pagination_url' => 'news/index/',
-			'total_items' => Model_News::find()->count(),
+			'total_items' => Model_News::query()->count(),
 			'per_page'    => 10,
 			'show_first'  => true,
 			'show_last'   => true,
@@ -25,7 +25,7 @@ class Controller_News extends \Controller_Base
 
 		$pagination = \Pagination::forge('news', $config);
 
-		$text = Model_News::find()
+		$text = Model_News::query()
 			->rows_offset($pagination->offset)
 			->rows_limit($pagination->per_page)
 			->order_by('created_at', 'desc')

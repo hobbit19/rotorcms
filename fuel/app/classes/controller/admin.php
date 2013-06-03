@@ -27,14 +27,14 @@ class Controller_Admin extends Controller_Base
 	 */
 	public function action_index()
 	{
-		$data['count_users'] = \Model_User::find()->count();
+		$data['count_users'] = \Model_User::query()->count();
 		$data['users'] = \Model_User::query()
 			->order_by('created_at', 'desc')
 			->rows_limit(5)
 			->get();
 
 		Module::load('news');
-		$data['count_news'] = \News\Model_News::find()->count();
+		$data['count_news'] = \News\Model_News::query()->count();
 		$data['news'] = \News\Model_News::query()
 			->order_by('created_at', 'desc')
 			->rows_limit(5)

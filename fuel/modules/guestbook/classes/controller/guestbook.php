@@ -18,7 +18,7 @@ class Controller_Guestbook extends \Controller_Base
 	{
 		$config = array(
 			'pagination_url' => 'guestbook/index/',
-			'total_items' => Model_Guestbook::find()->count(),
+			'total_items' => Model_Guestbook::query()->count(),
 			'per_page'    => 10,
 			'show_first'  => true,
 			'show_last'   => true,
@@ -26,7 +26,7 @@ class Controller_Guestbook extends \Controller_Base
 
 		$pagination = \Pagination::forge('guestbook', $config);
 
-		$messages = Model_Guestbook::find()
+		$messages = Model_Guestbook::query()
 		    ->rows_offset($pagination->offset)
 		    ->rows_limit($pagination->per_page)
 		    ->order_by('created_at', 'desc')

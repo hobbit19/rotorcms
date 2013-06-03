@@ -14,7 +14,7 @@ class Controller_Users extends \Controller_Base
 	 */
 	public function action_index()
 	{
-		$total = Model_User::find()->count();
+		$total = Model_User::query()->count();
 
 		$config = array(
 			'pagination_url' => 'users/index/',
@@ -26,7 +26,7 @@ class Controller_Users extends \Controller_Base
 
 		$pagination = \Pagination::forge('users', $config);
 
-		$users = Model_User::find()
+		$users = Model_User::query()
 			->rows_offset($pagination->offset)
 			->rows_limit($pagination->per_page)
 			->get();
@@ -144,7 +144,7 @@ class Controller_Users extends \Controller_Base
 		{
 			try
 			{
-				$user = Model_User::find()
+				$user = Model_User::query()
 					->where('email', '=', \Input::post('username'))
 					->get_one();
 
