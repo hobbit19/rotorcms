@@ -4,6 +4,7 @@ return array(
 		'guestbook' => 'Guestbook',
 		'users'     => 'Users',
 		'news'      => 'News',
+		'contact'   => 'Contact',
 
 		'admin'     => 'Admin panel',
 		'login'     => 'Sign in',

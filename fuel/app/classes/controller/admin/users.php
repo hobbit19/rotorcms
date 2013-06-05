@@ -49,6 +49,12 @@ class Controller_Admin_Users extends Controller_Admin
 			\Response::redirect('admin/users');
 		}
 
+		//$val = Model_User::validate('edit');
+		//$val->field('password')->delete_rule('required');
+
+
+
+
 /*		if ($val->run())
 		{
 			$post->title = Input::post('title');
@@ -86,8 +92,10 @@ class Controller_Admin_Users extends Controller_Admin
 			$this->template->set_global('post', $post, false);
 		}*/
 
+		$this->template->set_global('user', $user, false);
 		$this->template->title = "Edit user ".$user->username;
-		$this->template->content = View::forge('admin/users/edit');
+		$this->template->content = \View::forge('admin/users/edit');
+
 
 	}
 
