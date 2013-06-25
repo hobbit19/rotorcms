@@ -19,7 +19,7 @@
 		<div class="control-group">
 			<?=\Form::label(__('account.password'), 'password', array('class' => 'control-label'))?>
 			<div class="controls">
-				<?=\Form::input('password', null, array('required' => 'required'))?>
+				<?=\Form::input('password', null, array('required' => 'required', 'type' => 'password'))?>
 			</div>
 		</div>
 

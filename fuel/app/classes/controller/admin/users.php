@@ -49,10 +49,40 @@ class Controller_Admin_Users extends Controller_Admin
 			\Response::redirect('admin/users');
 		}
 
-		//$val = Model_User::validate('edit');
-		//$val->field('password')->delete_rule('required');
+		$val = Model_User::validate('edit');
 
 
+			var_dump(\Input::post());
+			Arr::delete($_POST, "password");
+			Arr::delete($_DELETE, "password");
+			var_dump($val->input());
+
+
+
+		if (\Input::method() == 'POST')
+		{
+			if ($user->email == \Input::post('email'))
+			{
+				$val->field('email')->delete_rule('unique');
+			}
+
+/*			if (\Input::post('password') == "")
+			{
+				unset($val->validated('password'));
+			}*/
+
+
+			if ($val->run(null, true))
+			{
+/*				// Update the user details
+				$user->email = $val->validated('email');*/
+
+			}
+			else
+			{
+				\Session::set_flash('error', $val->error());
+			}
+		}
 
 
 /*		if ($val->run())

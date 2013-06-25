@@ -3,7 +3,7 @@
 		<legend>Редактирование пользователя</legend>
 
 		<div class="control-group">
-			<?=\Form::label('email', 'email', array('class' => 'control-label'))?>
+			<?=\Form::label('Email', 'email', array('class' => 'control-label'))?>
 			<div class="controls">
 				<?=\Form::input('email', $user->email, array('required' => 'required'))?>
 			</div>

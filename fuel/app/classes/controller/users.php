@@ -358,20 +358,20 @@ class Controller_Users extends \Controller_Base
 			$user = \Sentry::getUser();
 			$val = Model_User::validate('edit');
 
-			if ($user->username == \Input::post('username'))
-			{
-				$val->field('username')->delete_rule('unique');
-			}
-
-			if ($user->email == \Input::post('email'))
-			{
-				$val->field('email')->delete_rule('unique');
-			}
-
-
 			if (\Input::method() == 'POST')
 			{
-				if($user->checkPassword(\Input::post('password')))
+
+				if ($user->username == \Input::post('username'))
+				{
+					$val->field('username')->delete_rule('unique');
+				}
+
+				if ($user->email == \Input::post('email'))
+				{
+					$val->field('email')->delete_rule('unique');
+				}
+
+				if ($user->checkPassword(\Input::post('password')))
 				{
 					if ($val->run(null, true))
 					{
