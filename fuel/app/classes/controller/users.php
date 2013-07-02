@@ -349,7 +349,7 @@ class Controller_Users extends \Controller_Base
 	/**
 	 * action_account
 	 */
-	public function action_account()
+public function action_account()
 	{
 		\Sentry::check() or \Response::redirect('/');
 
@@ -360,6 +360,20 @@ class Controller_Users extends \Controller_Base
 
 			if (\Input::method() == 'POST')
 			{
+				if (\Input::post('new_password'))
+				{
+					$val->add('new_password', 'New Password')
+						->add_rule('required')
+						->add_rule('trim')
+						->add_rule('strip_tags')
+						->add_rule('min_length', 6)
+						->add_rule('max_length', 30);
+
+					$val->add('re_password', 'Confirm password')
+						->add_rule('match_field', 'new_password');
+
+					$val->field('confirm_password')->delete_rule('match_field');
+				}
 
 				if ($user->username == \Input::post('username'))
 				{
@@ -379,6 +393,12 @@ class Controller_Users extends \Controller_Base
 						// Update the user details
 						$user->username = $val->validated('username');
 						$user->email    = $val->validated('email');
+
+						// change password
+						if ($val->validated('new_password')) {
+							$resetCode = $user->getResetPasswordCode();
+							$user->attemptResetPassword($resetCode, $val->validated('new_password'));
+						}
 
 						// Update the user
 						if ($user->save())

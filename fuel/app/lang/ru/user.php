@@ -89,6 +89,10 @@ return array(
 		'email'          => 'Email',
 		'password'       => 'Пароль',
 		'save'           => 'Сохранить',
+		'new_password'   => 'Новый пароль',
+		're_password'    => 'Повторите пароль',
+		'old_password'   => 'Текущий пароль',
+		'change_password'=> 'Сменить пароль',
 	),
 
 	'recovery' => array(

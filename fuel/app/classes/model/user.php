@@ -93,7 +93,7 @@ class Model_User extends \Orm\Model
 
 		$val->add('confirm_password', 'Confirm password')
 			->add_rule('match_field', 'password');
-
+			
 		$val->add('email', 'Email')
 			->add_rule('required')
 			->add_rule('trim')
