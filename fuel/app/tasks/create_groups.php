@@ -5,7 +5,7 @@ namespace Fuel\Tasks;
 class Create_groups
 {
 
-	public static function run($args = NULL)
+	public static function run()
 	{
 		/**
 		 * create group Users
@@ -27,7 +27,7 @@ class Create_groups
 		}
 		catch (\Cartalyst\Sentry\Groups\GroupExistsException $e)
 		{
-		    \Cli::error('Error! Group Users already exists');
+			\Cli::error('Error! Group Users already exists');
 		}
 
 		/**
@@ -44,13 +44,12 @@ class Create_groups
 			));
 
 			\Cli::write('Success! Groups Admins added');
-
 			\Cli::beep(1);
 
 		}
 		catch (\Cartalyst\Sentry\Groups\GroupExistsException $e)
 		{
-		    \Cli::error('Error! Group Admins already exists');
+			\Cli::error('Error! Group Admins already exists');
 		}
 	}
 }

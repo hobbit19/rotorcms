@@ -375,10 +375,10 @@ public function action_account()
 					$val->field('confirm_password')->delete_rule('match_field');
 				}
 
-				if ($user->username == \Input::post('username'))
+/*				if ($user->username == \Input::post('username'))
 				{
 					$val->field('username')->delete_rule('unique');
-				}
+				}*/
 
 				if ($user->email == \Input::post('email'))
 				{
@@ -391,7 +391,7 @@ public function action_account()
 					{
 
 						// Update the user details
-						$user->username = $val->validated('username');
+						//$user->username = $val->validated('username');
 						$user->email    = $val->validated('email');
 
 						// change password

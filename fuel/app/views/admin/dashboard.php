@@ -24,7 +24,7 @@
 	</div>
 
 	<div class="span4">
-		<h4>Последниe новости</h4>
+		<h4><?=Html::anchor('admin/news', 'Последниe новости')?></h4>
 	<?if ($news):?>
 	<?foreach ($news as $news_item):?>
 		<div>

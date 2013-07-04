@@ -44,3 +44,7 @@ Update or loading new submodules
 Create users groups
 
     php oil refine create_groups
+
+Add user to admin group
+
+    php oil refine create_admin username
