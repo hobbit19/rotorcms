@@ -29,11 +29,14 @@ class Model_Comment extends \Orm\Model
 		'user' => array(
 			'model_to' => 'Model_User',
 		),
-		'news' => array(
-			'model_to' => '\News\Model_News',
-		),
 	);
+	public static function validate($factory)
+	{
+		$val = \Validation::forge($factory);
+		$val->add_field('text', 'Text', 'trim|required|min_length[3]|max_length[700]');
 
+		return $val;
+	}
+	
 	protected static $_table_name = 'news_comments';
-
 }

@@ -40,8 +40,8 @@ class Model_News extends \Orm\Model
 	public static function validate($factory)
 	{
 		$val = \Validation::forge($factory);
-		$val->add_field('title', 'Title', 'required|trim|max_length[50]');
-		$val->add_field('text', 'Text', 'required|trim|max_length[5000]');
+		$val->add_field('title', 'Title', 'trim|required|max_length[50]');
+		$val->add_field('text', 'Text', 'trim|required|max_length[5000]');
 
 		return $val;
 	}

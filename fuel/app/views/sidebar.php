@@ -5,6 +5,7 @@
 			  <li class="nav-header">Админ-панель</li>
 			  <li><?=Html::anchor('admin/users', 'Пользователи')?></li>
 			  <li><?=Html::anchor('admin/groups', 'Группы')?></li>
+			  <li><?=Html::anchor('admin/news', 'Новости')?></li>
 			</ul>
 		</div>
 	</div>

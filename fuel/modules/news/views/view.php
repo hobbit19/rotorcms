@@ -26,3 +26,6 @@
 	<hr />
 
 <? endforeach ?>
+<? if (\Sentry::check()): ?>
+      <?= Html::anchor('news/createcomment/'.$news->id, '<i class="icon-edit"></i> ' . __('comments.create')) ?>
+<? endif; ?>
