@@ -105,4 +105,40 @@ class Controller_News extends \Controller_Base
 		$this->template->title = \Lang::get('create.title');
 		$this->template->content = \View::forge('news::create');
 	}
+	public function action_createcomment($id = null)
+	{
+	    is_null($id) and \Response::redirect('news');
+	    if (!\Sentry::check())
+	    {
+	    \Session::set_flash('error', \Lang::get('comments.access'));
+	    \Response::redirect('news/view/'.$id);
+	    }
+	    if (\Input::method() == 'POST')
+	    {
+		$val = Model_Comment::validate('create');
+		if ($val->run())
+		{
+		    $post = Model_Comment::forge(array(
+			    'news_id' => $id,
+			    'user_id' => $this->current_user->id,
+			    'text' => \Input::post('text'),
+			    ));
+		    if ($post and $post->save())
+		    {
+		    \Session::set_flash('success', \Lang::get('comments.success'));
+		    \Response::redirect('news/view/'.$id);
+		    }
+		    else
+		    {
+			\Session::set_flash('error', \Lang::get('comments.error'));
+		    }
+	    }
+	    else
+	    {
+		\Session::set_flash('error', $val->error());
+	    }
+	}
+	$this->template->title = \Lang::get('comments.title');
+	$this->template->content = \View::forge('news::createcomment');
+    }
 }
