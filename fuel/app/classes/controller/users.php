@@ -217,7 +217,7 @@ class Controller_Users extends \Controller_Base
 		{
 			try
 			{
-				\Cartalyst\Sentry\Users\Eloquent\User::setLoginAttribute('email');
+				\Cartalyst\Sentry\Users\Eloquent\User::setLoginAttributeName('email');
 				$user = Sentry::getUserProvider()->findByLogin(\Input::post('email'));
 
 				$resetCode = $user->getResetPasswordCode();

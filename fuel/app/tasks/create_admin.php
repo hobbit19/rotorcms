@@ -13,7 +13,7 @@ class Create_admin
 		try
 		{
 			// Find the user using the user id
-			\Cartalyst\Sentry\Users\Eloquent\User::setLoginAttribute('username');
+			\Cartalyst\Sentry\Users\Eloquent\User::setLoginAttributeName('username');
 			$user = \Sentry::getUserProvider()->findByLogin($username);
 
 			// Find the group using the group id

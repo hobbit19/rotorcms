@@ -7,7 +7,7 @@ class Controller_Base extends Controller_Template
 	{
 		parent::before();
 
-		\Cartalyst\Sentry\Users\Eloquent\User::setLoginAttribute('username');
+		\Cartalyst\Sentry\Users\Eloquent\User::setLoginAttributeName('username');
 
 		if (\Sentry::check())
 		{
