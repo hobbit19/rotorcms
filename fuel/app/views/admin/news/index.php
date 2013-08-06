@@ -35,7 +35,7 @@
 		<h3>Delete Confirmation</h3>
 	</div>
 	<div class="modal-body">
-		<p class="text-error">Are you sure you want to delete the user?</p>
+		<p class="text-error">Are you sure you want to delete the news?</p>
 	</div>
 	<div class="modal-footer">
 		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
