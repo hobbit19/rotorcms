@@ -8,10 +8,7 @@ return array(
 	'reset'    => 'users/reset',
 	'account'  => 'users/account',
 
-	//'admin/(:segment)'                      => '$1/admin/$1',
-	//'admin/(:segment)/(:any)'               => '$1/admin/$1/$2',
-	//'admin/(:segment)/(:any)/(:any)'        => '$1/admin/$1/$2/$3',
-	//'admin/(:segment)/(:any)/(:any)/(:any)' => '$1/admin/$1/$2/$3/$4',
-
+	'admin/(:segment)' => '$1/admin',
+	'admin/(:segment)/(:any)' => '$1/admin/$2',
 	'users/(:num)' => array(array('GET', new Route('users/view/$1'))),
 );

@@ -2,14 +2,14 @@
 
 namespace News;
 
-class Controller_Admin_News extends \Controller_Admin {
+class Controller_Admin extends \Controller_Admin {
 
 	/**
 	 * action_index
 	 */
 	public function action_index()
 	{
-		$total = \News\Model_News::query()->count();
+		$total = Model_News::query()->count();
 
 		$config = array(
 			'pagination_url' => 'admin/news/index/',
@@ -21,7 +21,7 @@ class Controller_Admin_News extends \Controller_Admin {
 		);
 
 		$pagination = \Pagination::forge('news', $config);
-		$news = \News\Model_News::query()
+		$news = Model_News::query()
 			->rows_offset($pagination->offset)
 			->rows_limit($pagination->per_page)
 			->get();
