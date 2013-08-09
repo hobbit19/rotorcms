@@ -2,8 +2,14 @@
 
 namespace News;
 
-class Controller_Admin extends \Controller_Admin {
-
+class Controller_Admin extends \Controller_Admin 
+{     
+        public function before()
+	{
+		parent::before();
+		\Lang::load('news');
+	}
+        
 	/**
 	 * action_index
 	 */
