@@ -1,35 +1,35 @@
-<form action="news/create">
 <div class="btn-toolbar">
-      <button class="btn btn-primary">New News</button>
+	<a href="/news/create" class="btn btn-primary">New News</a>
 </div>
-</form>
+
 <? if ($news): ?>
-      <table class="table table-hover">
-            <thead>
-      	    <tr>
-      		  <th>Title</th>
-      		  <th>Created</th>
-      		  <th>Date created</th>
-      		  <th>Action</th>
-      	    </tr>
-            </thead>
-            <tbody>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>Title</th>
+				<th>Created</th>
+				<th>Date created</th>
+				<th>Action</th>
+			</tr>
+		</thead>
 
-		  <? foreach ($news as $item): ?>
-	    	    <tr>
-	    		  <td><?= $item->title ?></td>
-	    		  <td><?= Html::anchor('users/' . $item->user_id, $item->user->username) ?></td>
-	    		  <td><?= \Date::forge($item->created_at) ?></td>
-	    		  <td>
-	    			<a href="/admin/news/edit/<?= $item->id ?>"><i class="icon-pencil"></i></a>
-	    			<a href="#delete"  role="button" data-toggle="modal"><i class="icon-remove"></i></a>
-	    		  </td>
-	    	    </tr>
-		  <? endforeach ?>
+		<tbody>
+		<? foreach ($news as $item): ?>
+			<tr>
+				<td><?= $item->title ?></td>
+				<td><?= \Html::anchor('users/'.$item->user_id, $item->user->username) ?></td>
+				<td><?= \Date::forge($item->created_at) ?></td>
+				<td>
+					<a href="/admin/news/edit/<?= $item->id ?>"><i class="icon-pencil"></i></a>
+					<a href="#delete"  role="button" data-toggle="modal"><i class="icon-remove"></i></a>
+				</td>
+			</tr>
+		<? endforeach ?>
+		</tbody>
 
-            </tbody>
-      </table>
-	  <div class="modal small hide fade" id="delete">
+	</table>
+
+<div class="modal small hide fade" id="delete">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 		<h3>Delete Confirmation</h3>
@@ -42,7 +42,7 @@
 		<?=Html::anchor('/admin/news/delete/'.$item->id, 'Delete', array('class' => "btn btn-danger"))?>
 	</div>
 </div>
-      <?= $pagination ?>
+<?= $pagination ?>
 <? else: ?>
-      Новостей нет
+	  Новостей нет
 <? endif; ?>
