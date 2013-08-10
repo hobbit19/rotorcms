@@ -1,5 +1,8 @@
 <?php
-class Controller_Admin_Users extends Controller_Admin
+
+namespace Users;
+
+class Controller_Admin extends \Controller_Admin
 {
 
 	public function action_index()
@@ -43,7 +46,7 @@ class Controller_Admin_Users extends Controller_Admin
 		{
 			$user = \Sentry::getUserProvider()->findById($id);
 		}
-		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+		catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
 		{
 			\Session::set_flash('success', e('Не найден пользователь #' . $id));
 			\Response::redirect('admin/users');
@@ -51,9 +54,8 @@ class Controller_Admin_Users extends Controller_Admin
 
 		$val = Model_User::validate('edit');
 
-			Arr::delete($_POST, "password");
-			Arr::delete($_DELETE, "password");
-			var_dump($val->input());
+			\Arr::delete($_POST, "password");
+			\Arr::delete($_DELETE, "password");
 
 		if (\Input::method() == 'POST')
 		{

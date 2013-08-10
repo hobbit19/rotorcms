@@ -1,5 +1,7 @@
 <?php
 
+namespace Users;
+
 class Model_User extends \Orm\Model
 {
 	protected static $_properties = array(
@@ -48,7 +50,7 @@ class Model_User extends \Orm\Model
 					$users[$key]['status'] = 'Activated';
 				}
 
-				$throttle = Sentry::getThrottleProvider()->findByUserId($user->id);
+				$throttle = \Sentry::getThrottleProvider()->findByUserId($user->id);
 
 				if ($suspended = $throttle->isSuspended())
 				{
@@ -72,7 +74,7 @@ class Model_User extends \Orm\Model
 	 */
 	public static function validate($factory)
 	{
-		$val = Validation::forge($factory);
+		$val = \Validation::forge($factory);
 		$val->add_callable('\Rules');
 
 		$val->add('username', 'Username')
