@@ -36,7 +36,7 @@ class Controller_Users extends \Controller_Base
 		$pagination = $pagination->render();
 
 		$this->template->title = \Lang::get('index.member_list');
-		$this->template->content = \View::forge('users/index', array(
+		$this->template->content = \View::forge('users::index', array(
 			'users' => $users,
 			'pagination' => $pagination,
 			'total' => $total,
@@ -55,7 +55,7 @@ class Controller_Users extends \Controller_Base
 			$user = \Sentry::getUserProvider()->findById($id);
 			$groups = $user->getGroups();
 		}
-		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+		catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
 		{
 			\Session::set_flash('error', \Lang::get('view.not_find', array('id' => $id)));
 			\Response::redirect('users');
@@ -63,7 +63,7 @@ class Controller_Users extends \Controller_Base
 
 		\Breadcrumb::set($user->username);
 		$this->template->title = \Lang::get('view.title', array('user' => $user->username));
-		$this->template->content = \View::forge('users/view', array(
+		$this->template->content = \View::forge('users::view', array(
 			'user' => $user,
 			'groups' => $groups,
 		), false);
@@ -88,7 +88,7 @@ class Controller_Users extends \Controller_Base
 					try
 					{
 						// Let's register a user.
-						$user = Sentry::register(array(
+						$user = \Sentry::register(array(
 							'username' => $val->validated('username'),
 							'password' => $val->validated('password'),
 							'email'    => \Str::lower($val->validated('email')),
@@ -108,11 +108,11 @@ class Controller_Users extends \Controller_Base
 						\Session::set_flash('success', \Lang::get('register.success'));
 						\Response::redirect('users/activation');
 					}
-					catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
+					catch (\Cartalyst\Sentry\Users\LoginRequiredException $e)
 					{
 						\Session::set_flash('error', \Lang::get('register.required_login'));
 					}
-					catch (Cartalyst\Sentry\Users\UserExistsException $e)
+					catch (\Cartalyst\Sentry\Users\UserExistsException $e)
 					{
 						\Session::set_flash('error', \Lang::get('register.exists'));
 					}
@@ -131,7 +131,7 @@ class Controller_Users extends \Controller_Base
 		}
 
 		$this->template->title = \Lang::get('register.title');
-		$this->template->content = \View::forge('users/register');
+		$this->template->content = \View::forge('users::register');
 
 	}
 
@@ -187,7 +187,7 @@ class Controller_Users extends \Controller_Base
 			{
 				\Session::set_flash('error', \Lang::get('login.suspended'));
 			}
-			catch (Cartalyst\Sentry\Throttling\UserBannedException $e)
+			catch (\Cartalyst\Sentry\Throttling\UserBannedException $e)
 			{
 				\Session::set_flash('error', \Lang::get('login.banned'));
 			}
@@ -195,7 +195,7 @@ class Controller_Users extends \Controller_Base
 		}
 
 		$this->template->title = \Lang::get('login.title');
-		$this->template->content = \View::forge('users/login');
+		$this->template->content = \View::forge('users::login');
 	}
 
 	/**
@@ -239,14 +239,14 @@ class Controller_Users extends \Controller_Base
 				\Response::redirect('/users/recovery');
 
 			}
-			catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+			catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
 			{
 				\Session::set_flash('error', \Lang::get('reset.error'));
 			}
 		}
 
 		$this->template->title = \Lang::get('reset.title');
-		$this->template->content = \View::forge('users/reset');
+		$this->template->content = \View::forge('users::reset');
 	}
 
 	/**
@@ -261,7 +261,7 @@ class Controller_Users extends \Controller_Base
 		{
 			try
 			{
-				$user = Sentry::getUserProvider()->findByResetPasswordCode($key);
+				$user = \Sentry::getUserProvider()->findByResetPasswordCode($key);
 
 				$new_password = \Str::random('alnum', mt_rand(8, 10));
 
@@ -276,7 +276,7 @@ class Controller_Users extends \Controller_Base
 					\Session::set_flash('error', \Lang::get('recovery.failed'));
 				}
 			}
-			catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+			catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
 			{
 				\Session::set_flash('error', \Lang::get('recovery.invalid'));
 			}
@@ -284,7 +284,7 @@ class Controller_Users extends \Controller_Base
 
 		\Breadcrumb::remove(3);
 		$this->template->title = \Lang::get('recovery.title');
-		$this->template->content = \View::forge('users/recovery');
+		$this->template->content = \View::forge('users::recovery');
 	}
 
 	/**
@@ -318,7 +318,7 @@ class Controller_Users extends \Controller_Base
 				}
 			}
 
-			catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
+			catch (\Cartalyst\Sentry\Users\LoginRequiredException $e)
 			{
 				\Session::set_flash('error', \Lang::get('activation.required'));
 			}
@@ -332,12 +332,12 @@ class Controller_Users extends \Controller_Base
 			}
 
 			// Following is only needed if throttle is enabled
-			catch (Cartalyst\Sentry\Throttling\UserSuspendedException $e)
+			catch (\Cartalyst\Sentry\Throttling\UserSuspendedException $e)
 			{
 				$time = $throttle->getSuspensionTime();
 				\Session::set_flash('success', \Lang::get('recovery.suspended', array('time' => $time)));
 			}
-			catch (Cartalyst\Sentry\Throttling\UserBannedException $e)
+			catch (\Cartalyst\Sentry\Throttling\UserBannedException $e)
 			{
 				\Session::set_flash('error', \Lang::get('activation.banned'));
 			}
@@ -345,7 +345,7 @@ class Controller_Users extends \Controller_Base
 
 		\Breadcrumb::remove(3);
 		$this->template->title = \Lang::get('activation.title');
-		$this->template->content = \View::forge('users/activation');
+		$this->template->content = \View::forge('users::activation');
 	}
 
 	/**
@@ -426,12 +426,12 @@ public function action_account()
 			}
 
 			$this->template->title = \Lang::get('account.settings');
-			$this->template->content = \View::forge('users/account', array(
+			$this->template->content = \View::forge('users::account', array(
 				'user' => $user,
 			), false);
 
 		}
-		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+		catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
 		{
 			\Session::set_flash('success', \Lang::get('account.denied'));
 			\Response::redirect('/');

@@ -27,7 +27,7 @@ class Model_Comment extends \Orm\Model
 
 	protected static $_belongs_to = array(
 		'user' => array(
-			'model_to' => 'Model_User',
+			'model_to' => '\Users\Model_User',
 		),
 	);
 	public static function validate($factory)

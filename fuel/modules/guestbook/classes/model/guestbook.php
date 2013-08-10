@@ -27,7 +27,7 @@ class Model_Guestbook extends \Orm\Model
 
 	protected static $_belongs_to = array(
 		'user' => array(
-			'model_to' => 'Model_User',
+			'model_to' => '\Users\Model_User',
 		)
 	);
 
