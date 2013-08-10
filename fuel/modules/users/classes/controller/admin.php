@@ -54,9 +54,8 @@ class Controller_Admin extends \Controller_Admin
 
 		$val = Model_User::validate('edit');
 
-			Arr::delete($_POST, "password");
-			Arr::delete($_DELETE, "password");
-			var_dump($val->input());
+			\Arr::delete($_POST, "password");
+			\Arr::delete($_DELETE, "password");
 
 		if (\Input::method() == 'POST')
 		{
