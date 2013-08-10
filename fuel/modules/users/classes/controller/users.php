@@ -1,5 +1,7 @@
 <?php
 
+namespace Users;
+
 class Controller_Users extends \Controller_Base
 {
 
