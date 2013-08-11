@@ -1,5 +1,5 @@
 <div class="btn-toolbar">
-	<a href="/news/create" class="btn btn-primary">New News</a>
+	<a href="/news/admin/create" class="btn btn-primary">New News</a>
 </div>
 
 <? if ($news): ?>
