@@ -148,7 +148,7 @@ class Controller_Admin extends \Controller_Admin
 		}
 
 		$this->template->title = \Lang::get('create.title');
-		$this->template->content = \View::forge('news::create');
+		$this->template->content = \View::forge('admin/news/create');
 	}
 }
 
