@@ -61,50 +61,6 @@ class Controller_News extends \Controller_Base
 		));
 	}
 
-	/**
-	 * action_create
-	 */
-	public function action_create()
-	{
-
-		if ( ! \Sentry::check() || ! \Sentry::getUser()->hasAccess('admin'))
-		{
-			\Session::set_flash('error', \Lang::get('create.access'));
-			\Response::redirect('news/index');
-		}
-
-		if (\Input::method() == 'POST')
-		{
-			$val = Model_News::validate('create');
-
-			if ($val->run())
-			{
-				$post = Model_News::forge(array(
-					'user_id' => $this->current_user->id,
-					'title' => \Input::post('title'),
-					'text' => \Input::post('text'),
-				));
-
-				if ($post and $post->save())
-				{
-					\Session::set_flash('success', \Lang::get('create.success'));
-					\Response::redirect('news/index');
-				}
-
-				else
-				{
-					\Session::set_flash('error', \Lang::get('create.error'));
-				}
-			}
-			else
-			{
-				\Session::set_flash('error', $val->error());
-			}
-		}
-
-		$this->template->title = \Lang::get('create.title');
-		$this->template->content = \View::forge('news::create');
-	}
 	public function action_createcomment($id = null)
 	{
 	    is_null($id) and \Response::redirect('news');
