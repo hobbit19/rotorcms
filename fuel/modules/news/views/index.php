@@ -17,7 +17,3 @@
 <? endforeach ?>
 
 <?=$pagination?>
-
-<? if (\Sentry::check() && \Sentry::getUser()->hasAccess('admin')): ?>
-	<?= Html::anchor('news/create', '<i class="icon-edit"></i> '.__('index.create_news')) ?>
-<? endif ?>
