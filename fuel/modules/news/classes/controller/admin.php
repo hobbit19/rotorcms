@@ -2,14 +2,14 @@
 
 namespace News;
 
-class Controller_Admin extends \Controller_Admin 
-{     
+class Controller_Admin extends \Controller_Admin
+{
         public function before()
 	{
 		parent::before();
 		\Lang::load('news');
 	}
-        
+
 	/**
 	 * action_index
 	 */
@@ -109,6 +109,7 @@ class Controller_Admin extends \Controller_Admin
 		else
 		{
 			$news->delete();
+			\Session::set_flash('success', 'Новость успешно удалена!');
 			\Response::redirect('admin/news');
 		}
 	}
@@ -148,7 +149,7 @@ class Controller_Admin extends \Controller_Admin
 		}
 
 		$this->template->title = \Lang::get('create.title');
-		$this->template->content = \View::forge('news::create');
+		$this->template->content = \View::forge('admin/news/create');
 	}
 }
 
