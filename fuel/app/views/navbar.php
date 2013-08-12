@@ -16,9 +16,6 @@
 						<?=Html::anchor('users/'.$current_user->id, $current_user->username.' <b class="caret"></b>', array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown'))?>
 
 						<ul class="dropdown-menu">
-							<?if ($current_user->hasAccess('admin')):?>
-							<li><?=Html::anchor('admin', __('nav.admin'))?></li>
-							<?endif?>
 							<li><?=Html::anchor('account', __('nav.settings'))?></li>
 							<li class="divider"></li>
 							<li><?=Html::anchor('#exit', __('nav.exit'), array('data-toggle' => 'modal'))?></li>
