@@ -1,22 +1,20 @@
-<?if (Uri::segment(1) == 'admin'):?>
-	<div class="col-lg-3 well">
-		<div class="sidebar-nav">
-			<ul class="nav nav-list">
-				<li class="nav-header">Админ-панель</li>
-				<li><?=Html::anchor('admin/users', 'Пользователи')?></li>
-				<li><?=Html::anchor('admin/news', 'Новости')?></li>
-				<li><?=Html::anchor('admin/groups', 'Группы')?></li>
-			</ul>
-		</div>
+<div class="col-lg-3">
+
+	<div class="list-group">
+		<?=Html::anchor('/', 'Главная', array('class' => 'list-group-item active'))?>
+		<?if (Uri::segment(1) == 'admin'):?>
+			<?=Html::anchor('admin/users', 'Пользователи', array('class' => 'list-group-item'))?>
+			<?=Html::anchor('admin/news', 'Новости', array('class' => 'list-group-item'))?>
+			<?=Html::anchor('admin/groups', 'Группы', array('class' => 'list-group-item'))?>
+		<?else:?>
+			<?=Html::anchor('#', 'Ссылка 1 <span class="badge">8</span>', array('class' => 'list-group-item'))?>
+			<?=Html::anchor('#', 'Ссылка 2 <span class="badge">15</span>', array('class' => 'list-group-item'))?>
+		<?endif;?>
 	</div>
-<?else:?>
-	<div class="col-lg-3 well">
-		<div class="sidebar-nav">
-			<ul class="nav nav-list">
-				<li class="nav-header">List header</li>
-				<li class="active"><a href="#">Home</a></li>
-				<li><a href="#">Library</a></li>
-			</ul>
-		</div>
+
+	<div class="panel">
+		<div class="panel-heading">Рекламный блок</div>
+		<p>Текст рекламы</p>
 	</div>
-<?endif;?>
+
+</div>
