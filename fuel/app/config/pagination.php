@@ -66,7 +66,7 @@ return array(
 
 	// Twitter bootstrap 2.x template
 	'bootstrap'                   => array(
-		'wrapper'                 => "<div class=\"pagination\">\n\t<ul>{pagination}\n\t</ul>\n</div>\n",
+		'wrapper'                 => "<div>\n\t<ul class=\"pagination\">{pagination}\n\t</ul>\n</div>\n",
 
 		'first'                   => "\n\t\t<li>{link}</li>",
 		'first-marker'            => "&laquo;",

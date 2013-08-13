@@ -35,8 +35,7 @@ return array(
 		'wrapper_end' => '</ul>',
 		'item_start' => '<li>',
 		'item_start_active' => '<li class="active">',
-		'item_end' => '</li>',
-		'divider' => '<span class="divider">/</span>'
+		'item_end' => '</li>'
 	),
 
 	'display_always' => false
