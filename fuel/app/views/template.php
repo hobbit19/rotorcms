@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-	<meta charset="utf-8">
 	<title><?=$title?></title>
+	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="/assets/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-<?=Asset::css(array('bootstrap.min.css', 'bootstrap-responsive.min.css', 'font-awesome.min.css', 'app.css'))?>
+<?=Asset::css(array('bootstrap.min.css', 'font-awesome.min.css', 'app.css'))?>
 
 </head>
-<body class="preview" id="top" data-spy="scroll" data-target=".subnav" data-offset="80">
-
+<body>
 	<?=View::forge('navbar')?>
 
-	<div class="container-fluid">
-		<div class="row-fluid">
+	<div class="container preview">
+		<div class="row">
 
-			<div class="span12">
+			<div class="col-lg-12">
 				<div class="page-header">
 					<h1><?=$title?><?=isset($subtitle) ? ' <small>'.$subtitle.'</small>' : ''?></h1>
 				</div>
@@ -23,13 +22,13 @@
 			</div>
 
 		</div>
-		<div class="row-fluid">
+		<div class="row">
 
 		<?if(!isset($fullpage)):?>
 			<?=View::forge('sidebar')?>
 		<?endif;?>
 
-			<div class="<?=!isset($fullpage) ? 'span9' : 'span12'?>">
+			<div class="<?=!isset($fullpage) ? 'col-lg-9' : 'col-lg-12'?>">
 				<?=\Breadcrumb::create_links()?>
 				<?=$content?>
 			</div>

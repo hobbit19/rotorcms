@@ -5,5 +5,5 @@ return array(
 	array('link' => 'users', 'name' => \Lang::get('nav.users')),
 	array('link' => 'news', 'name' => \Lang::get('nav.news')),
 	array('link' => 'contact', 'name' => \Lang::get('nav.contact')),
-	array('link' => 'admin', 'rights' => 'admin', 'name' => \Lang::get('nav.admin')),
+	array('link' => 'admin', 'access' => 'admin', 'name' => \Lang::get('nav.admin')),
 );

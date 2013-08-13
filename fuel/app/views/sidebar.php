@@ -1,5 +1,5 @@
 <?if (Uri::segment(1) == 'admin'):?>
-	<div class="span3 well">
+	<div class="col-lg-3 well">
 		<div class="sidebar-nav">
 			<ul class="nav nav-list">
 				<li class="nav-header">Админ-панель</li>
@@ -10,7 +10,7 @@
 		</div>
 	</div>
 <?else:?>
-	<div class="span3 well">
+	<div class="col-lg-3 well">
 		<div class="sidebar-nav">
 			<ul class="nav nav-list">
 				<li class="nav-header">List header</li>

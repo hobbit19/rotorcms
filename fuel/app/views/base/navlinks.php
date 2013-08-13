@@ -1,7 +1,7 @@
-<ul class="nav">
+<ul class="nav navbar-nav">
 	<? foreach ($navitems as $nav): ?>
-		<? if (isset($nav['rights'])): ?>
-			<? if (empty($current_user) || !$current_user->hasAccess($nav['rights'])): ?>
+		<? if (isset($nav['access'])): ?>
+			<? if (empty($current_user) || !$current_user->hasAccess($nav['access'])): ?>
 				<? continue; ?>
 			<? endif; ?>
 		<? endif; ?>
