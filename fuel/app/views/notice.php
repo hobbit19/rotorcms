@@ -6,7 +6,7 @@
 <? endif; ?>
 
 <? if (\Session::get_flash('error')): ?>
-	<div class="alert alert-error">
+	<div class="alert alert-danger">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
 		<?php echo implode('<br />', e((array) \Session::get_flash('error'))); ?>
 	</div>

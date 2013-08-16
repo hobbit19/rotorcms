@@ -2,8 +2,8 @@
 <hr />
 
 
-<div class="row-fluid">
-	<div class="span6">
+<div class="row">
+	<div class="col-lg-6 col-sm-6">
 		<h4><i class="icon-twitter icon-3x pull-left"></i> Twitter</h4>
 		<p><?=Html::anchor('http://twitter.com/vantuzilla', '@vantuzilla')?></p>
 
@@ -14,7 +14,7 @@
 		<p>364466</p>
 	</div>
 
-	<div class="span6">
+	<div class="col-lg-6 col-sm-6">
 		<h4><i class="icon-envelope icon-3x pull-left"></i> Email</h4>
 		<p><?=Html::mail_to_safe('visavi.net@mail.ru', 'visavi.net@mail.ru')?></p>
 

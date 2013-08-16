@@ -6,7 +6,7 @@
 			<span class="icon-bar"></span>
 		</button>
 		<a class="navbar-brand" href="/">RotorCMS</a>
-		<div class="nav-collapse collapse" id="navbar-main">
+		<div class="nav-collapse collapse">
 			<? \Lang::load('nav'); ?>
 			<?=\Request::forge('base/navlinks')->execute()?>
 			<?if ($current_user):?>
