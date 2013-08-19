@@ -1,4 +1,4 @@
-<?=\Form::open(array('class' => 'form-horizontal'))?>
+<?/*=\Form::open(array('class' => 'form-horizontal'))?>
 	<fieldset>
 		<legend><?= __('create.new_message') ?></legend>
 
@@ -15,5 +15,18 @@
 			</div>
 		</div>
 
+	</fieldset>
+<?=\Form::close()*/?>
+
+
+<?=\Form::open(array('role' => 'form'))?>
+	<fieldset>
+		<legend><?= __('create.new_message') ?></legend>
+
+		<div class="form-group">
+			<?=\Form::label(__('create.message'), 'text')?>
+			<?=\Form::textarea('text', \Input::post('text'), array('class' => 'form-control', 'rows' => 3))?>
+		</div>
+		<?=\Form::submit('submit', __('create.submit'), array('class' => 'btn btn-primary'))?>
 	</fieldset>
 <?=\Form::close()?>

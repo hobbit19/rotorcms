@@ -14,7 +14,7 @@
 
 	<div class="panel">
 		<div class="panel-heading">Рекламный блок</div>
-		<p>Текст рекламы</p>
+		<div class="panel-body">Текст рекламы</div>
 	</div>
 
 </div>
