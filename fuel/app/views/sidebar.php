@@ -12,7 +12,7 @@
 		<?endif;?>
 	</div>
 
-	<div class="panel">
+	<div class="panel panel-default">
 		<div class="panel-heading">Рекламный блок</div>
 		<div class="panel-body">Текст рекламы</div>
 	</div>

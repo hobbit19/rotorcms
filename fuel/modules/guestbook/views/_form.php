@@ -19,7 +19,7 @@
 <?=\Form::close()*/?>
 
 
-<?=\Form::open(array('role' => 'form'))?>
+<?=\Form::open(array('role' => 'form', 'class' => 'well'))?>
 	<fieldset>
 		<legend><?= __('create.new_message') ?></legend>
 
