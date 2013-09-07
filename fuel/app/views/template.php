@@ -11,10 +11,10 @@
 <body>
 	<?=View::forge('navbar')?>
 
-	<div class="container preview">
+	<div class="container">
 		<div class="row">
 
-			<div class="col-lg-12">
+			<div class="col-md-12">
 				<div class="page-header">
 					<h1><?=$title?><?=isset($subtitle) ? ' <small>'.$subtitle.'</small>' : ''?></h1>
 				</div>
@@ -28,7 +28,7 @@
 			<?=View::forge('sidebar')?>
 		<?endif;?>
 
-			<div class="<?=!isset($fullpage) ? 'col-lg-9' : 'col-lg-12'?>">
+			<div class="<?=!isset($fullpage) ? 'col-md-9' : 'col-md-12'?>">
 				<?=\Breadcrumb::create_links()?>
 				<?=$content?>
 			</div>

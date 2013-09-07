@@ -1,39 +1,25 @@
-<?=\Form::open(array('class' => 'form-horizontal'))?>
+<?=\Form::open(array('role' => 'form', 'class' => 'well'))?>
 
 	<fieldset>
-	 	<legend><?=__('login.authorization')?></legend>
-		<div class="control-group">
-			<?=\Form::label(__('login.username_or_email'), 'username', array('class' => 'control-label'))?>
-			<div class="controls">
-				<div class="input-append">
-					<?=\Form::input('username', \Input::post('username'), array('required' => 'required'))?>
-					<span class="add-on"><i class="icon-user"></i></span>
-				</div>
-			</div>
+		<legend><?=__('login.authorization')?></legend>
+
+		<div class="form-group">
+			<?=\Form::label(__('login.username_or_email'), 'username')?>
+			<?=\Form::input('username', \Input::post('username'), array('required' => 'required', 'class' => 'form-control'))?>
 		</div>
 
-		<div class="control-group">
-			<label class="control-label" for="form_password"><?=__('login.password')?></label>
-			<div class="controls">
-				<div class="input-append">
-				<?=\Form::input('password', null, array('required' => 'required', 'type' => 'password'))?>
-					<span class="add-on"><i class="icon-wrench"></i></span>
-				</div>
-			</div>
+		<div class="form-group">
+			<?=\Form::label(__('login.password'), 'password')?>
+			<?=\Form::input('password', \Input::post('password'), array('required' => 'required', 'type' => 'password', 'class' => 'form-control'))?>
 		</div>
 
-		<div class="control-group">
-			<div class="controls">
-				<label class="checkbox">
-					<?=\Form::checkbox('remember', \Input::post('remember', 1), true)?> <?=__('login.remember_me')?>
-				</label>
-			</div>
+		<div class="checkbox">
+			<label>
+				<?=\Form::checkbox('remember', \Input::post('remember', 1), true)?> <?=__('login.remember_me')?>
+			</label>
 		</div>
 
-		<div class="form-actions">
-			<?=\Form::button('submit', __('login.sign_in'), array('class' => 'btn btn-primary'))?>
-			<?=Html::anchor('reset', __('login.forgot'), array("class"=>"muted"))?>
-		</div>
-
+		<?=\Form::submit('submit', __('login.sign_in'), array('class' => 'btn btn-primary'))?>
+		<?=Html::anchor('reset', __('login.forgot'), array("class" => "pull-right text-muted"))?>
 	</fieldset>
 <?=\Form::close()?>

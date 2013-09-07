@@ -1,4 +1,4 @@
-<div class="navbar navbar-default navbar-fixed-top">
+<div class="navbar navbar-default">
 	<div class="container">
 		<div class="navbar-header">
 			<a class="navbar-brand" href="/">RotorCMS</a>
@@ -35,19 +35,19 @@
 </div>
 
 <div class="modal fade" id="exit">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3 class="modal-title">Exit Confirmation</h3>
-      </div>
-      <div class="modal-body">
-        <p class="text-danger"><?=__('nav.confirm')?></p>
-      </div>
-      <div class="modal-footer">
-      	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-		<?=Html::anchor('logout', __('nav.exit'), array('class' => "btn btn-danger"))?>
-      </div>
-    </div>
-  </div>
+	<div class="modal-dialog">
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h3 class="modal-title">Exit Confirmation</h3>
+		</div>
+		<div class="modal-body">
+			<p class="text-danger"><?=__('nav.confirm')?></p>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			<?=Html::anchor('logout', __('nav.exit'), array('class' => "btn btn-danger"))?>
+		</div>
+	</div>
+	</div>
 </div>
