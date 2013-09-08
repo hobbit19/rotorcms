@@ -1,15 +1,6 @@
-<div class="controls">
-	<img src="<?php echo $captcha_route; ?>" alt="Simple Captcha" height="<?php echo $captcha_height; ?>" width="<?php echo $captcha_width; ?>" />
-</div>
+<img src="<?=$captcha_route;?>" alt="Simple Captcha" height="<?=$captcha_height;?>" width="<?=$captcha_width;?>" />
 
-
-<div class="control-group">
-	<?=Form::label(__('register.captcha_key'), 'simplecaptcha', array('class' => 'control-label'))?>
-
-	<div class="controls">
-		<div class="input-append">
-			<?=\Form::input($captcha_post_name, null, array('required' => 'required'))?>
-			<span class="add-on"><i class="icon-cog"></i></span>
-		</div>
-	</div>
+<div class="form-group">
+	<?=\Form::label(__('register.captcha_key'), 'simplecaptcha')?>
+	<?=\Form::input($captcha_post_name, null, array('required' => 'required', 'class' => 'form-control'))?>
 </div>
